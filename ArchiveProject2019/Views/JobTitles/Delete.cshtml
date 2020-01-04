@@ -1,0 +1,59 @@
+﻿@model ArchiveProject2019.Models.JobTitle
+
+@{
+
+    ViewBag.Title = "حذف مسمى معين ";
+
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+<h3>هل أنت متأكد من عمليةالحذف.؟</h3>
+    <div>
+      
+        <dl class="dl-horizontal">
+           
+    
+          
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Symbol)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Symbol)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.MaximumMember)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.MaximumMember)
+            </dd>
+    
+    
+
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+
+
+
+            <div class="modal-footer justify-content-center" style="margin-top:50px">
+                <input type="submit" title="حذف المسمى الوظيفي" value="حذف المسمى الوظيفي" class="btn btn-danger" />
+
+                <button type="button" title="اغلاق النافذة" class="btn btn-warning" data-dismiss="modal">إغلاق</button>
+            </div>
+
+        }
+    </div>

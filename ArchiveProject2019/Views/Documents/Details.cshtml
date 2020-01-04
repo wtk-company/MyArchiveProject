@@ -1,0 +1,211 @@
+﻿@model ArchiveProject2019.ViewModel.DocumentFieldsValuesViewModel
+
+@{
+    ViewBag.Title = "تفاصيل الوثيقة";
+    Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
+}
+<style>
+    
+    td, dd {
+        margin: 20px;
+    }
+    
+    .panel {
+        background-color: #f1f1f1;
+    }
+
+</style>
+
+
+@Html.Partial("_StartView")
+<a href="@Url.Action("index", "Documents")" class="btn btn-primary">عودة لقائمةالوثائق  <i class="glyphicon glyphicon-backward"></i></a>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Document.FormId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Document.Form.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Document.DocumentNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Document.DocumentNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Document.Kind.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Document.Kind.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Document.Subject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Document.Subject)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Document.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Document.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Document.TypeMail.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Document.TypeMail.Name)
+        </dd>
+
+        @if (Model.Document.TypeMailId == 1)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Document.MailingNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Document.MailingNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Document.MailingDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Document.MailingDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Document.Party.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Document.Party.Name)
+            </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Document.DocumentDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Document.DocumentDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Document.CreatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Document.CreatedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Document.CreatedById)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Document.CreatedBy.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Document.FileUrl)
+        </dt>
+        <dd>
+
+            @if (Model.IsSaveInDb)
+            {
+                for (int i = 0; i < Model.FilesStoredInDbs.Count; i++)
+                {
+                    <label style="margin-top: 30px;">@Model.FilesStoredInDbs[i].FileName</label>
+                    <div>
+                        @Html.ActionLink(" فتح الملف", "DisplayDocument", "Documents",
+                       new { id = Model.FilesStoredInDbs[i].Id },
+                       new { @class = "glyphicon glyphicon-open btn btn-primary" }) |
+                        @Html.ActionLink(" تنزيل الملف", "DownloadDocument", "Documents",
+                       new { id = Model.FilesStoredInDbs[i].Id },
+                       new { @class = "glyphicon glyphicon-download btn btn-success" })
+                    </div>
+                }
+            }
+            else
+            {
+                var urls = Model.Document.FileUrl.Split(new string[] { "_##_" }, StringSplitOptions.None);
+                var names = Model.Document.Name.Split(new string[] { "_##_" }, StringSplitOptions.None);
+
+                for (int i = 0; i < urls.Length; i++)
+                {
+                    <label style="margin-top: 30px;">@names[i]</label>
+                    <div>
+                        @Html.ActionLink(" فتح الملف", "DisplayDocument", "Documents", new { fileName = urls[i] }, new { @class = "glyphicon glyphicon-open btn btn-primary" }) |
+                        @Html.ActionLink(" تنزيل الملف", "DownloadDocument", "Documents", new { fileName = urls[i] }, new { @class = "glyphicon glyphicon-download btn btn-success" })
+                    </div>
+                }
+            }
+
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Document.Notes)
+        </dt>
+
+        <dd style="overflow:auto;border:2px solid #ef7979;padding:10px">
+            @Html.Raw(Model.Document.Notes)
+        </dd>
+
+        <dt>
+            قائمة التسديدات
+        </dt>
+        <dd>
+            @if (Model.Seals != null)
+            {
+                for (int i = 0; i < Model.Seals.Count; i++)
+                {
+
+                    <article class="row col-md-6 col-sm-6">
+                        <div class="">
+                            <div class="panel panel-default arrow right">
+                                <div class="panel-body">
+
+                                    <header class="text-right">
+                                        <div class="comment-user"><i class="fa fa-user"></i> @Model.Seals[i].CreatedBy.UserName</div>
+                                        <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> @Model.Seals[i].CreatedAt</time>
+                                        <div class="comment-user"><span class="glyphicon glyphicon-file"></span> @Model.Seals[i].FileName</div>
+                                        <label style="margin-top: 30px;">@Model.Seals[i].FileName</label>
+                                        <div>
+                                            @Html.ActionLink(" فتح", "DisplayDocument", "Seals",
+                                               new { id = Model.Seals[i].Id },
+                                               new { @class = "glyphicon glyphicon-open btn btn-primary" }) |
+                                            @Html.ActionLink(" تنزيل", "DownloadDocument", "Seals",
+                                               new { id = Model.Seals[i].Id },
+                                               new { @class = "glyphicon glyphicon-download btn btn-success" })
+                                        </div>
+                                        <hr />
+                                    </header>
+                                    <div class="comment-post">
+                                        <p>
+                                            @Model.Seals[i].Message
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                }
+            }
+        </dd>
+    </dl>
+
+</div>
+
+@Html.Partial("_LastView")

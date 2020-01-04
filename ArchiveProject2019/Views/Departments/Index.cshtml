@@ -6,60 +6,61 @@
     Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
 }
 <style>
-.just-padding {
-    padding: 15px;
-}
+    .just-padding {
+        padding: 15px;
+    }
 
-.list-group.list-group-root {
-    padding: 0;
-    overflow: hidden;
-}
+    .list-group.list-group-root {
+        padding: 0;
+        overflow: hidden;
+    }
 
-.list-group.list-group-root .list-group {
-    margin-bottom: 0;
-}
+        .list-group.list-group-root .list-group {
+            margin-bottom: 0;
+        }
 
-.list-group.list-group-root .list-group-item {
-    border-radius: 0;
-    border-width: 1px 0 0 0;
-}
+        .list-group.list-group-root .list-group-item {
+            border-radius: 0;
+            border-width: 1px 0 0 0;
+        }
 
-.list-group.list-group-root > .list-group-item:first-child {
-    border-top-width: 0;
-}
+        .list-group.list-group-root > .list-group-item:first-child {
+            border-top-width: 0;
+        }
 
-.list-group.list-group-root > .list-group > .list-group-item {
-    padding-right: 35px;
-}
+        .list-group.list-group-root > .list-group > .list-group-item {
+            padding-right: 35px;
+        }
 
-.list-group.list-group-root > .list-group > .list-group > .list-group-item {
-    padding-right: 60px;
-}
-.list-group.list-group-root > .list-group >.list-group > .list-group > .list-group-item {
-    padding-right: 75px;
-}
-.list-group.list-group-root > .list-group >.list-group >.list-group > .list-group > .list-group-item {
-    padding-right: 90px;
-}
+        .list-group.list-group-root > .list-group > .list-group > .list-group-item {
+            padding-right: 60px;
+        }
 
-.list-group.list-group-root > .list-group >.list-group >.list-group >.list-group > .list-group > .list-group-item {
-    padding-right:105px;
-}
+        .list-group.list-group-root > .list-group > .list-group > .list-group > .list-group-item {
+            padding-right: 75px;
+        }
 
-.list-group.list-group-root > .list-group >.list-group >.list-group >.list-group >.list-group > .list-group > .list-group-item {
-    padding-right: 120px;
-}
+        .list-group.list-group-root > .list-group > .list-group > .list-group > .list-group > .list-group-item {
+            padding-right: 90px;
+        }
 
-.list-group-item .glyphicon {
-    margin-left: 10px;
-}
+        .list-group.list-group-root > .list-group > .list-group > .list-group > .list-group > .list-group > .list-group-item {
+            padding-right: 105px;
+        }
 
+        .list-group.list-group-root > .list-group > .list-group > .list-group > .list-group > .list-group > .list-group > .list-group-item {
+            padding-right: 120px;
+        }
+
+    .list-group-item .glyphicon {
+        margin-left: 10px;
+    }
 </style>
 
 
 
 
-@Html.Partial("_StartView")
+
 
 
 
@@ -74,7 +75,7 @@
 
             </span>
             لا يمكن أن يكون الاسم مكرر، يجب إعادة الإدخال
-    
+
         </div>
     }
 
@@ -137,7 +138,7 @@
 
 }
 
-
+@Html.Partial("_StartView")
 
 <p>
     <button id="btnNewModel" class="btn btn-primary" title="إضافة قسم جديد">إضافة قسم جديد</button>
@@ -147,21 +148,21 @@
 
 
 
-    <div id="form" class="just-padding">
+<div id="form" class="just-padding">
 
-        <div class="list-group list-group-root well">
+    <div class="list-group list-group-root well">
 
-            @*Departmet witout child *@
+        @*Departmet witout child *@
 
-            @if (Model.Count() == 0)
-            {
-
-                <p style="text-align:center;padding:20px;">لا يوجد أي سجلات</p>
-            }
-
-            @foreach (var element in Model)
+        @if (Model.Count() == 0)
         {
-            //One element just 
+
+            <p style="text-align:center;padding:20px;">لا يوجد أي سجلات</p>
+        }
+
+        @foreach (var element in Model)
+        {
+            //One element just
 
 
 
@@ -170,63 +171,63 @@
                 if (element.ParentId == null && element.ChildDepartment.Count() <= 0)
                 {
 
-                        <a href="#" class="list-group-item">
+                    <a href="#" class="list-group-item">
 
-                            <i class="glyphicon glyphicon-paperclip"></i>@element.Name
-                            
-                        </a>
-                        <div style="padding:10px;height:40px;background-color:white">
-                            <button style="float:left;" data-form-id="@element.Id" title="تعديل اسم القسم" class="btn btn-default js-Edit  btn-xs">تعديل القسم</button>
-                            <button style="float:left;" data-form-id="@element.Id" title="إضافة قسم فرعي" class="btn btn-primary js-Add  btn-xs">إضافة قسم فرعي</button>
-                            @if (CheckDelete.CheckDepertmentDelete(element.Id) ==  true)
+                        <i class="glyphicon glyphicon-paperclip"></i>@element.Name
+
+                    </a>
+                    <div style="padding:10px;height:40px;background-color:white">
+                        <button style="float:left;" data-form-id="@element.Id" title="تعديل اسم القسم" class="btn btn-default js-Edit  btn-xs">تعديل القسم</button>
+                        <button style="float:left;" data-form-id="@element.Id" title="إضافة قسم فرعي" class="btn btn-primary js-Add  btn-xs">إضافة قسم فرعي</button>
+                        @if (CheckDelete.CheckDepertmentDelete(element.Id) == true)
                         {
 
-                                <button style="float:left" data-form-id="@element.Id" title="حذف قسم معين" class="js-delete btn-xs btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                            <button style="float:left" data-form-id="@element.Id" title="حذف قسم معين" class="js-delete btn-xs btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
                         }
-                            <a style="float:left;" class="btn btn-success btn-xs" title="عرض المستخدمين الحاليين للقسم" href="@Url.Action("DepartmentUsers","Departments",new { id=element.Id})">المستخدمين</a>
-                            <button style="float:left" data-form-id="@element.Id" title="تفاصيل القسم" class="js-details btn-xs btn btn-default">تفاصيل</button>
+                        <a style="float:left;" class="btn btn-success btn-xs" title="عرض المستخدمين الحاليين للقسم" href="@Url.Action("DepartmentUsers","Departments",new { id=element.Id})">المستخدمين</a>
+                        <button style="float:left" data-form-id="@element.Id" title="تفاصيل القسم" class="js-details btn-xs btn btn-default">تفاصيل</button>
 
 
-                        </div>
+                    </div>
                 }
 
                 else
                 {
 
-                        @multiElement(element);
-                    }
+                    @multiElement(element);
                 }
-
-
-
-
             }
 
 
-        </div>
 
 
-        @helper printSingle(Department dep)
-        {
+        }
 
 
+    </div>
 
 
-
-
-
-    <a href="#" class="list-group-item">
-
-        <i class="glyphicon glyphicon-paperclip"></i>@dep.Name
+    @helper printSingle(Department dep)
+    {
 
 
 
-    </a>
+
+
+
+
+        <a href="#" class="list-group-item">
+
+            <i class="glyphicon glyphicon-paperclip"></i>@dep.Name
+
+
+
+        </a>
         <div style="padding:10px;height:40px;background-color:white">
             <button style="float:left;" data-form-id="@dep.Id" title="تعديل اسم القسم" class="btn btn-default js-Edit  btn-xs">تعديل القسم</button>
             <button style="float:left;" data-form-id="@dep.Id" title="إضافة قسم فرعي" class="btn btn-primary js-Add  btn-xs">إضافة قسم فرعي</button>
-          @if (CheckDelete.CheckDepertmentDelete(dep.Id) == true)
-          {
+            @if (CheckDelete.CheckDepertmentDelete(dep.Id) == true)
+            {
                 <button style="float:left" data-form-id="@dep.Id" title="حذف قسم معين" class="js-delete btn-xs btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
             }
             <a style="float:left;" class="btn btn-success btn-xs" title="عرض المستخدمين الحاليين للقسم" href="@Url.Action("DepartmentUsers","Departments",new { id=dep.Id})">المستخدمين</a>
@@ -238,57 +239,61 @@
 
 
 
-}
-
-
-
-
-        @helper multiElement(Department dep)
- {
-
-if(dep.ParentId!=null && dep.ChildDepartment.Count()==0)
-{
-        @printSingle(dep);
-}
-
-//Super Father
-if ((dep.ParentId == null && dep.ChildDepartment.Count()>0)||(dep.ParentId !=null && dep.ChildDepartment.Count()>0))
-{
-        @:<a href="#@dep.Id" class="list-group-item" data-toggle="collapse">
-            @:<i class="glyphicon glyphicon-chevron-down"></i>@dep.Name
-            @:
-        @:</a>
-
-
-        <div style="padding:10px;height:40px;background-color:white;vertical-align:central">
-            <button style="float:left;" data-form-id="@dep.Id" title="تعديل اسم القسم" class="btn btn-default js-Edit  btn-xs">تعديل القسم</button>
-            <button style="float:left;" data-form-id="@dep.Id" title="إضافة قسم فرعي" class="btn btn-primary js-Add  btn-xs">إضافة قسم فرعي</button>
-           @if (CheckDelete.CheckDepertmentDelete(dep.Id) == true)
-           {
-
-                <button style="float:left" data-form-id="@dep.Id" title="حذف" class="js-delete btn-xs btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
-            }
-            <a style="float:left;" class="btn btn-success btn-xs" title="عرض المستخدمين الحاليين للقسم"  href="@Url.Action("DepartmentUsers","Departments",new { id=dep.Id})">المستخدمين</a>
-            <button style="float:left" data-form-id="@dep.Id" title="تفاصيل القسم" class="js-details btn-xs btn btn-default">تفاصيل</button>
-
-        </div>
-
-        @:<div class="list-group collapse" id="@dep.Id">
-
-
-    foreach(Department d in dep.ChildDepartment)
-    {
-
-            @multiElement(d);
     }
 
-    @:</div>
-            }
 
 
-}
 
-    </div>
+    @helper multiElement(Department dep)
+    {
+
+        if (dep.ParentId != null && dep.ChildDepartment.Count() == 0)
+        {
+            @printSingle(dep);
+        }
+
+        //Super Father
+        if ((dep.ParentId == null && dep.ChildDepartment.Count() > 0) || (dep.ParentId != null && dep.ChildDepartment.Count() > 0))
+        {
+            @:<a href="#@dep.Id" class="list-group-item" data-toggle="collapse">
+                @:<i class="glyphicon glyphicon-chevron-down"></i>@dep.Name
+                @:
+            @:</a>
+
+
+
+
+            <div style="padding:10px;height:40px;background-color:white;vertical-align:central">
+                <button style="float:left;" data-form-id="@dep.Id" title="تعديل اسم القسم" class="btn btn-default js-Edit  btn-xs">تعديل القسم</button>
+                <button style="float:left;" data-form-id="@dep.Id" title="إضافة قسم فرعي" class="btn btn-primary js-Add  btn-xs">إضافة قسم فرعي</button>
+                @if (CheckDelete.CheckDepertmentDelete(dep.Id) == true)
+                {
+
+                    <button style="float:left" data-form-id="@dep.Id" title="حذف" class="js-delete btn-xs btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                }
+                <a style="float:left;" class="btn btn-success btn-xs" title="عرض المستخدمين الحاليين للقسم" href="@Url.Action("DepartmentUsers","Departments",new { id=dep.Id})">المستخدمين</a>
+                <button style="float:left" data-form-id="@dep.Id" title="تفاصيل القسم" class="js-details btn-xs btn btn-default">تفاصيل</button>
+
+            </div>
+
+            @:<div class="list-group collapse" id="@dep.Id">
+
+
+
+
+                foreach (Department d in dep.ChildDepartment)
+                {
+
+                    @multiElement(d);
+                }
+
+            @:</div>
+        }
+
+
+    }
+
+</div>
 
 
 @Html.Partial("_LastView")
@@ -303,7 +308,7 @@ if ((dep.ParentId == null && dep.ChildDepartment.Count()>0)||(dep.ParentId !=nul
                 <button type="button" class="close" data-dismiss="modal">×</button>
                 <h4 id="changeText" class="modal-title"></h4>
             </div>
-            <div  class="modal-body" id="partialPlaceHolder" style="margin-top:30px">
+            <div class="modal-body" id="partialPlaceHolder" style="margin-top:30px">
 
             </div>
 
@@ -351,7 +356,7 @@ if ((dep.ParentId == null && dep.ChildDepartment.Count()>0)||(dep.ParentId !=nul
 
         $("#form").on("click", ".js-Edit", function () {
 
-        
+
             $("#changeText").text("تعديل قسم معين");
 
             var url = '@Url.Action("Edit", "Departments")';
@@ -412,9 +417,9 @@ if ((dep.ParentId == null && dep.ChildDepartment.Count()>0)||(dep.ParentId !=nul
         });
 
     </script>
-  
-    
-    }
+
+
+}
 
 
 

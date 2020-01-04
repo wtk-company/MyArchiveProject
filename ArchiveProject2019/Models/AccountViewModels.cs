@@ -84,8 +84,8 @@ namespace ArchiveProject2019.Models
 
 
         [Display(Name = "JobTitleId", ResourceType = typeof(main_lang))]
-        [Required(ErrorMessageResourceType = typeof(main_lang), ErrorMessageResourceName = "JobTitleRequired")]
-        public int JobTitleId { get; set; }
+      //  [Required(ErrorMessageResourceType = typeof(main_lang), ErrorMessageResourceName = "JobTitleRequired")]
+        public int? JobTitleId { get; set; }
 
 
         
@@ -171,8 +171,8 @@ namespace ArchiveProject2019.Models
 
         
         [Display(Name = "JobTitleId", ResourceType = typeof(main_lang))]
-        [Required(ErrorMessageResourceType = typeof(main_lang), ErrorMessageResourceName = "JobTitleRequired")]
-        public int JobTitleId { get; set; }
+      //  [Required(ErrorMessageResourceType = typeof(main_lang), ErrorMessageResourceName = "JobTitleRequired")]
+        public int? JobTitleId { get; set; }
 
 
 

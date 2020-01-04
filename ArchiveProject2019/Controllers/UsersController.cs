@@ -93,12 +93,18 @@ namespace ArchiveProject2019.Controllers
                     x = false;
                 }
 
-                if (CheckJobTitleDepartment.CheckJobTitleDepartmentCreateUser(model.DepartmentID, model.JobTitleId) == false)
+
+                if(model.JobTitleId.HasValue)
                 {
 
-                    ModelState.AddModelError("JobTitleId", "عددالأعضاء للقسم بالنسبة للمسمى الوظيفي وصل للحد الأعظمي");
-                    x = false;
+                    if (CheckJobTitleDepartment.CheckJobTitleDepartmentCreateUser(model.DepartmentID, model.JobTitleId.Value) == false)
+                    {
+
+                        ModelState.AddModelError("JobTitleId", "عددالأعضاء للقسم بالنسبة للمسمى الوظيفي وصل للحد الأعظمي");
+                        x = false;
+                    }
                 }
+               
 
                 if (!string.IsNullOrEmpty(model.Email))
                 {
@@ -177,7 +183,7 @@ namespace ArchiveProject2019.Controllers
 
 
                     db.SaveChanges();
-                    return RedirectToAction("Index", new { @Id = "CreateSuccess" });
+                    return RedirectToAction("Index", new { Id = "CreateSuccess" });
                 }
                 // AddErrors(result);
             }
@@ -477,11 +483,16 @@ namespace ArchiveProject2019.Controllers
 
                 if (!EProfile.Role.Equals("Master"))
                 {
-                    if (CheckJobTitleDepartment.CheckJobTitleDepartmentCreateUser(EProfile.DepartmentID, EProfile.JobTitleId, EProfile.Id) == false)
+
+
+
+                    if (EProfile.JobTitleId.HasValue) {
+                        if (CheckJobTitleDepartment.CheckJobTitleDepartmentCreateUser(EProfile.DepartmentID, EProfile.JobTitleId.Value, EProfile.Id) == false)
                     {
 
                         ModelState.AddModelError("JobTitleId", "عددالأعضاء للقسم بالنسبة للمسمى الوظيفي وصل للحد الأعظمي");
                         x = false;
+                    }
                     }
                 }
 

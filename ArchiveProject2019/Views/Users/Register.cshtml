@@ -156,20 +156,7 @@
             </div>
         </div>
 
-        @if (((SelectList)ViewBag.Groups).Count() <= 0)
-        {
-            <div class="form-group">
-                @Html.Label("المجموعات", new { @class = "col-md-2 control-label" })
-                <div class="col-md-10" style="overflow:auto;height:150px">
-                    <div class="alert alert-warning" style="text-align:center;font-size:larger">
-                        <span class="glyphicon glyphicon-bell">
-                        </span> لا يوجد أي مجموعات متوفره
-                    </div>
-                </div>
-            </div>
-        }
-        else
-        {
+      
             <div>
                 <div class="form-group">
                     @Html.Label("المجموعات", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -178,7 +165,7 @@
                     </div>
                 </div>
             </div>
-        }
+        
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" class="btn btn-primary" value="تسجيل جديد" />

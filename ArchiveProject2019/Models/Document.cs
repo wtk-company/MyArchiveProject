@@ -154,7 +154,7 @@ namespace ArchiveProject2019.Models
 
 
 
-      //  public bool IsGeneralize { set; get; }
+       public bool IsGeneralize { set; get; }
         //Collections:
         public ICollection<DocumentDepartment> DocumentDepartments { set; get; }
         public ICollection<DocumentGroup> DocumentGroups { set; get; }

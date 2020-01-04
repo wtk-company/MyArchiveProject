@@ -268,26 +268,31 @@ namespace ArchiveProject2019.Controllers
 
 
             //Check Mail numbare and mail date:
-            TypeMail mail = _context.TypeMails.Find(viewModel.Document.TypeMailId);
 
-            if (mail != null && mail.Type == 1 && viewModel.Document.MailingDate == null)
+            if (viewModel.Document.TypeMailId.HasValue)
             {
-                ModelState.AddModelError("Document.MailingDate", "ادخل تاريخ ورود البريد");
-                Status = false;
-            }
 
-            if (mail != null && mail.Type == 1 && viewModel.Document.MailingNumber == null)
-            {
-                ModelState.AddModelError("Document.MailingNumber", "ادخل رقم ورود البريد ");
-                Status = false;
-            }
 
-            if (mail != null && mail.Type.Equals(2) && PartyIds == null)
-            {
-                ModelState.AddModelError("PartyIds", "حدد جهات استلام البريد");
-                Status = false;
-            }
+                TypeMail mail = _context.TypeMails.Find(viewModel.Document.TypeMailId);
 
+                if (mail != null && mail.Type == 1 && viewModel.Document.MailingDate == null)
+                {
+                    ModelState.AddModelError("Document.MailingDate", "ادخل تاريخ ورود البريد");
+                    Status = false;
+                }
+
+                if (mail != null && mail.Type == 1 && viewModel.Document.MailingNumber == null)
+                {
+                    ModelState.AddModelError("Document.MailingNumber", "ادخل رقم ورود البريد ");
+                    Status = false;
+                }
+
+                if (mail != null && mail.Type.Equals(2) && PartyIds == null)
+                {
+                    ModelState.AddModelError("PartyIds", "حدد جهات استلام البريد");
+                    Status = false;
+                }
+            }
             var lasFile = UploadFile.Last();
             foreach (HttpPostedFileBase file in UploadFile)
             {
@@ -309,10 +314,10 @@ namespace ArchiveProject2019.Controllers
 
 
             //Error:
-            ViewBag.TypeMailId = new SelectList(_context.TypeMails.ToList(), "Id", "Name", viewModel.Document.TypeMailId);
-            ViewBag.kinds = new SelectList(_context.Kinds.ToList(), "Id", "Name", viewModel.Document.KindId);
+            ViewBag.TypeMailId = new SelectList(_context.TypeMails.ToList(), "Id", "Name", viewModel.Document.TypeMailId.HasValue? viewModel.Document.TypeMailId.Value :-1);
+            ViewBag.kinds = new SelectList(_context.Kinds.ToList(), "Id", "Name", viewModel.Document.KindId.HasValue ? viewModel.Document.KindId.Value: -1);
             ViewBag.RelatedGroups = new SelectList(_context.Groups.ToList(), "Id", "Name");
-            ViewBag.StatusId = new SelectList(_context.DocumentStatuses.ToList(), "Id", "Name", viewModel.Document.StatusId);
+            ViewBag.StatusId = new SelectList(_context.DocumentStatuses.ToList(), "Id", "Name", viewModel.Document.StatusId.HasValue? viewModel.Document.StatusId.Value: -1);
             ViewBag.RelatedDepartments = new SelectList(DepartmentListDisplay.CreateDepartmentListDisplay().Where(a=>a.Id!= UserDepId), "Id", "Name");
             ViewBag.RelatedUsers = new SelectList(_context.Users.Where(a => !a.RoleName.Equals("Master")).ToList(), "Id", "FullName");
             ViewBag.ResponsibleUserId = new SelectList(_context.Users.Where(a => !a.RoleName.Equals("Master")).ToList(), "Id", "FullName", viewModel.Document.ResponsibleUserId);
@@ -712,23 +717,32 @@ namespace ArchiveProject2019.Controllers
                         _context.SaveChanges();
                     }
                 }
-                // store outgoing parties
-                if (PartyIds != null && mail.Type == 2)
-                {
-                    foreach (string partyId in PartyIds)
-                    {
-                        var DocParty = new DocumentParty()
-                        {
-                            DocumentId = viewModel.Document.Id,
-                            PartyId = Convert.ToInt32(partyId),
-                            CreatedAt = DateTime.Now.ToString("dd/MM/yyyy-HH:mm:ss"),
-                            CreatedById = UserId
-                        };
 
-                        _context.DocumentParties.Add(DocParty);
-                        _context.SaveChanges();
+
+
+
+               if(viewModel.Document.TypeMailId.HasValue)
+                {
+                    TypeMail mail = _context.TypeMails.Find(viewModel.Document.TypeMailId);
+
+                    if (PartyIds != null && mail.Type == 2)
+                    {
+                        foreach (string partyId in PartyIds)
+                        {
+                            var DocParty = new DocumentParty()
+                            {
+                                DocumentId = viewModel.Document.Id,
+                                PartyId = Convert.ToInt32(partyId),
+                                CreatedAt = DateTime.Now.ToString("dd/MM/yyyy-HH:mm:ss"),
+                                CreatedById = UserId
+                            };
+
+                            _context.DocumentParties.Add(DocParty);
+                            _context.SaveChanges();
+                        }
                     }
                 }
+               
                 // document famely status (begin)
                 var parentDocId = viewModel.DocId;
 
@@ -841,15 +855,14 @@ namespace ArchiveProject2019.Controllers
 
 
             //[Asmi new]:
-            ViewBag.StatusId = new SelectList(_context.DocumentStatuses.ToList(), "Id", "Name", Document.StatusId);
-            ViewBag.kinds = new SelectList(_context.Kinds.ToList(), "Id", "Name", Document.KindId);
+            ViewBag.StatusId = new SelectList(_context.DocumentStatuses.ToList(), "Id", "Name", Document.StatusId.HasValue? Document.StatusId.Value: -1);
+            ViewBag.kinds = new SelectList(_context.Kinds.ToList(), "Id", "Name", Document.KindId.HasValue? Document.KindId.Value: -1);
 
             ViewBag.ResponsibleUserId = new SelectList(_context.Users.Where(a => !a.RoleName.Equals("Master")).ToList(), "Id", "FullName", Document.ResponsibleUserId);
 
             //[Related Departments]:
 
 
-            //============== Related Users/Departments/Groups=============================
             SelectListItem sl;
             List<SelectListItem> ListSl = new List<SelectListItem>();
             foreach (var G in DepartmentListDisplay.CreateDepartmentListDisplay().Where(a=>a.Id!=Document.DepartmentId).ToList())
@@ -1035,7 +1048,7 @@ namespace ArchiveProject2019.Controllers
                     FieldsValues = viewModel,
                     ExistFiles = existfiles,
                     FilesStoredInDbs = Document.FilesStoredInDbs.ToList(),
-                    TypeMail = Document.TypeMail.Type,
+                    TypeMail = Document.TypeMailId.HasValue? Document.TypeMail.Type:-1,
                     IsSaveInDb = ManagedAes.IsSaveInDb,
                 };
 
@@ -1102,27 +1115,35 @@ namespace ArchiveProject2019.Controllers
             //    }
             //}
 
-            if (viewModel.Document.TypeMailId == 2 && PartyIds == null)
+
+            if (viewModel.Document.TypeMailId.HasValue)
             {
-                ModelState.AddModelError("PartyIds", "حدد جهات استلام البريد");
-                Status = false;
+
+
+
+                if (viewModel.Document.TypeMailId.Value == 2 && PartyIds == null)
+                {
+                    ModelState.AddModelError("PartyIds", "حدد جهات استلام البريد");
+                    Status = false;
+                }
+
+
+
+
+                if (viewModel.Document.TypeMailId == 1 && viewModel.Document.MailingDate == null)
+                {
+                    ModelState.AddModelError("Document.MailingDate", "ادخل تاريخ ورود البريد");
+                    Status = false;
+                }
+
+                if (viewModel.Document.TypeMailId == 1 && viewModel.Document.MailingNumber == null)
+                {
+                    ModelState.AddModelError("Document.MailingNumber", "ادخل رقم ورود البريد ");
+                    Status = false;
+                }
+
+
             }
-
-
-
-
-            if (viewModel.Document.TypeMailId == 1 && viewModel.Document.MailingDate == null)
-            {
-                ModelState.AddModelError("Document.MailingDate", "ادخل تاريخ ورود البريد");
-                Status = false;
-            }
-
-            if (viewModel.Document.TypeMailId == 1 && viewModel.Document.MailingNumber == null)
-            {
-                ModelState.AddModelError("Document.MailingNumber", "ادخل رقم ورود البريد ");
-                Status = false;
-            }
-
             FieldsValuesViewModel FVVM = new FieldsValuesViewModel();
             FVVM = viewModel.FieldsValues;
 
@@ -1240,9 +1261,9 @@ namespace ArchiveProject2019.Controllers
 
 
             //Asmi [Return ]:
-            ViewBag.StatusId = new SelectList(_context.DocumentStatuses.ToList(), "Id", "Name", viewModel.Document.StatusId);
+            ViewBag.StatusId = new SelectList(_context.DocumentStatuses.ToList(), "Id", "Name", viewModel.Document.StatusId.HasValue? viewModel.Document.StatusId.Value:-1);
 
-            ViewBag.kinds = new SelectList(_context.Kinds.ToList(), "Id", "Name", viewModel.Document.KindId);
+            ViewBag.kinds = new SelectList(_context.Kinds.ToList(), "Id", "Name", viewModel.Document.KindId.HasValue? viewModel.Document.KindId.Value : -1);
 
 
             ViewBag.ResponsibleUserId = new SelectList(_context.Users.Where(a => !a.RoleName.Equals("Master")).ToList(), "Id", "FullName", viewModel.Document.ResponsibleUserId);
@@ -2076,61 +2097,63 @@ namespace ArchiveProject2019.Controllers
 
                 //Party Ids:
 
-                if (viewModel.Document.TypeMailId == 2)
-                {
-                    List<string> SelectedDocumentPartyId = new List<string>();
-                    SelectedDocumentPartyId = _context.DocumentParties.Where(a => a.DocumentId == viewModel.Document.Id).Select(a => a.PartyId.ToString()).ToList();
-                    if (PartyIds != null)
+                if (viewModel.Document.TypeMailId.HasValue) {
+
+                    if (viewModel.Document.TypeMailId.Value == 2)
                     {
-                        DocumentParty _Documentparty = null;
-                        List<string> ExpectDocumentParties = new List<string>();
-                        ExpectDocumentParties = SelectedDocumentPartyId.Except(PartyIds).ToList();
-                        foreach (string _DocumentParty_Id in PartyIds)
+                        List<string> SelectedDocumentPartyId = new List<string>();
+                        SelectedDocumentPartyId = _context.DocumentParties.Where(a => a.DocumentId == viewModel.Document.Id).Select(a => a.PartyId.ToString()).ToList();
+                        if (PartyIds != null)
                         {
-
-
-                            if (SelectedDocumentPartyId.Contains(_DocumentParty_Id))
+                            DocumentParty _Documentparty = null;
+                            List<string> ExpectDocumentParties = new List<string>();
+                            ExpectDocumentParties = SelectedDocumentPartyId.Except(PartyIds).ToList();
+                            foreach (string _DocumentParty_Id in PartyIds)
                             {
 
-                                continue;
+
+                                if (SelectedDocumentPartyId.Contains(_DocumentParty_Id))
+                                {
+
+                                    continue;
+                                }
+                                _Documentparty = new DocumentParty()
+                                {
+
+                                    DocumentId = viewModel.Document.Id,
+                                    PartyId = Convert.ToInt32(_DocumentParty_Id),
+
+                                    CreatedAt = DateTime.Now.ToString("dd/MM/yyyy-HH:mm:ss"),
+                                    CreatedById = this.User.Identity.GetUserId()
+                                };
+
+                                _context.DocumentParties.Add(_Documentparty);
+
+
                             }
-                            _Documentparty = new DocumentParty()
+                            _context.SaveChanges();
+
+                            DocumentParty deleteDocumentParty;
+                            foreach (string s in ExpectDocumentParties)
                             {
+                                deleteDocumentParty = _context.DocumentParties.Where(a => a.DocumentId == viewModel.Document.Id && a.PartyId.ToString().Equals(s)).SingleOrDefault();
 
-                                DocumentId = viewModel.Document.Id,
-                                PartyId = Convert.ToInt32(_DocumentParty_Id),
-
-                                CreatedAt = DateTime.Now.ToString("dd/MM/yyyy-HH:mm:ss"),
-                                CreatedById = this.User.Identity.GetUserId()
-                            };
-
-                            _context.DocumentParties.Add(_Documentparty);
-
-
-                        }
-                        _context.SaveChanges();
-
-                        DocumentParty deleteDocumentParty;
-                        foreach (string s in ExpectDocumentParties)
-                        {
-                            deleteDocumentParty = _context.DocumentParties.Where(a => a.DocumentId == viewModel.Document.Id && a.PartyId.ToString().Equals(s)).SingleOrDefault();
-
-                            _context.DocumentParties.Remove(deleteDocumentParty);
+                                _context.DocumentParties.Remove(deleteDocumentParty);
 
 
 
+
+                            }
+                            _context.SaveChanges();
 
                         }
-                        _context.SaveChanges();
 
+
+
+                        _context.SaveChanges();
                     }
 
-
-
-                    _context.SaveChanges();
                 }
-
-
 
 
 
@@ -2212,15 +2235,6 @@ namespace ArchiveProject2019.Controllers
                     Document.DocumentDate = ManagedAes.DecryptText(Document.DocumentDate);
                     Document.Subject = ManagedAes.DecryptText(Document.Subject);
                     Document.CreatedAt = ManagedAes.DecryptText(Document.CreatedAt);
-                    //Document.Address = ManagedAes.DecryptText(Document.Address);
-                    //Document.Description = ManagedAes.DecryptText(Document.Description);
-                    //Document.FileUrl = ManagedAes.DecryptText(Document.FileUrl);
-                    //Document.MailingDate = ManagedAes.DecryptText(Document.MailingDate);
-                    //Document.MailingNumber = ManagedAes.DecryptText(Document.MailingNumber);
-                    //Document.Name = ManagedAes.DecryptText(Document.Name);
-                    //Document.Notes = ManagedAes.DecryptText(Document.Notes);
-                    //Document.NotificationDate = ManagedAes.DecryptText(Document.NotificationDate);
-                    //Document.UpdatedAt = ManagedAes.DecryptText(Document.UpdatedAt);
                 }
             }
             

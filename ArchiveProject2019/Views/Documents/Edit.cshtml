@@ -114,8 +114,8 @@
 
 
 
-
-    @if (Model.TypeMail == 1)
+    @if (Model.TypeMail.Value!=-1) {
+    if (Model.TypeMail == 1)
     {
 
         <div class="form-group">
@@ -146,7 +146,7 @@
 
     }
 
-    @if (Model.TypeMail == 2)
+    if (Model.TypeMail == 2)
     {
         <div class="form-group">
             @Html.Label("الجهات المستلمة", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -155,9 +155,9 @@
                 @Html.ValidationMessage("PartyIds", "", new { @class = "text-danger" })
             </div>
         </div>
+        }
     }
 
- 
     @*End Take Mail*@
 
 

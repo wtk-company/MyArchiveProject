@@ -29,15 +29,15 @@ namespace ArchiveProject2019.Models
 
 
         [Display(Name = "KindId", ResourceType = typeof(main_lang))]
-        [Required(ErrorMessageResourceType = typeof(main_lang), ErrorMessageResourceName = "KindRequired")]
-        public int KindId { set; get; }
+       // [Required(ErrorMessageResourceType = typeof(main_lang), ErrorMessageResourceName = "KindRequired")]
+        public int? KindId { set; get; }
         [ForeignKey("KindId")]
         public Kind Kind { set; get; }
 
 
         [Display(Name = "StatusId", ResourceType = typeof(main_lang))]
         [Required(ErrorMessageResourceType = typeof(main_lang), ErrorMessageResourceName = "StatusRequired")]
-        public int StatusId { set; get; }
+        public int? StatusId { set; get; }
         [ForeignKey("StatusId")]
         public DocumentStatus DocStatus { set; get; }
 
@@ -138,8 +138,8 @@ namespace ArchiveProject2019.Models
 
 
         [Display(Name = "TypeMailId", ResourceType = typeof(main_lang))]
-        [Required(ErrorMessageResourceType = typeof(main_lang), ErrorMessageResourceName = "TypeMailRequired")]
-        public int TypeMailId { set; get; }
+      //  [Required(ErrorMessageResourceType = typeof(main_lang), ErrorMessageResourceName = "TypeMailRequired")]
+        public int? TypeMailId { set; get; }
         [ForeignKey("TypeMailId")]
         public TypeMail TypeMail { set; get; }
 
@@ -151,6 +151,10 @@ namespace ArchiveProject2019.Models
         public Party Party { set; get; }
 
 
+
+
+
+      //  public bool IsGeneralize { set; get; }
         //Collections:
         public ICollection<DocumentDepartment> DocumentDepartments { set; get; }
         public ICollection<DocumentGroup> DocumentGroups { set; get; }

@@ -532,7 +532,9 @@
                                     </li>
 
 
-                                    @if (item.TypeMail.Type == 2)
+                                    @if(item.TypeMailId.HasValue)
+                                    { 
+                                    if (item.TypeMail.Type == 2)
                                     {
                                         if (DocumentOperation.DocumentCanEdit(CurrentUserId, item.Id))
                                         {
@@ -544,6 +546,7 @@
                                         <li>
                                             <a href="@Url.Action("Index","DocumentParties",new { id=item.Id})" title="الجهات المستهدفة" class="btn-link  btn-sm"> الجهات المستهدفة </a>
                                         </li>
+                                    }
                                     }
                                 </ul>
                         </div>

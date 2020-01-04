@@ -236,9 +236,9 @@
     <Compile Include="HelperClasses\UserDocumentsID.cs" />
     <Compile Include="HelperClasses\UserRelatedDocumentsId.cs" />
     <Compile Include="HelperClasses\UsersDepartmentAndGroupsForms.cs" />
-    <Compile Include="Migrations\202001041838473_ahmad-force.cs" />
-    <Compile Include="Migrations\202001041838473_ahmad-force.Designer.cs">
-      <DependentUpon>202001041838473_ahmad-force.cs</DependentUpon>
+    <Compile Include="Migrations\202001041957196_ahmad-force.cs" />
+    <Compile Include="Migrations\202001041957196_ahmad-force.Designer.cs">
+      <DependentUpon>202001041957196_ahmad-force.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1121,8 +1121,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202001041838473_ahmad-force.resx">
-      <DependentUpon>202001041838473_ahmad-force.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001041957196_ahmad-force.resx">
+      <DependentUpon>202001041957196_ahmad-force.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\main_lang.resx" />
   </ItemGroup>

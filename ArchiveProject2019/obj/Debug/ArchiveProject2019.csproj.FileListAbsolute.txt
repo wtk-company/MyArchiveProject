@@ -246,7 +246,6 @@ E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\obj\Debug\ArchiveProject
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\obj\Debug\ArchiveProject2019.csproj.CopyComplete
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\obj\Debug\ArchiveProject2019.dll
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\obj\Debug\ArchiveProject2019.pdb
-E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\obj\Debug\ArchiveProject2019.Migrations.ahmadforce.resources
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\csc.exe.config
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\csc.rsp
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\csi.exe
@@ -266,3 +265,4 @@ E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\System.Text.E
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\System.Threading.Tasks.Extensions.dll
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\vbc.exe.config
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\vbc.rsp
+E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\obj\Debug\ArchiveProject2019.Migrations.ahmadforce.resources

@@ -1014,8 +1014,9 @@ namespace ArchiveProject2019.Controllers
                         FieldsValues = viewModel,
                         ExistFiles = existfiles,
                         FilesStoredInDbs = filesStoredInDbs,
-                        TypeMail = Document.TypeMail.Type,
-                        IsSaveInDb = ManagedAes.IsSaveInDb,
+                        TypeMail = Document.TypeMailId.HasValue ? Document.TypeMail.Type : -1,
+
+                        IsSaveInDb = ManagedAes.IsSaveInDb
                     };
 
                     return View(myModel);
@@ -1030,6 +1031,8 @@ namespace ArchiveProject2019.Controllers
                         Document = Document,
                         FieldsValues = viewModel,
                         ExistFiles = existfiles,
+                        TypeMail = Document.TypeMailId.HasValue ? Document.TypeMail.Type : -1,
+
                     };
 
                     return View(myModel);
@@ -1037,37 +1040,7 @@ namespace ArchiveProject2019.Controllers
 
             }
 
-            if (ManagedAes.IsSaveInDb)
-            {
-                var names = Document.FilesStoredInDbs.Count;
-                var existfiles = Enumerable.Repeat(true, names).ToList();
-
-                var myModel = new DocumentDocIdFieldsValuesViewModel()
-                {
-                    Document = Document,
-                    FieldsValues = viewModel,
-                    ExistFiles = existfiles,
-                    FilesStoredInDbs = Document.FilesStoredInDbs.ToList(),
-                    TypeMail = Document.TypeMailId.HasValue? Document.TypeMail.Type:-1,
-                    IsSaveInDb = ManagedAes.IsSaveInDb,
-                };
-
-                return View(myModel);
-            }
-            else
-            {
-                var urls = Document.FileUrl.Split(new string[] { "_##_" }, StringSplitOptions.None);
-                var existfiles = Enumerable.Repeat(true, urls.Length).ToList();
-
-                var myModel = new DocumentDocIdFieldsValuesViewModel()
-                {
-                    Document = Document,
-                    FieldsValues = viewModel,
-                    ExistFiles = existfiles,
-                };
-
-                return View(myModel);
-            }
+           
         }
 
 
@@ -2350,16 +2323,22 @@ namespace ArchiveProject2019.Controllers
 
                                              d.Subject.Contains(DocumentSubject)
                                              &&
-
-                                             d.KindId.ToString().Contains(DocumentKind)
+                                             (
+                                             d.KindId.HasValue?
+                                             d.KindId.Value.ToString().Contains(DocumentKind)
+                                             :"".Contains(DocumentKind)
+                                             )
                                           &&
 
                                              d.FormId.ToString().Contains(DocumentForm)
                                              &&
 
 
-                                             // Filter by Mail Type
-                                             d.TypeMailId.ToString().Contains(DocumentMail)
+                                             (
+                                             d.TypeMailId.HasValue?
+                                             d.TypeMailId.Value.ToString().Contains(DocumentMail)
+                                              : "".Contains(DocumentMail)
+                                             )
                          select (d)).ToList();
 
             documents = documents.Where(a => BiggerThan(a.DocumentDate, fdate) && SmallerThan(a.DocumentDate, ldate)).ToList();

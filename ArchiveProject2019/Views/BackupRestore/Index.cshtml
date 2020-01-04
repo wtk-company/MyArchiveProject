@@ -1,0 +1,283 @@
+﻿
+@{
+
+
+    ViewBag.Title = "النسخ الإحتياطي";
+    Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
+}
+
+
+
+
+
+@if (ViewBag.Msg != null)
+{
+
+
+
+
+
+
+    if (ViewBag.Msg == "RestoreDbSuccess")
+    {
+        <div class="alert alert-success enterRemove" style="text-align:center;font-size:larger">
+            <span class="glyphicon glyphicon-bell">
+
+            </span>
+            تمت عملية إسترجاع نسخة البيانات بنجاح
+        </div>
+    }
+
+
+    if (ViewBag.Msg == "RestoreFilesSuccess")
+    {
+        <div class="alert alert-success enterRemove" style="text-align:center;font-size:larger">
+            <span class="glyphicon glyphicon-bell">
+
+            </span>
+            تمت عملية إسترجاع نسخة الملفات بنجاح
+        </div>
+    }
+
+    if (ViewBag.Msg == "RestoreFilesError")
+    {
+        <div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
+            <span class="glyphicon glyphicon-bell">
+
+            </span>
+            حدث خطأ أثناء استرجاع نسخة الملفات
+
+        </div>
+    }
+
+    if (ViewBag.Msg == "RestoreDbErrorType")
+    {
+        <div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
+            <span class="glyphicon glyphicon-bell">
+
+            </span>
+            يجب أن يكون نوع الملف صحيح
+
+        </div>
+    }
+
+    if (ViewBag.Msg == "RestoreFilesErrorType")
+    {
+        <div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
+            <span class="glyphicon glyphicon-bell">
+
+            </span>
+            يجب أن يكون نوع الملف صحيح
+
+        </div>
+    }
+
+
+    if (ViewBag.Msg == "BackupDbError")
+    {
+        <div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
+            <span class="glyphicon glyphicon-bell">
+
+            </span>
+            حدث خطأ أثناء انشاء نسخة من البيانات
+
+        </div>
+    }
+
+    if (ViewBag.Msg == "RestoreDbError")
+    {
+        <div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
+            <span class="glyphicon glyphicon-bell">
+
+            </span>
+            حدث خطأ أثناء عملية الاستعادة
+
+        </div>
+    }
+
+
+    if (ViewBag.Msg == "RestoreDbNullError")
+    {
+        <div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
+            <span class="glyphicon glyphicon-bell">
+
+            </span>
+            يجل إختيار ملف، لا يمكت أن يكون فارغ
+
+        </div>
+    }
+
+    if (ViewBag.Msg == "RestoreFilesNullError")
+    {
+        <div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
+            <span class="glyphicon glyphicon-bell">
+
+            </span>
+            يجل إختيار ملف، لا يمكت أن يكون فارغ
+
+        </div>
+    }
+
+    if (ViewBag.Msg == "BackupFilesError")
+    {
+        <div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
+            <span class="glyphicon glyphicon-bell">
+
+            </span>
+            حدث خطأ أثناء تنزيل نسخة إحتياطية من الملفات
+
+        </div>
+    }
+
+
+
+
+
+
+}
+<br />
+
+
+
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>النسخ الإحتياطي والإسترجاع للبيانات</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+
+
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+
+
+
+
+            @using (Html.BeginForm("DownloadDbBackUp", "BackupRestore", FormMethod.Post, new { enctype = "multipart/form-data", name = "myform", id = "myform" }))
+            {
+
+
+                <input type="submit" id="btnSubmit" class="btn btn-success" value="إنشاء نسخة إحتياطية للبيانات" />
+
+
+            }
+
+
+            <hr />
+            @using (Html.BeginForm("UploadBackupDb", "BackupRestore", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+                <input type="file" name="BackupFile" />
+                <br />
+                <input type="submit" class="btn btn-success clickloading" value="استعادة نسخة إحتياطية" />
+
+
+            }
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>النسخ الإحتياطي والإسترجاع للملفات</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+
+
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+
+
+
+            @using (Html.BeginForm("BackUpFiles", "BackupRestore", FormMethod.Post, new { enctype = "multipart/form-data", id = "myform2" }))
+            {
+
+
+                <input id="btnSubmit2" type="submit" class="btn btn-warning" value="إنشاء نسخة احتياطية من الملفات" />
+
+
+            }
+
+
+
+            <hr />
+
+            @using (Html.BeginForm("UploadArchiveFiles", "BackupRestore", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+                <input type="file" name="BackupFile" />
+                <br />
+                <input type="submit" class="btn btn-warning clickloading" value="استعادة نسخة من الملفات" />
+
+
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+         $(document).ready(function () {
+
+        $("#myform").submit(function (e) {
+
+            //stop submitting the form to see the disabled button effect
+          //  e.preventDefault();
+
+            //disable the submit button
+            $("#btnSubmit").attr("disabled", true);
+
+            //disable a normal button
+
+
+            return true;
+
+        });
+
+
+
+              $("#myform2").submit(function (e) {
+
+            //stop submitting the form to see the disabled button effect
+          //  e.preventDefault();
+
+            //disable the submit button
+            $("#btnSubmit2").attr("disabled", true);
+
+            //disable a normal button
+
+
+            return true;
+
+        });
+    });
+    </script>
+
+
+}
+

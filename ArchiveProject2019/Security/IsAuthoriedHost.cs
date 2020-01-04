@@ -14,6 +14,7 @@ namespace ArchiveProject2019.Security
 {
     public class IsAuthoriedHost
     {
+      
 
         private static string password = "wtkc2019";
         private static string processorId = "wtkc2019";

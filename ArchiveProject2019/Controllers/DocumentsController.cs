@@ -146,7 +146,7 @@ namespace ArchiveProject2019.Controllers
             ViewBag.RelatedGroups = new SelectList(_context.Groups.ToList(), "Id", "Name");
             ViewBag.StatusId = new SelectList(_context.DocumentStatuses.ToList(), "Id", "Name");
             ViewBag.RelatedDepartments = new SelectList(DepartmentListDisplay.CreateDepartmentListDisplay().Where(a=>a.Id!= CurrentDepId), "Id", "Name");
-            ViewBag.RelatedUsers = new SelectList(_context.Users.Where(a => !a.RoleName.Equals("Master")).ToList(), "Id", "FullName");
+            ViewBag.RelatedUsers = new SelectList(_context.Users.Where(a => !a.RoleName.Equals("Master") && !a.Id.Equals(CurrentUser)).ToList(), "Id", "FullName");
             ViewBag.ResponsibleUserId = new SelectList(_context.Users.Where(a => !a.RoleName.Equals("Master")).ToList(), "Id", "FullName");
             return View(myModel);
         }
@@ -320,7 +320,7 @@ namespace ArchiveProject2019.Controllers
             ViewBag.RelatedGroups = new SelectList(_context.Groups.ToList(), "Id", "Name");
             ViewBag.StatusId = new SelectList(_context.DocumentStatuses.ToList(), "Id", "Name", viewModel.Document.StatusId.HasValue? viewModel.Document.StatusId.Value: -1);
             ViewBag.RelatedDepartments = new SelectList(DepartmentListDisplay.CreateDepartmentListDisplay().Where(a=>a.Id!= UserDepId), "Id", "Name");
-            ViewBag.RelatedUsers = new SelectList(_context.Users.Where(a => !a.RoleName.Equals("Master")).ToList(), "Id", "FullName");
+            ViewBag.RelatedUsers = new SelectList(_context.Users.Where(a => !a.RoleName.Equals("Master")&& !a.Id.Equals(CurrentUser)).ToList(), "Id", "FullName");
             ViewBag.ResponsibleUserId = new SelectList(_context.Users.Where(a => !a.RoleName.Equals("Master")).ToList(), "Id", "FullName", viewModel.Document.ResponsibleUserId);
 
             ViewBag.Gereralize = viewModel.Document.IsGeneralize;

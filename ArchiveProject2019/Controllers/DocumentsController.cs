@@ -1040,7 +1040,42 @@ namespace ArchiveProject2019.Controllers
 
             }
 
-           
+            if (ManagedAes.IsSaveInDb)
+            {
+                var names = Document.FilesStoredInDbs.Count;
+                var existfiles = Enumerable.Repeat(true, names).ToList();
+
+                var myModel = new DocumentDocIdFieldsValuesViewModel()
+                {
+                    Document = Document,
+                    FieldsValues = viewModel,
+                    ExistFiles = existfiles,
+                    FilesStoredInDbs = Document.FilesStoredInDbs.ToList(),
+                    TypeMail = Document.TypeMailId.HasValue? Document.TypeMail.Type:-1,
+                    IsSaveInDb = ManagedAes.IsSaveInDb,
+                };
+
+                return View(myModel);
+            }
+            else
+            {
+
+                
+                    var urls = Document.FileUrl.Split(new string[] { "_##_" }, StringSplitOptions.None);
+                    var existfiles = Enumerable.Repeat(true, urls.Length).ToList();
+
+                    var myModel = new DocumentDocIdFieldsValuesViewModel()
+                    {
+                        Document = Document,
+                        FieldsValues = viewModel,
+                        ExistFiles = existfiles,
+                        TypeMail = Document.TypeMailId.HasValue ? Document.TypeMail.Type : -1
+                       
+                    };
+                return View(myModel);
+              
+
+            }
         }
 
 

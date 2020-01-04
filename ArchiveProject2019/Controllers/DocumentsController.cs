@@ -92,6 +92,7 @@ namespace ArchiveProject2019.Controllers
             ViewBag.Current = "Document";
 
             string CurrentUser = this.User.Identity.GetUserId();
+            int CurrentDepId = _context.Users.Find(CurrentUser).DepartmentId.Value;
             if (Standard != -1)
             {
                 if (Standard == 0)
@@ -127,7 +128,7 @@ namespace ArchiveProject2019.Controllers
             var myModel = new DocumentDocIdFieldsValuesViewModel()
             {
                 DocId = docId,
-                Document = new Models.Document() { FormId = Id },
+                Document = new Models.Document() { FormId = Id,IsGeneralize=IsGeneralize },
                 FieldsValues = viewModel,
                 IsReplay = IsReplay,
             };
@@ -144,7 +145,7 @@ namespace ArchiveProject2019.Controllers
             ViewBag.kinds = new SelectList(_context.Kinds.ToList(), "Id", "Name");
             ViewBag.RelatedGroups = new SelectList(_context.Groups.ToList(), "Id", "Name");
             ViewBag.StatusId = new SelectList(_context.DocumentStatuses.ToList(), "Id", "Name");
-            ViewBag.RelatedDepartments = new SelectList(DepartmentListDisplay.CreateDepartmentListDisplay(), "Id", "Name");
+            ViewBag.RelatedDepartments = new SelectList(DepartmentListDisplay.CreateDepartmentListDisplay().Where(a=>a.Id!= CurrentDepId), "Id", "Name");
             ViewBag.RelatedUsers = new SelectList(_context.Users.Where(a => !a.RoleName.Equals("Master")).ToList(), "Id", "FullName");
             ViewBag.ResponsibleUserId = new SelectList(_context.Users.Where(a => !a.RoleName.Equals("Master")).ToList(), "Id", "FullName");
             return View(myModel);
@@ -322,7 +323,7 @@ namespace ArchiveProject2019.Controllers
             ViewBag.RelatedUsers = new SelectList(_context.Users.Where(a => !a.RoleName.Equals("Master")).ToList(), "Id", "FullName");
             ViewBag.ResponsibleUserId = new SelectList(_context.Users.Where(a => !a.RoleName.Equals("Master")).ToList(), "Id", "FullName", viewModel.Document.ResponsibleUserId);
 
-
+            ViewBag.Gereralize = viewModel.Document.IsGeneralize;
 
             if (Status == false)
             {
@@ -530,15 +531,27 @@ namespace ArchiveProject2019.Controllers
                 //List of users id:
                 List<string> UsersId = new List<string>();
 
-
-
                 List<string> RelatedDep = new List<string>();
-                if(RelatedDepartments!=null)
-                {
 
-                    RelatedDep= RelatedDepartments.ToList();
+                if(viewModel.Document.IsGeneralize==true)
+                {
+                    if(RelatedDepartments==null&& RelatedGroups==null&& RelatedUsers==null)
+                    {
+                        RelatedDep = _context.Departments.Select(a => a.Id.ToString()).ToList();
+                    }
+
+
                 }
-                RelatedDep.Add(UserDepId.ToString());
+                else
+                {
+                    if (RelatedDepartments != null)
+                    {
+
+                        RelatedDep = RelatedDepartments.ToList();
+                    }
+                    RelatedDep.Add(UserDepId.ToString());
+                }
+                
 
 
 

@@ -36,7 +36,7 @@ namespace ArchiveProject2019.Models
 
 
         [Display(Name = "StatusId", ResourceType = typeof(main_lang))]
-        [Required(ErrorMessageResourceType = typeof(main_lang), ErrorMessageResourceName = "StatusRequired")]
+      //  [Required(ErrorMessageResourceType = typeof(main_lang), ErrorMessageResourceName = "StatusRequired")]
         public int? StatusId { set; get; }
         [ForeignKey("StatusId")]
         public DocumentStatus DocStatus { set; get; }

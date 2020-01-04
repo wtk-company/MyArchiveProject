@@ -84,57 +84,60 @@
 
 
 
-    <div class="form-horizontal">
+<div class="form-horizontal">
 
 
-        @Html.HiddenFor(a => Model.Document.FormId)
-        @Html.HiddenFor(a => Model.Document.Name)
-        @Html.HiddenFor(a => Model.DocId)
-        @Html.HiddenFor(a => Model.IsReplay)
-
-      
-
+    @Html.HiddenFor(a => Model.Document.FormId)
+    @Html.HiddenFor(a => Model.Document.Name)
+    @Html.HiddenFor(a => Model.DocId)
+    @Html.HiddenFor(a => Model.IsReplay)
+    @Html.HiddenFor(a => Model.Document.IsGeneralize)
 
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Document.DocumentNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.Document.DocumentNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Document.DocumentNumber, "", new { @class = "text-danger" })
-            </div>
-            @*</div>*@
 
-            @*<div class="form-group">*@
-            @Html.LabelFor(model => model.Document.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.Document.Subject, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Document.Subject, "", new { @class = "text-danger" })
-            </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Document.DocumentNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.Document.DocumentNumber, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Document.DocumentNumber, "", new { @class = "text-danger" })
         </div>
+        @*</div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Document.Address, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.Document.Address, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Document.Address, "", new { @class = "text-danger" })
-            </div>
-            @*</div>*@
-
-            @*<div class="form-group">*@
-            @Html.LabelFor(model => model.Document.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.Document.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Document.Description, "", new { @class = "text-danger" })
-            </div>
+        @*<div class="form-group">*@
+        @Html.LabelFor(model => model.Document.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.Document.Subject, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Document.Subject, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        @if((bool) ViewBag.Gereralize==false){
+    <div class="form-group">
+        @Html.LabelFor(model => model.Document.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.Document.Address, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Document.Address, "", new { @class = "text-danger" })
+        </div>
+        @*</div>*@
+
+        @*<div class="form-group">*@
+        @Html.LabelFor(model => model.Document.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.Document.Description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Document.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @if ((bool)ViewBag.Gereralize == false)
+    {
 
         <div class="form-group">
             @*<div class="form-group">*@
             @Html.LabelFor(model => model.Document.KindId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.DropDownListFor(model => model.Document.KindId, ViewBag.kinds as SelectList, htmlAttributes: new { @class = "form-control chosen-select" })
+                @Html.DropDownListFor(model => model.Document.KindId, ViewBag.kinds as SelectList,"اختر نوع الوثيقة", htmlAttributes: new { @class = "form-control chosen-select" })
                 @Html.ValidationMessageFor(model => model.Document.KindId, "", new { @class = "text-danger" })
             </div>
             @*</div>*@
@@ -145,14 +148,14 @@
             @*<div class="form-group">*@
             @Html.LabelFor(model => model.Document.StatusId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.DropDownListFor(model => model.Document.StatusId, ViewBag.StatusId as SelectList, htmlAttributes: new { @class = "form-control chosen-select" })
+                @Html.DropDownListFor(model => model.Document.StatusId, ViewBag.StatusId as SelectList,"اختر حالة الوثيقة", htmlAttributes: new { @class = "form-control chosen-select" })
                 @Html.ValidationMessageFor(model => model.Document.StatusId, "", new { @class = "text-danger" })
             </div>
             @*</div>*@
         </div>
 
 
-        
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.Document.ResponsibleUserId, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -173,7 +176,7 @@
             @*</div>*@
         </div>
 
-        }
+
 
 
 
@@ -220,44 +223,62 @@
 
 
 
+    }
 
 
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Document.DocumentDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.TextBoxFor(model => model.Document.DocumentDate, "{0:dd/MM/yyyy}", new { @class = "form-control", @type = "date" })
-                @Html.ValidationMessageFor(model => model.Document.DocumentDate, "", new { @class = "text-danger" })
-            </div>
-            @*</div>*@
-
-
-
-            @*<div class="form-group">*@
-            @Html.LabelFor(model => model.Document.NotificationDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.TextBoxFor(model => model.Document.NotificationDate, "{0:dd/MM/yyyy}", new { @class = "form-control", @type = "date" })
-                @Html.ValidationMessageFor(model => model.Document.NotificationDate, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Document.DocumentDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.TextBoxFor(model => model.Document.DocumentDate, "{0:dd/MM/yyyy}", new { @class = "form-control", @type = "date" })
+            @Html.ValidationMessageFor(model => model.Document.DocumentDate, "", new { @class = "text-danger" })
         </div>
+        @*</div>*@
 
 
 
+        @*<div class="form-group">*@
+        @Html.LabelFor(model => model.Document.NotificationDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.TextBoxFor(model => model.Document.NotificationDate, "{0:dd/MM/yyyy}", new { @class = "form-control", @type = "date" })
+            @Html.ValidationMessageFor(model => model.Document.NotificationDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
 
-        @if (Model.FieldsValues != null)
-        {
-            for (int i = 0; i < Model.FieldsValues.Values.Count; i++)
-            {
-                <div class="form-group">
-                    <div class="control-label col-md-2">
-                        @Model.FieldsValues.Fields[i].Name
-                    </div>
-                    <div class="col-md-10">
-                        @switch (Model.FieldsValues.Fields[i].Type)
-                        {
-                            case "bool":
-                                @Html.RadioButtonFor(model => Model.FieldsValues.Values[i].FieldValue, "true")@:نعم
+    @if ((bool)ViewBag.Gereralize == true)
+    {
+            <div class="form-group">
+            @Html.LabelFor(model => model.Document.StatusId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Document.StatusId, ViewBag.StatusId as SelectList,"اختر حالة الوثيقة", htmlAttributes: new { @class = "form-control chosen-select" })
+            @Html.ValidationMessageFor(model => model.Document.StatusId, "", new { @class = "text-danger" })
+            </div>
+
+            </div>
+    }
+<div class="form-group">
+@Html.LabelFor(model => model.Document.ResponsibleUserId, htmlAttributes: new { @class = "control-label col-md-2" })
+<div class="col-md-10">
+    @Html.DropDownListFor(model => model.Document.ResponsibleUserId, ViewBag.ResponsibleUserId as SelectList, "اختر المسؤول", htmlAttributes: new { @class = "form-control chosen-select" })
+    @Html.ValidationMessageFor(model => model.Document.ResponsibleUserId, "", new { @class = "text-danger" })
+</div>
+</div>
+
+
+@if(Model.FieldsValues != null)
+{
+for (int i = 0; i < Model.FieldsValues.Values.Count; i++)
+{
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            @Model.FieldsValues.Fields[i].Name
+        </div>
+        <div class="col-md-10">
+            @switch(Model.FieldsValues.Fields[i].Type)
+{
+                case "bool":
+                    @Html.RadioButtonFor(model => Model.FieldsValues.Values[i].FieldValue, "true")@:نعم
                                 @Html.RadioButtonFor(model => Model.FieldsValues.Values[i].FieldValue, "false")@:لا
 
                                 break;
@@ -267,7 +288,7 @@
                             case "text":
                             case "phone":
                             case "email":
-                                @*@Model.FieldsValues.Fields[i].IsRequired*@
+@*@Model.FieldsValues.Fields[i].IsRequired*@
                                 @Html.TextBoxFor(model => model.FieldsValues.Values[i].FieldValue, new { @class = "form-control" })
                                 break;
 
@@ -278,12 +299,12 @@
                                 break;
 
 
-                        }
-                        @Html.ValidationMessageFor(model => Model.FieldsValues.Values[i].Id, "", new { @class = "text-danger" })
+}
+@Html.ValidationMessageFor(model => Model.FieldsValues.Values[i].Id, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
-                <div style="outline: 2px solid yellow;margin:1em;display:inline-block;overflow:visible"></div>
+                <div style = "outline: 2px solid yellow;margin:1em;display:inline-block;overflow:visible" ></div >
 
                 @Html.HiddenFor(model => model.FieldsValues.Values[i].FieldId)
 
@@ -296,12 +317,12 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Document.Notes, htmlAttributes: new { @id = "NoteId", style = "color:blue", title = "انقر لإظهار خانة الملاحظة", @class = "control-label col-md-2 " })
-            <div id="NoteSlide" class="col-md-10">
-                @*<textarea class="ckeditor" name="Notes"></textarea>*@
+            <div id = "NoteSlide" class="col-md-10">
+@*<textarea class="ckeditor" name="Notes"></textarea>*@
 
-                @Html.TextAreaFor(model => model.Document.Notes, new { @id = "ck", @class = "ckeditor" })
-                @Html.ValidationMessageFor(model => model.Document.Notes, "", new { @class = "text-danger" })
-            </div>
+    @Html.TextAreaFor(model => model.Document.Notes, new { @id = "ck", @class = "ckeditor" })
+    @Html.ValidationMessageFor(model => model.Document.Notes, "", new { @class = "text-danger" })
+</div>
         </div>
 
 
@@ -343,7 +364,7 @@
                 <button type="button" class="btn btn-info" onclick="scanToJpg();">مسح ضوئي</button>
             </div>
         </div>
-        
+
         <div id="images"></div>
         <hr />
 
@@ -354,89 +375,89 @@
         </div>
     </div>
 
-}
+    }
 
 
-@Html.Partial("_LastView")
+    @Html.Partial("_LastView")
 
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
 
 
-    <script>
+        <script>
 
 
 
-        $(function () {
-            $(".chosen-select").chosen({
-                placeholder_text_single: "حدد من النتائج",
-                rtl: true,
-                no_results_text: "لا يوجد نتائج!"
+            $(function () {
+                $(".chosen-select").chosen({
+                    placeholder_text_single: "حدد من النتائج",
+                    rtl: true,
+                    no_results_text: "لا يوجد نتائج!"
+                });
             });
-        });
 
-        $(function () {
-            var TypeOfMail = $("#TOGGLETypeOfMail");
+            $(function () {
+                var TypeOfMail = $("#TOGGLETypeOfMail");
 
-            // Take Mail
-            if (TypeOfMail.val() != "1") {
-                $('.TakeMail').hide();
-            }
-
-            if (TypeOfMail.val() != "2") {
-                $('.OutgoingMail').hide();
-            }
-
-            TypeOfMail.change(function () {
                 // Take Mail
-                if ($(this).val() == "1") {
-
-                    $(".TakeMail").show(300);
-                    $(".TakeMail").removeClass('displayTakeMail');
-
-                    $('.OutgoingMail').hide(300);
-                    $(".OutgoingMail").addClass('displayTakeMail');
-
-                }
-                else if (TypeOfMail.val() == "2") {
-
-                    $(".OutgoingMail").show(300);
-                    $(".OutgoingMail").removeClass('displayTakeMail');
-
-                    $('.TakeMail').hide(300);
-                    $(".TakeMail").addClass('displayTakeMail');
-
+                if (TypeOfMail.val() != "1") {
+                    $('.TakeMail').hide();
                 }
 
-                else {
-
-                    $('.TakeMail').hide(300);
-                    $(".TakeMail").addClass('displayTakeMail');
-
-                    $('.OutgoingMail').hide(300);
-                    $(".OutgoingMail").addClass('displayTakeMail');
-
+                if (TypeOfMail.val() != "2") {
+                    $('.OutgoingMail').hide();
                 }
+
+                TypeOfMail.change(function () {
+                    // Take Mail
+                    if ($(this).val() == "1") {
+
+                        $(".TakeMail").show(300);
+                        $(".TakeMail").removeClass('displayTakeMail');
+
+                        $('.OutgoingMail').hide(300);
+                        $(".OutgoingMail").addClass('displayTakeMail');
+
+                    }
+                    else if (TypeOfMail.val() == "2") {
+
+                        $(".OutgoingMail").show(300);
+                        $(".OutgoingMail").removeClass('displayTakeMail');
+
+                        $('.TakeMail').hide(300);
+                        $(".TakeMail").addClass('displayTakeMail');
+
+                    }
+
+                    else {
+
+                        $('.TakeMail').hide(300);
+                        $(".TakeMail").addClass('displayTakeMail');
+
+                        $('.OutgoingMail').hide(300);
+                        $(".OutgoingMail").addClass('displayTakeMail');
+
+                    }
+                });
             });
-        });
 
 
 
-        $("#NoteId").click(function () {
-            $("#NoteSlide").slideToggle(400);
-        });
+            $("#NoteId").click(function () {
+                $("#NoteSlide").slideToggle(400);
+            });
 
 
 
-    </script>
-}
-<style>
-    .displayTakeMail {
-        display: none;
+        </script>
     }
+    <style>
+        .displayTakeMail {
+            display: none;
+        }
 
-    #NoteSlide {
-        display: none;
-    }
-</style>
+        #NoteSlide {
+            display: none;
+        }
+    </style>

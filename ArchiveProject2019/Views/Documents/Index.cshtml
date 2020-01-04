@@ -355,6 +355,9 @@
                     </td>
                     <td>
 
+                        @if (!item.IsGeneralize)
+                        {
+
 
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -411,7 +414,7 @@
                                     @if (DocumentOperation.DocumentCanSeal(CurrentUserId, item.Id))
                                     {
 <li>
-                                    <a href="@Url.Action("Index","Seals",new { id=item.Id, IsCipher = ArchiveProject2019.Security.ManagedAes.IsCipher})" title="عرض تسديدات الوثيقة" class="btn-link  btn-sm">تسديدات الوثيقة</a>
+                                    <a href="@Url.Action("Index", "Seals", new { id = item.Id, IsCipher = ArchiveProject2019.Security.ManagedAes.IsCipher })" title="عرض تسديدات الوثيقة" class="btn-link  btn-sm">تسديدات الوثيقة</a>
 
 
                                 </li>
@@ -428,12 +431,12 @@
                                 }
                                 <li>
 
-                                    <a href="@Url.Action("GetRelatedDocument","Documents",new { id=item.Id})" title="عرض الوثائق المرتبطة" class="btn-link  btn-sm">عرض الوثائق المرتبطة</a>
+                                    <a href="@Url.Action("GetRelatedDocument", "Documents", new { id = item.Id })" title="عرض الوثائق المرتبطة" class="btn-link  btn-sm">عرض الوثائق المرتبطة</a>
 
                                 </li>
                                 <li>
 
-                                    <a href="@Url.Action("GetReplayDocument","Documents",new { id=item.Id})" title="عرض الرد" class="btn-link  btn-sm">عرض الوثائق الرد</a>
+                                    <a href="@Url.Action("GetReplayDocument", "Documents", new { id = item.Id })" title="عرض الرد" class="btn-link  btn-sm">عرض الوثائق الرد</a>
 
                                 </li>
 
@@ -444,7 +447,7 @@
                         </div>
 
 
-                      
+                        }
                             <div class="btn-group" role="group" >
                                 <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     خيارات إضافية

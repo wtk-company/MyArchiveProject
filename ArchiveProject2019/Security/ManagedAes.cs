@@ -12,7 +12,7 @@ namespace ArchiveProject2019.Security
     public class ManagedAes
     {
 
-        public static bool IsSaveInDb = true;
+        public static bool IsSaveInDb = false;
         public static bool IsCipher = false;
 
 

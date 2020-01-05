@@ -91,8 +91,12 @@ namespace ArchiveProject2019.Controllers
         {
             ViewBag.Current = "Document";
 
+
+            //Current User Id and Department:
             string CurrentUser = this.User.Identity.GetUserId();
             int CurrentDepId = _context.Users.Find(CurrentUser).DepartmentId.Value;
+
+            //--Standard form--//
             if (Standard != -1)
             {
                 if (Standard == 0)
@@ -105,8 +109,14 @@ namespace ArchiveProject2019.Controllers
                     Id = Standard;
                 }
             }
+
+            //** end standard form**//
+
+            //Fields Of Form {Initialization}
             var Fields = _context.Fields.Include(c => c.Form).Where(f => f.FormId == Id).ToList();
 
+
+            //--Initialization  vaule of fields--//
             List<Value> Values = new List<Value>();
 
             foreach (var field in Fields)
@@ -119,35 +129,49 @@ namespace ArchiveProject2019.Controllers
                 Values.Add(value);
             }
 
+            //** end Initialization  vaule of fields **//
+
             FieldsValuesViewModel viewModel = new FieldsValuesViewModel
             {
                 Fields = Fields,
                 Values = Values
             };
 
+
+            //Model {document,fields}
             var myModel = new DocumentDocIdFieldsValuesViewModel()
             {
                 DocId = docId,
                 Document = new Models.Document() { FormId = Id,IsGeneralize=IsGeneralize },
                 FieldsValues = viewModel,
+                //If this document is replay document
                 IsReplay = IsReplay,
             };
 
 
-
+            //If this document is generalization document:
             ViewBag.Gereralize = IsGeneralize;
 
+
+
+
+            //Paties For Dropdown:
             ViewBag.Parties = new SelectList(_context.Parties.ToList(), "Id", "Name");
-
-
-            //Asmi :
+            //TypeMails For Dropdown:
             ViewBag.TypeMailId = new SelectList(_context.TypeMails.ToList(), "Id", "Name");
+            //Document KInds For Dropdown:
             ViewBag.kinds = new SelectList(_context.Kinds.ToList(), "Id", "Name");
+            //Groups For Dropdown Multi Select:
             ViewBag.RelatedGroups = new SelectList(_context.Groups.ToList(), "Id", "Name");
+            //Document Status For Dropdown:
             ViewBag.StatusId = new SelectList(_context.DocumentStatuses.ToList(), "Id", "Name");
+            //Department For Dropdown multi select:
             ViewBag.RelatedDepartments = new SelectList(DepartmentListDisplay.CreateDepartmentListDisplay().Where(a=>a.Id!= CurrentDepId), "Id", "Name");
+            //users For Dropdown multi select:
             ViewBag.RelatedUsers = new SelectList(_context.Users.Where(a => !a.RoleName.Equals("Master") && !a.Id.Equals(CurrentUser)).ToList(), "Id", "FullName");
+            //Document Responsible For Dropdown:
             ViewBag.ResponsibleUserId = new SelectList(_context.Users.Where(a => !a.RoleName.Equals("Master")).ToList(), "Id", "FullName");
+            
             return View(myModel);
         }
 
@@ -164,14 +188,20 @@ namespace ArchiveProject2019.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
+        //{because document note}
         [ValidateInput(false)]
+        //{For : authorize,Permissions,Application close,role}
         [AccessDeniedAuthorizeattribute(ActionName = "DocumentCreate")]
         public ActionResult Create(DocumentDocIdFieldsValuesViewModel viewModel, IEnumerable<HttpPostedFileBase> UploadFile, IEnumerable<HttpPostedFileBase> FieldFile, IEnumerable<string> PartyIds, IEnumerable<string> RelatedGroups, IEnumerable<string> RelatedDepartments, IEnumerable<string> RelatedUsers)
         {
             ViewBag.Current = "Document";
 
+
+            //{current user id ,department id }
             string CurrentUser = this.User.Identity.GetUserId();
             int UserDepId = _context.Users.Find(CurrentUser).DepartmentId.Value;
+
+            //{for model state error}
             bool Status = true;
 
 
@@ -180,6 +210,8 @@ namespace ArchiveProject2019.Controllers
             FVVM = viewModel.FieldsValues;
 
 
+
+            //{Vaule of fields  validations{Required or not, type of field}}
             if (FVVM != null)
             {
 
@@ -192,29 +224,6 @@ namespace ArchiveProject2019.Controllers
                         Status = false;
                     }
 
-                }
-
-
-
-                int k = 0;
-                for (int i = 0; i < FVVM.Values.Count(); i++)
-                {
-
-                    if (FVVM.Fields[i].Type.Equals("file"))
-                    {
-                        if (FVVM.Fields[i].IsRequired == true)
-                        {
-                            if (FieldFile.ElementAt(k) == null)
-                            {
-
-                                ModelState.AddModelError("FieldsValues.Values[" + i + "].Id", "يجب إختيار ملف محدد، لا يمكن أن يكون فارغ");
-                                Status = false;
-                            }
-                        }
-
-                        k++;
-
-                    }
                 }
 
 
@@ -265,10 +274,10 @@ namespace ArchiveProject2019.Controllers
 
 
 
-            }//End if 
+            } // End:{***Vaule of fields  validations{Required or not, type of field***}}
 
 
-            //Check Mail numbare and mail date:
+            //--Check Mail numbare and mail date if type male not null and type male ==1:--//
 
             if (viewModel.Document.TypeMailId.HasValue)
             {
@@ -294,12 +303,18 @@ namespace ArchiveProject2019.Controllers
                     Status = false;
                 }
             }
+
+
+           //End: //**Check Mail numbare and mail date if type male not null and type male ==1:**//
+
+
             var lasFile = UploadFile.Last();
             foreach (HttpPostedFileBase file in UploadFile)
             {
-                //Image Extentions:
+                //File  Extentions:
                 bool ImageExtention = CheckFileFormatting.PermissionFile(file);
 
+                ///File not support
                 if (ImageExtention == false)
                 {
                     Status = false;
@@ -314,7 +329,7 @@ namespace ArchiveProject2019.Controllers
 
 
 
-            //Error:
+            //--Dropdown and multi select for model Error--://
             ViewBag.TypeMailId = new SelectList(_context.TypeMails.ToList(), "Id", "Name", viewModel.Document.TypeMailId.HasValue? viewModel.Document.TypeMailId.Value :-1);
             ViewBag.kinds = new SelectList(_context.Kinds.ToList(), "Id", "Name", viewModel.Document.KindId.HasValue ? viewModel.Document.KindId.Value: -1);
             ViewBag.RelatedGroups = new SelectList(_context.Groups.ToList(), "Id", "Name");
@@ -324,6 +339,7 @@ namespace ArchiveProject2019.Controllers
             ViewBag.ResponsibleUserId = new SelectList(_context.Users.Where(a => !a.RoleName.Equals("Master")).ToList(), "Id", "FullName", viewModel.Document.ResponsibleUserId);
 
             ViewBag.Gereralize = viewModel.Document.IsGeneralize;
+            //**Dropdown and multi select for model Error**://
 
             if (Status == false)
             {
@@ -533,7 +549,9 @@ namespace ArchiveProject2019.Controllers
 
                 List<string> RelatedDep = new List<string>();
 
-                if(viewModel.Document.IsGeneralize==true)
+
+                //If document generalized {get all department if RelatedDepartments,RelatedGroups,RelatedUsers null}
+                if (viewModel.Document.IsGeneralize==true)
                 {
                     if(RelatedDepartments==null&& RelatedGroups==null&& RelatedUsers==null)
                     {
@@ -549,6 +567,7 @@ namespace ArchiveProject2019.Controllers
 
                         RelatedDep = RelatedDepartments.ToList();
                     }
+                    //Current user department id
                     RelatedDep.Add(UserDepId.ToString());
                 }
                 
@@ -711,10 +730,12 @@ namespace ArchiveProject2019.Controllers
                 }
                 _context.SaveChanges();
 
-                //==================================== end =========================
+                //****==================================== end related department, groups,users =========================****//
 
 
 
+
+                //Save Vsalues of fields:
 
                 if (FVVM != null)
                 {
@@ -731,9 +752,11 @@ namespace ArchiveProject2019.Controllers
                     }
                 }
 
+                //** end save values**//
 
 
 
+                //Save paties when type mail ==1
                if(viewModel.Document.TypeMailId.HasValue)
                 {
                     TypeMail mail = _context.TypeMails.Find(viewModel.Document.TypeMailId);
@@ -755,8 +778,12 @@ namespace ArchiveProject2019.Controllers
                         }
                     }
                 }
+
+
+                //**end Save paties when type mail ==1**//
+
+
                
-                // document famely status (begin)
                 var parentDocId = viewModel.DocId;
 
                 // Relate Document

@@ -194,6 +194,19 @@ namespace ArchiveProject2019.Controllers
         [AccessDeniedAuthorizeattribute(ActionName = "DocumentCreate")]
         public ActionResult Create(DocumentDocIdFieldsValuesViewModel viewModel, IEnumerable<HttpPostedFileBase> UploadFile, IEnumerable<HttpPostedFileBase> FieldFile, IEnumerable<string> PartyIds, IEnumerable<string> RelatedGroups, IEnumerable<string> RelatedDepartments, IEnumerable<string> RelatedUsers)
         {
+
+
+
+
+            //Varibles For Notifications:
+            string NotificationDocNumber = string.Empty;
+            string NotificationDocAddress = string.Empty;
+            string NotificationDocTitle = string.Empty;
+            string NotificationDocDescription = string.Empty;
+
+
+
+
             ViewBag.Current = "Document";
 
 
@@ -449,6 +462,15 @@ namespace ArchiveProject2019.Controllers
                     viewModel.Document.NotificationUserId = viewModel.Document.ResponsibleUserId;
                 }
 
+
+                //Notifications Var:
+
+                NotificationDocNumber = viewModel.Document.DocumentNumber;
+                NotificationDocTitle = viewModel.Document.Subject;
+                NotificationDocAddress = viewModel.Document.Address;
+                NotificationDocDescription = viewModel.Document.Description;
+
+
                 // Encrypt Document Attributes.
                 if (ManagedAes.IsCipher)
                 {
@@ -624,8 +646,8 @@ namespace ArchiveProject2019.Controllers
                                 CreatedAt = NotificationTime,
                                 Active = false,
                                 UserId = user.Id,
-                                Message = "تم إضافة وثيقة جديدة للقسم الحالي، رقم الوثيقة :" + viewModel.Document.DocumentNumber + " موضوع الوثيقة :" + viewModel.Document.Subject
-                                + " ،عنوان الوثيقة :" + viewModel.Document.Address + "،وصف الوثيقة :" + viewModel.Document.Description
+                                Message = "تم إضافة وثيقة جديدة للقسم الحالي، رقم الوثيقة :" + NotificationDocNumber + " موضوع الوثيقة :" + NotificationDocTitle
+                                + " ،عنوان الوثيقة :" + NotificationDocAddress + "،وصف الوثيقة :" + NotificationDocDescription
                                ,
                                 NotificationOwnerId = UserId
                             };
@@ -676,8 +698,8 @@ namespace ArchiveProject2019.Controllers
                                 CreatedAt = NotificationTime,
                                 Active = false,
                                 UserId = user.Id,
-                                Message = "تم إضافة وثيقة جديدة للمجموعة :" + GroupName + "، رقم الوثيقة :" + viewModel.Document.Name + " ، موضوع الوثيقة:" + viewModel.Document.Subject +
-                                " ، عنوان الوثيقة:" + viewModel.Document.Address + " ،وصف الوثيقة :" + viewModel.Document.Description
+                                Message = "تم إضافة وثيقة جديدة للمجموعة :" + GroupName + "، رقم الوثيقة :" + NotificationDocNumber + " ، موضوع الوثيقة:" + NotificationDocTitle +
+                                " ، عنوان الوثيقة:" + NotificationDocAddress + " ،وصف الوثيقة :" + NotificationDocDescription
                                ,
                                 NotificationOwnerId = UserId
                             };
@@ -725,8 +747,8 @@ namespace ArchiveProject2019.Controllers
                             CreatedAt = NotificationTime,
                             Active = false,
                             UserId = User_Id,
-                            Message = "تم إضافة وثيقة جديدة  ، رقم الوثيقة :" + viewModel.Document.DocumentNumber + " موضوع الوثيقة :" + viewModel.Document.Subject
-                            + " ،عنوان الوثيقة :" + viewModel.Document.Address + "،وصف الوثيقة :" + viewModel.Document.Description
+                            Message = "تم إضافة وثيقة جديدة  ، رقم الوثيقة :" + NotificationDocNumber + " موضوع الوثيقة :" + NotificationDocTitle
+                            + " ،عنوان الوثيقة :" + NotificationDocAddress + "،وصف الوثيقة :" + NotificationDocDescription
                            ,
                             NotificationOwnerId = UserId
                         };
@@ -954,7 +976,7 @@ namespace ArchiveProject2019.Controllers
 
             //RelatedUsers:
             List<SelectListItem> ListS3 = new List<SelectListItem>();
-            foreach (var U in _context.Users.Where(a => !a.RoleName.Equals("Master")).ToList())
+            foreach (var U in _context.Users.Where(a => !a.RoleName.Equals("Master")&&!a.Id.Equals(CurrentUser)).ToList())
             {
                 sl = new SelectListItem()
                 {
@@ -974,7 +996,7 @@ namespace ArchiveProject2019.Controllers
             //================= End Related Opertaions==================
 
             //Party ids:
-            if(Document.TypeMailId==2)
+            if(Document.TypeMail.Type==2)
 
             {
 
@@ -997,28 +1019,7 @@ namespace ArchiveProject2019.Controllers
 
             }
 
-            //Party ids:
-            if (Document.TypeMailId == 2)
-            {
-
-                List<SelectListItem> ListS4 = new List<SelectListItem>();
-                foreach (var G in _context.Parties.ToList())
-
-                {
-                    sl = new SelectListItem()
-                    {
-
-                        Text = G.Name,
-                        Value = G.Id.ToString(),
-                        Selected = _context.DocumentParties.Any(a => a.DocumentId == Document.Id && a.PartyId == G.Id) ? true : false
-                    };
-
-                    ListS4.Add(sl);
-
-                }
-                ViewBag.PartyIds = ListS4;
-
-            }
+         
             // Decrypt Document Attributes.
             if (ManagedAes.IsCipher)
             {
@@ -1169,6 +1170,17 @@ namespace ArchiveProject2019.Controllers
 
             IEnumerable<string> PartyIds)
         {
+
+
+
+
+            //Varibles For Notifications:
+            string NotificationDocNumber = string.Empty;
+            string NotificationDocAddress = string.Empty;
+            string NotificationDocTitle = string.Empty;
+            string NotificationDocDescription = string.Empty;
+
+
 
             ViewBag.Current = "Document";
             string CurrentUser = this.User.Identity.GetUserId();
@@ -1376,7 +1388,7 @@ namespace ArchiveProject2019.Controllers
 
             //RelatedUsers:
             List<SelectListItem> ListS3 = new List<SelectListItem>();
-            foreach (var U in _context.Users.Where(a => !a.RoleName.Equals("Master")).ToList())
+            foreach (var U in _context.Users.Where(a => !a.RoleName.Equals("Master") && !a.Id.Equals(CurrentUser)).ToList())
             {
                 sl = new SelectListItem()
                 {
@@ -1391,27 +1403,33 @@ namespace ArchiveProject2019.Controllers
             }
             ViewBag.RelatedUsers = ListS3;
 
-            if (viewModel.Document.TypeMailId == 2)
+
+            if(viewModel.Document.TypeMailId.HasValue)
             {
-
-                List<SelectListItem> ListS4 = new List<SelectListItem>();
-                foreach (var G in _context.Parties.ToList())
-
+                if (_context.TypeMails.Find(viewModel.Document.TypeMailId.Value).Type == 2)
                 {
-                    sl = new SelectListItem()
+
+                    List<SelectListItem> ListS4 = new List<SelectListItem>();
+                    foreach (var G in _context.Parties.ToList())
+
                     {
+                        sl = new SelectListItem()
+                        {
 
-                        Text = G.Name,
-                        Value = G.Id.ToString(),
-                        Selected = _context.DocumentParties.Any(a => a.DocumentId == viewModel.Document.Id && a.PartyId == G.Id) ? true : false
-                    };
+                            Text = G.Name,
+                            Value = G.Id.ToString(),
+                            Selected = _context.DocumentParties.Any(a => a.DocumentId == viewModel.Document.Id && a.PartyId == G.Id) ? true : false
+                        };
 
-                    ListS4.Add(sl);
+                        ListS4.Add(sl);
+
+                    }
+                    ViewBag.PartyIds = ListS4;
 
                 }
-                ViewBag.PartyIds = ListS4;
-
             }
+
+         
 
             //Status Model=false{status==false}
             if (Status == false)
@@ -1717,6 +1735,13 @@ namespace ArchiveProject2019.Controllers
 
                 }
 
+
+
+                NotificationDocNumber = viewModel.Document.DocumentNumber;
+                NotificationDocTitle = viewModel.Document.Subject;
+                NotificationDocAddress = viewModel.Document.Address;
+                NotificationDocDescription = viewModel.Document.Description;
+
                 // Encrypt Document Attributes.
                 if (ManagedAes.IsCipher)
                 {
@@ -1815,8 +1840,8 @@ namespace ArchiveProject2019.Controllers
                                 CreatedAt = NotificationTime,
                                 Active = false,
                                 UserId = user.Id,
-                                Message = "تم إضافة وثيقة جديدة للقسم الحالي، رقم الوثيقة :" + viewModel.Document.DocumentNumber + " موضوع الوثيقة :" + viewModel.Document.Subject
-                                + " ،عنوان الوثيقة :" + viewModel.Document.Address + "،وصف الوثيقة :" + viewModel.Document.Description
+                                Message = "تم إضافة وثيقة جديدة للقسم الحالي، رقم الوثيقة :" +NotificationDocNumber + " موضوع الوثيقة :" + NotificationDocTitle
+                                + " ،عنوان الوثيقة :" + NotificationDocAddress + "،وصف الوثيقة :" + NotificationDocDescription
                                ,
                                 NotificationOwnerId = UserId
                             };
@@ -1857,8 +1882,8 @@ namespace ArchiveProject2019.Controllers
                                 CreatedAt = NotificationTime,
                                 Active = false,
                                 UserId = user.Id,
-                                Message = "تم إزالة وثيقة من للقسم الحالي، رقم الوثيقة :" + viewModel.Document.DocumentNumber + " موضوع الوثيقة :" + viewModel.Document.Subject
-                                + " ،عنوان الوثيقة :" + viewModel.Document.Address + "،وصف الوثيقة :" + viewModel.Document.Description
+                                Message = "تم إزالة وثيقة من للقسم الحالي، رقم الوثيقة :" + NotificationDocNumber + " موضوع الوثيقة :" + NotificationDocTitle
+                                + " ،عنوان الوثيقة :" + NotificationDocAddress + "،وصف الوثيقة :" + NotificationDocDescription
                                ,
                                 NotificationOwnerId = UserId
                             };
@@ -1900,8 +1925,8 @@ namespace ArchiveProject2019.Controllers
                                 CreatedAt = NotificationTime,
                                 Active = false,
                                 UserId = user.Id,
-                                Message = "تم إزالة وثيقة من للقسم الحالي، رقم الوثيقة :" + viewModel.Document.DocumentNumber + " موضوع الوثيقة :" + viewModel.Document.Subject
-                                + " ،عنوان الوثيقة :" + viewModel.Document.Address + "،وصف الوثيقة :" + viewModel.Document.Description
+                                Message = "تم إزالة وثيقة من للقسم الحالي، رقم الوثيقة :" + NotificationDocNumber + " موضوع الوثيقة :" + NotificationDocTitle
+                                + " ،عنوان الوثيقة :" + NotificationDocTitle + "،وصف الوثيقة :" + NotificationDocDescription
                                ,
                                 NotificationOwnerId = UserId
                             };
@@ -1965,8 +1990,8 @@ namespace ArchiveProject2019.Controllers
                                 CreatedAt = NotificationTime,
                                 Active = false,
                                 UserId = user.Id,
-                                Message = "تم إضافة وثيقة جديدة للمجموعة :" + GroupName + "، رقم الوثيقة :" + viewModel.Document.Name + " ، موضوع الوثيقة:" + viewModel.Document.Subject +
-                                " ، عنوان الوثيقة:" + viewModel.Document.Address + " ،وصف الوثيقة :" + viewModel.Document.Description
+                                Message = "تم إضافة وثيقة جديدة للمجموعة :" + GroupName + "، رقم الوثيقة :" + NotificationDocNumber + " ، موضوع الوثيقة:" + NotificationDocTitle +
+                                " ، عنوان الوثيقة:" + NotificationDocAddress + " ،وصف الوثيقة :" + NotificationDocDescription
                                ,
                                 NotificationOwnerId = UserId
                             };
@@ -1999,8 +2024,8 @@ namespace ArchiveProject2019.Controllers
                                 CreatedAt = NotificationTime,
                                 Active = false,
                                 UserId = user.Id,
-                                Message = "تم إزالة وثيقة من المجموعة :" + GroupName + "، رقم الوثيقة :" + viewModel.Document.Name + " ، موضوع الوثيقة:" + viewModel.Document.Subject +
-                                " ، عنوان الوثيقة:" + viewModel.Document.Address + " ،وصف الوثيقة :" + viewModel.Document.Description
+                                Message = "تم إزالة وثيقة من المجموعة :" + GroupName + "، رقم الوثيقة :" + NotificationDocNumber+ " ، موضوع الوثيقة:" + NotificationDocTitle +
+                                " ، عنوان الوثيقة:" +NotificationDocAddress+ " ،وصف الوثيقة :" + NotificationDocDescription
                                ,
                                 NotificationOwnerId = UserId
                             };
@@ -2033,8 +2058,8 @@ namespace ArchiveProject2019.Controllers
                                 CreatedAt = NotificationTime,
                                 Active = false,
                                 UserId = user.Id,
-                                Message = "تم إزالة وثيقة من المجموعة :" + GroupName + "، رقم الوثيقة :" + viewModel.Document.Name + " ، موضوع الوثيقة:" + viewModel.Document.Subject +
-                                " ، عنوان الوثيقة:" + viewModel.Document.Address + " ،وصف الوثيقة :" + viewModel.Document.Description
+                                Message = "تم إزالة وثيقة من المجموعة :" + GroupName + "، رقم الوثيقة :" + NotificationDocNumber + " ، موضوع الوثيقة:" + NotificationDocTitle +
+                                " ، عنوان الوثيقة:" + NotificationDocAddress + " ،وصف الوثيقة :" +NotificationDocDescription
                                ,
                                 NotificationOwnerId = UserId
                             };
@@ -2096,8 +2121,8 @@ namespace ArchiveProject2019.Controllers
                             CreatedAt = NotificationTime,
                             Active = false,
                             UserId = _DocumentUser_Id,
-                            Message = "تم إضافة وثيقة جديدة  ، رقم الوثيقة :" + viewModel.Document.DocumentNumber + " موضوع الوثيقة :" + viewModel.Document.Subject
-                            + " ،عنوان الوثيقة :" + viewModel.Document.Address + "،وصف الوثيقة :" + viewModel.Document.Description
+                            Message = "تم إضافة وثيقة جديدة  ، رقم الوثيقة :" + NotificationDocNumber + " موضوع الوثيقة :" + NotificationDocTitle
+                            + " ،عنوان الوثيقة :" + NotificationDocAddress + "،وصف الوثيقة :" +NotificationDocDescription
                            ,
                             NotificationOwnerId = UserId
                         };
@@ -2128,8 +2153,8 @@ namespace ArchiveProject2019.Controllers
                             CreatedAt = NotificationTime,
                             Active = false,
                             UserId = s,
-                            Message = "تم ازالة وثيقة   ، رقم الوثيقة :" + viewModel.Document.DocumentNumber + " موضوع الوثيقة :" + viewModel.Document.Subject
-                            + " ،عنوان الوثيقة :" + viewModel.Document.Address + "،وصف الوثيقة :" + viewModel.Document.Description
+                            Message = "تم ازالة وثيقة   ، رقم الوثيقة :" + NotificationDocNumber + " موضوع الوثيقة :" + NotificationDocTitle
+                            + " ،عنوان الوثيقة :" + NotificationDocAddress + "،وصف الوثيقة :" + NotificationDocDescription
                            ,
                             NotificationOwnerId = UserId
                         };
@@ -2161,8 +2186,8 @@ namespace ArchiveProject2019.Controllers
                             CreatedAt = NotificationTime,
                             Active = false,
                             UserId = s,
-                            Message = "تم ازالة وثيقة   ، رقم الوثيقة :" + viewModel.Document.DocumentNumber + " موضوع الوثيقة :" + viewModel.Document.Subject
-                            + " ،عنوان الوثيقة :" + viewModel.Document.Address + "،وصف الوثيقة :" + viewModel.Document.Description
+                            Message = "تم ازالة وثيقة   ، رقم الوثيقة :" + NotificationDocNumber + " موضوع الوثيقة :" + NotificationDocTitle
+                            + " ،عنوان الوثيقة :" + NotificationDocAddress + "،وصف الوثيقة :" + NotificationDocDescription
                            ,
                             NotificationOwnerId = UserId
                         };
@@ -2181,7 +2206,7 @@ namespace ArchiveProject2019.Controllers
 
                 if (viewModel.Document.TypeMailId.HasValue) {
 
-                    if (viewModel.Document.TypeMailId.Value == 2)
+                    if ( _context.TypeMails.Find( viewModel.Document.TypeMailId.Value).Type == 2)
                     {
                         List<string> SelectedDocumentPartyId = new List<string>();
                         SelectedDocumentPartyId = _context.DocumentParties.Where(a => a.DocumentId == viewModel.Document.Id).Select(a => a.PartyId.ToString()).ToList();

@@ -215,7 +215,7 @@
                 <div class="form-group">
                     @Html.Label("الجهات المستلمة", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DropDownList("PartyIds", new SelectList(ViewBag.Parties, "Value", "Text"), htmlAttributes: new { multiple = "multiple", @class = "form-control chosen-select" })
+                        @Html.DropDownList("PartyIds", null, htmlAttributes: new { multiple = "multiple", @class = "form-control chosen-select" })
                         @Html.ValidationMessage("PartyIds", "", new { @class = "text-danger" })
                     </div>
                 </div>

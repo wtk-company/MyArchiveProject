@@ -429,7 +429,7 @@ namespace ArchiveProject2019.Controllers
         [HttpGet]
 
 
-        [AccessDeniedAuthorizeattribute(ActionName = "Access")]
+     
 
         public ActionResult LogOut()
         {

@@ -95,7 +95,13 @@
 
 
 
-
+             <div class="form-group">
+                @Html.LabelFor(model => model.Document.ResponsibleUserId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Document.ResponsibleUserId, ViewBag.ResponsibleUserId as SelectList, "اختر المسؤول", htmlAttributes: new { @class = "form-control chosen-select" })
+                    @Html.ValidationMessageFor(model => model.Document.ResponsibleUserId, "", new { @class = "text-danger" })
+                </div>
+                </div>
 
 
     <div class="form-group">
@@ -123,10 +129,10 @@
         @*</div>*@
 
         @*<div class="form-group">*@
-        @Html.LabelFor(model => model.Document.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Document.StatusId, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-4">
-            @Html.EditorFor(model => model.Document.Description, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Document.Description, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.Document.StatusId, ViewBag.StatusId as SelectList, "اختر حالة الوثيقة", htmlAttributes: new { @class = "form-control chosen-select" })
+            @Html.ValidationMessageFor(model => model.Document.StatusId, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -145,25 +151,7 @@
 
 
 
-            @*<div class="form-group">*@
-            @Html.LabelFor(model => model.Document.StatusId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.DropDownListFor(model => model.Document.StatusId, ViewBag.StatusId as SelectList,"اختر حالة الوثيقة", htmlAttributes: new { @class = "form-control chosen-select" })
-                @Html.ValidationMessageFor(model => model.Document.StatusId, "", new { @class = "text-danger" })
-            </div>
-            @*</div>*@
-        </div>
-
-
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Document.ResponsibleUserId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.DropDownListFor(model => model.Document.ResponsibleUserId, ViewBag.ResponsibleUserId as SelectList, "اختر المسؤول", htmlAttributes: new { @class = "form-control chosen-select" })
-                @Html.ValidationMessageFor(model => model.Document.ResponsibleUserId, "", new { @class = "text-danger" })
-            </div>
-            @*</div>*@
+          
 
 
             @*<div>
@@ -248,23 +236,18 @@
 
     @if ((bool)ViewBag.Gereralize == true)
     {
-            <div class="form-group">
-            @Html.LabelFor(model => model.Document.StatusId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-            @Html.DropDownListFor(model => model.Document.StatusId, ViewBag.StatusId as SelectList,"اختر حالة الوثيقة", htmlAttributes: new { @class = "form-control chosen-select" })
-            @Html.ValidationMessageFor(model => model.Document.StatusId, "", new { @class = "text-danger" })
-            </div>
+          
 
-            </div>
+              
     }
-<div class="form-group">
-@Html.LabelFor(model => model.Document.ResponsibleUserId, htmlAttributes: new { @class = "control-label col-md-2" })
-<div class="col-md-10">
-    @Html.DropDownListFor(model => model.Document.ResponsibleUserId, ViewBag.ResponsibleUserId as SelectList, "اختر المسؤول", htmlAttributes: new { @class = "form-control chosen-select" })
-    @Html.ValidationMessageFor(model => model.Document.ResponsibleUserId, "", new { @class = "text-danger" })
-</div>
-</div>
 
+<div class="form-group">
+    @Html.LabelFor(model => model.Document.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Document.Description, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Document.Description, "", new { @class = "text-danger" })
+    </div>
+</div>
 
 @if(Model.FieldsValues != null)
 {
@@ -370,7 +353,7 @@ for (int i = 0; i < Model.FieldsValues.Values.Count; i++)
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="إضافة وثيقة جديدة" class="btn btn-primary" onclick="submitFormWithScannedImages();" />
+                <input type="submit" value="إضافة وثيقة جديدة" class="btn btn-primary" />
             </div>
         </div>
     </div>

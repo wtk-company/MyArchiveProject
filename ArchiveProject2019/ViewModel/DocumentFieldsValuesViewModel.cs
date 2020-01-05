@@ -14,5 +14,12 @@ namespace ArchiveProject2019.ViewModel
         public List<FilesStoredInDb> FilesStoredInDbs { get; set; }
         public bool IsSaveInDb { get; set; }
         public List<SealDocument> Seals { get; set; }
+        public List<DocumentDepartment> DocumentDepartments { get; set; }
+        public List<DocumentGroup> DocumentGroups { get; set; }
+        public List<DocumentUser> DocumentUsers { get; set; }
+
+
+        public List<DocumentParty> documentParties { get; set; }
+
     }
 }

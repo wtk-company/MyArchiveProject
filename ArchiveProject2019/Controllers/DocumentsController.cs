@@ -352,10 +352,13 @@ namespace ArchiveProject2019.Controllers
                 // Get Current User Id
                 var UserId = User.Identity.GetUserId();
 
+
+                //Store File In Uploda Folder
                 if (!ManagedAes.IsSaveInDb)
                 {
 
 
+                    //Scanner Files:
                     var scannedImages = Request.Form.GetValues("myfile");
                     if (scannedImages != null)
                     {
@@ -467,10 +470,12 @@ namespace ArchiveProject2019.Controllers
                 _context.Documents.Add(viewModel.Document);
                 _context.SaveChanges();
 
-                // Save Multiple Files In Db (begin)
+                //Save files in DataBase:
                 if (ManagedAes.IsSaveInDb)
                 {
                     
+
+                    //Scanner Files
                     var scannedImages = Request.Form.GetValues("myfile");
                     if (scannedImages != null)
                     {
@@ -508,8 +513,12 @@ namespace ArchiveProject2019.Controllers
                             _context.SaveChanges();
                         }
                     }
-             
+                    //* End Scanner Files**//
 
+
+
+
+                    //Upload Files
                     foreach (HttpPostedFileBase file in UploadFile)
                     {
                         if (file != null)
@@ -537,7 +546,7 @@ namespace ArchiveProject2019.Controllers
                         }
                     }
                 }
-                // ./-- Save Multiple Files In Db (end)
+                // ** End  Save files in DataBase:***//
 
 
                 //==========RelatedDepartments && Related Group======================
@@ -1063,19 +1072,34 @@ namespace ArchiveProject2019.Controllers
                 }
                 else
                 {
-                    var urls = Document.FileUrl.Split(new string[] { "_##_" }, StringSplitOptions.None);
-                    var existfiles = Enumerable.Repeat(true, urls.Length).ToList();
 
-                    var myModel = new DocumentDocIdFieldsValuesViewModel()
+
+                    if (Document.FileUrl != null)
+                    {
+                        var urls = Document.FileUrl.Split(new string[] { "_##_" }, StringSplitOptions.None);
+                        var existfiles = Enumerable.Repeat(true, urls.Length).ToList();
+
+                        var myModel = new DocumentDocIdFieldsValuesViewModel()
+                        {
+                            Document = Document,
+                            FieldsValues = viewModel,
+                            ExistFiles = existfiles,
+                            TypeMail = Document.TypeMailId.HasValue ? Document.TypeMail.Type : -1
+
+                        };
+                        return View(myModel);
+                    }
+
+                    var ViewModel = new DocumentDocIdFieldsValuesViewModel()
                     {
                         Document = Document,
                         FieldsValues = viewModel,
-                        ExistFiles = existfiles,
-                        TypeMail = Document.TypeMailId.HasValue ? Document.TypeMail.Type : -1,
+                        ExistFiles = new List<bool>(),
+                        TypeMail = Document.TypeMailId.HasValue ? Document.TypeMail.Type : -1
 
                     };
+                    return View(ViewModel);
 
-                    return View(myModel);
                 }
 
             }
@@ -1100,7 +1124,9 @@ namespace ArchiveProject2019.Controllers
             else
             {
 
-                
+
+                if (Document.FileUrl != null)
+                {
                     var urls = Document.FileUrl.Split(new string[] { "_##_" }, StringSplitOptions.None);
                     var existfiles = Enumerable.Repeat(true, urls.Length).ToList();
 
@@ -1112,7 +1138,18 @@ namespace ArchiveProject2019.Controllers
                         TypeMail = Document.TypeMailId.HasValue ? Document.TypeMail.Type : -1
                        
                     };
-                return View(myModel);
+                    return View(myModel);
+                }
+
+                var ViewModel = new DocumentDocIdFieldsValuesViewModel()
+                {
+                    Document = Document,
+                    FieldsValues = viewModel,
+                    ExistFiles = new List<bool>(),
+                    TypeMail = Document.TypeMailId.HasValue ? Document.TypeMail.Type : -1
+
+                };
+                return View(ViewModel);
               
 
             }
@@ -1140,29 +1177,7 @@ namespace ArchiveProject2019.Controllers
 
 
 
-            bool CanEdit = false;
-
-
-
-            //ViewBag.CanEdit = false;
-
-            //if (viewModel.Document.CreatedById.Equals(CurrentUser))
-            //{
-            //    CanEdit = true;
-            //    ViewBag.CanEdit = true;
-            //}
-
-            //if (!string.IsNullOrEmpty(viewModel.Document.ResponsibleUserId))
-            //{
-            //    if (viewModel.Document.ResponsibleUserId.Equals(CurrentUser))
-            //    {
-            //        CanEdit = true;
-
-            //        ViewBag.CanEdit = true;
-
-            //    }
-            //}
-
+        
 
             if (viewModel.Document.TypeMailId.HasValue)
             {
@@ -1533,10 +1548,6 @@ namespace ArchiveProject2019.Controllers
                     }
                     else
                     {
-                        var urls = viewModel.Document.FileUrl.Split(new string[] { "_##_" }, StringSplitOptions.None);
-                        var url = "";
-                        var fileNames = viewModel.Document.Name.Split(new string[] { "_##_" }, StringSplitOptions.None);
-                        var fileName = "";
 
                         /*
                          * start code
@@ -1586,9 +1597,22 @@ namespace ArchiveProject2019.Controllers
                          * 
                          */
 
+                        string []  urls =new string[] { };
+                        string[] fileNames = new string[] { };
+                       
+
+                        var url = "";
+                        var fileName = "";
+
+                         if (viewModel.Document.FileUrl != null)
+                        {
+                            urls = viewModel.Document.FileUrl.Split(new string[] { "_##_" }, StringSplitOptions.None);
+                            fileNames = viewModel.Document.Name.Split(new string[] { "_##_" }, StringSplitOptions.None);
+                        }
+
                         for (int i = 0; i < viewModel.ExistFiles.Count; i++)
                         {
-
+                        
                             if (i < urls.Length)
                             {
                                 if (viewModel.ExistFiles[i]) // true
@@ -1639,7 +1663,8 @@ namespace ArchiveProject2019.Controllers
                                     }
                                 }
                             }
-                            else if (viewModel.ExistFiles[i] && UploadFile[i] != null)
+                         
+                            else if (viewModel.ExistFiles[i] && UploadFile[i] != null )
                             {
                                 //Save File In Uploads
                                 string FileName = Path.GetFileName(UploadFile[i].FileName);
@@ -1661,8 +1686,17 @@ namespace ArchiveProject2019.Controllers
                         }
                         else
                         {
+                            if (scannedImages != null)
+                            {
+
                             viewModel.Document.FileUrl = "";
                             viewModel.Document.Name = "";
+                            }
+                            else
+                            {
+                                viewModel.Document.FileUrl = url.Substring(0, url.Length - 4);
+                                viewModel.Document.Name = fileName.Substring(0, fileName.Length - 4);
+                            }
                         }
                     }
                 }
@@ -2850,6 +2884,7 @@ namespace ArchiveProject2019.Controllers
 
 
         [HttpPost]
+     
         public ActionResult Release(int id, int id2)
         {
 
@@ -2902,6 +2937,12 @@ namespace ArchiveProject2019.Controllers
             var Fields = _context.Fields.Where(f => f.FormId == Document.FormId).ToList();
             var Values = _context.Values.Where(a => a.Document_id == Document.Id).ToList();
             var seals = _context.SealDocuments.Where(s => s.DocumentId == Document.Id).Include(s => s.Document).Include(s => s.CreatedBy).ToList();
+            var Parties = _context.DocumentParties.Where(a => a.DocumentId == Document.Id).Include(a => a.Party).ToList();
+
+            List<DocumentDepartment> Deps = _context.DocumentDepartments.Where(a => a.DocumentId == Document.Id).Include(a=>a.Department).ToList();
+            List<DocumentGroup> Groups = _context.DocumentGroups.Where(a => a.DocumentId == Document.Id).Include(a => a.Group).ToList();
+            List<DocumentUser> Users = _context.DocumentUsers.Where(a => a.DocumentId == Document.Id).Include(a => a.User).ToList();
+
 
             if (Document == null)
             {
@@ -2947,6 +2988,11 @@ namespace ArchiveProject2019.Controllers
                     FilesStoredInDbs = filesStoredInDbs,
                     IsSaveInDb = ManagedAes.IsSaveInDb,
                     Seals = seals,
+                documentParties=Parties,
+                DocumentDepartments=Deps,
+                DocumentGroups=Groups,
+                DocumentUsers=Users
+
                 };
             
                 return View(viewModel);
@@ -2961,6 +3007,10 @@ namespace ArchiveProject2019.Controllers
                 FilesStoredInDbs = Document.FilesStoredInDbs.ToList(),
                 IsSaveInDb = ManagedAes.IsSaveInDb,
                 Seals = seals,
+                documentParties=Parties,
+                DocumentDepartments = Deps,
+                DocumentGroups = Groups,
+                DocumentUsers = Users
             };
 
             return View(ViewModel);
@@ -2972,8 +3022,16 @@ namespace ArchiveProject2019.Controllers
             if (id == null)
             {
                 string filePath = Server.MapPath("~/Uploads/").Replace(@"\", "/") + fileName;
-                byte[] fileBytes = ManagedAes.DecryptFile(filePath);
-                return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+                if (ManagedAes.IsCipher)
+                {
+
+                    byte[] fileBytes = ManagedAes.DecryptFile(filePath);
+                    return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+                }
+                else
+                {
+                    return File(filePath, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+                }
             }
             else
             {

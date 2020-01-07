@@ -11,8 +11,25 @@
 
 
 <style>
+
     .panel {
-        background-color: #f1f1f1;
+        border: 1px solid black;
+        padding: 17px;
+    }
+    a:link {
+        text-decoration: none;
+    }
+
+    a:visited {
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    a:active {
+        text-decoration: underline;
     }
 </style>
 
@@ -104,10 +121,14 @@
     <a href="@Url.Action("index","Documents")" class="btn btn-primary"> قائمة الوثائق  <i class="glyphicon glyphicon-backward"></i></a>
     <hr />
 </div>
+
+
+
 @if (Model.Any())
 {
     <p>
-        <div class="comment-user"><span class="glyphicon glyphicon-folder-close"></span> @Model.ElementAt(0).Document.Subject</div>
+        <span class="glyphicon glyphicon-folder-close"></span>
+        <b><a href="@Url.Action("Details", "Documents",new { Id = Model.ElementAt(0).DocumentId })" title="إستعراض  كامل تفاصيل الوثيقة">@Model.ElementAt(0).Document.Subject</a></b>
     </p>
     <div id="form">
         @foreach (var item in Model)

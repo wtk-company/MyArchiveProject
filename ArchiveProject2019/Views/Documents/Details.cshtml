@@ -5,22 +5,14 @@
     Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
 }
 <style>
-
-        dt, dd {
-            margin-bottom: 15px;
-        }
-
-        .panel {
-            border: 1px solid black;
-            padding: 17px;
-        }
-        /*.dlClass {
-      columns: 2;
+    dt, dd {
+        margin-bottom: 15px;
     }
 
-    .ddClass {
-      break-before: avoid;
-    }*/
+    .panel {
+        border: 1px solid black;
+        padding: 17px;
+    }
 </style>
 
 
@@ -374,7 +366,7 @@
             else
             {
 
-                if (Model.Document.FileUrl != null && Model.Document.Name != null)
+                if (Model.Document.FileUrl != null && Model.Document.FileUrl != "" && Model.Document.Name != null)
                 {
                     var urls = Model.Document.FileUrl.Split(new string[] { "_##_" }, StringSplitOptions.None);
                     var names = Model.Document.Name.Split(new string[] { "_##_" }, StringSplitOptions.None);
@@ -386,7 +378,7 @@
                             <div class="thumbnail">
 
 
-                                <div class="">
+                                <div>
                                     <h6>@names[i]</h6>
                                     <h4>خيارات الملف:</h4>
 
@@ -405,26 +397,17 @@
 
                     }
                 }
+                else
+                {
+                    <div class="thumbnail">
+                        <p>لا يوجد ملفات!</p>
+                    </div>
+                }
             }
 
 
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -538,56 +521,124 @@
 
     </div>
 
- 
+
+
+
+
+
+    <div class="row" style="text-align:center;margin-top:25px">
+        <div id="SealsPanel" class="panel" style="background-color:#f2c6c6;">
+
+            <strong style="font-size:large">التسديدات على الوثيقة</strong>
+        </div>
+        <div id="SealsSlide" style="text-align:center">
+
+            @if (Model.Seals != null)
+            {
+                for (int i = 0; i < Model.Seals.Count; i++)
+                {
+
+                    <article class=" col-md-6 col-sm-6">
+                        <div>
+                            <div class="panel panel-default arrow right">
+                                <div class="panel-body">
+                                    <header class="text-right">
+                                        <div class="comment-user"><i class="fa fa-user"></i> @Model.Seals[i].CreatedBy.UserName</div>
+                                        <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> @Model.Seals[i].CreatedAt</time>
+
+                                        <div>
+
+                                            @{
+                                                if (Model.Seals[i].Files != null) { 
+                                                    for (int j = 0; j < Model.Seals[i].Files.Count; j++)
+                                                    {
+                                                        <label style="margin-top: 30px;">@Model.Seals[i].Files.ElementAt(j).FileName</label>
+                                                        <div>
+                                                            @Html.ActionLink(" فتح الملف", "DisplayDocument", "Seals",
+                                                       new { id = Model.Seals[i].Files.ElementAt(j).Id },
+                                                       new { @class = "btn btn-primary" }) |
+                                                            @Html.ActionLink(" تنزيل الملف", "DownloadDocument", "Seals",
+                                                       new { id = Model.Seals[i].Files.ElementAt(j).Id },
+                                                       new { @class = "btn btn-success" })
+                                                        </div>
+                                                    }
+                                                }
+                                            }
+
+                                        </div>
+                                        <hr />
+                                    </header>
+                                    <div class="comment-post">
+                                        @Html.DisplayNameFor(it => Model.Seals[i].Message):
+                                        <p>
+                                            @Model.Seals[i].Message
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                                                    }
+                                                }
+
+        </div>
+    </div>
 
 
 
 
 </div>
 
-        @Html.Partial("_LastView")
+@Html.Partial("_LastView")
 
-        @section Scripts {
+@section Scripts {
 
-            <script>
-
-
-                $("#mainInfoPanel").click(function () {
-                    $("#mainInfoSlide").slideToggle(400);
-                    $("#mainInfoNote").slideToggle(400);
-                    $("#mainInfoDescr").slideToggle(400);
+    <script>
 
 
-
-                });
-
-
-                
-                $("#FileInfoPanel").click(function () {
-                    $("#FileInfoSlide").slideToggle(400);
-                
-
-
-                });
-
-
-                $("#RelateInfoPanel").click(function () {
-                    $("#RelateInfoSlide").slideToggle(400);
-                
-
-
-                });
+        $("#mainInfoPanel").click(function () {
+            $("#mainInfoSlide").slideToggle(400);
+            $("#mainInfoNote").slideToggle(400);
+            $("#mainInfoDescr").slideToggle(400);
 
 
 
+        });
 
-            </script>
 
-        }
-<style>
 
-   .thumbnail {
-    height: 100%;
-    overflow: auto;
+        $("#FileInfoPanel").click(function () {
+            $("#FileInfoSlide").slideToggle(400);
+
+
+
+        });
+
+
+        $("#SealsPanel").click(function () {
+            $("#SealsSlide").slideToggle(400);
+
+
+
+        });
+
+
+        $("#RelateInfoPanel").click(function () {
+            $("#RelateInfoSlide").slideToggle(400);
+
+
+
+        });
+
+
+
+
+    </script>
+
 }
+<style>
+    .thumbnail {
+        height: 100%;
+        overflow: auto;
+    }
 </style>

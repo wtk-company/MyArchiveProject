@@ -322,7 +322,7 @@
                 else
                 {
                     <div id="fileForm">
-                        @if (Model.Document.FileUrl != null)
+                        @if (Model.Document.FileUrl != null && Model.Document.FileUrl != "")
                         {
                             var urls = Model.Document.FileUrl.Split(new string[] { "_##_" }, StringSplitOptions.None);
                             var names = Model.Document.Name.Split(new string[] { "_##_" }, StringSplitOptions.None);

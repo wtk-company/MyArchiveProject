@@ -439,7 +439,7 @@ namespace ArchiveProject2019.Controllers
                         }
 
                         // Cut last 4 split string
-                        if (viewModel.Document.Name != null)
+                        if (viewModel.Document.FileUrl != null)
                         {
                             viewModel.Document.Name = viewModel.Document.Name.Substring(0, viewModel.Document.Name.Length - 4);
                             viewModel.Document.FileUrl = viewModel.Document.FileUrl.Substring(0, viewModel.Document.FileUrl.Length - 4);
@@ -1691,7 +1691,18 @@ namespace ArchiveProject2019.Controllers
 
                                 string s1 = DateTime.Now.ToString("yyyyMMddhhHHmmss") + FileName;
                                 string path = Path.Combine(Server.MapPath("~/Uploads/"), s1);
-                                UploadFile[i].SaveAs(path);
+
+                                //UploadFile[i].SaveAs(path);
+
+                                if (ManagedAes.IsCipher)
+                                {
+                                    ManagedAes.EncryptFile(UploadFile[i], path);
+                                }
+                                else
+                                {
+                                    UploadFile[i].SaveAs(path);
+                                }
+
 
                                 url += s1 + "_##_";
                                 fileName += FileName + "_##_";
@@ -2961,7 +2972,7 @@ namespace ArchiveProject2019.Controllers
 
             var Fields = _context.Fields.Where(f => f.FormId == Document.FormId).ToList();
             var Values = _context.Values.Where(a => a.Document_id == Document.Id).ToList();
-            var seals = _context.SealDocuments.Where(s => s.DocumentId == Document.Id).Include(s => s.Document).Include(s => s.CreatedBy).ToList();
+            var seals = _context.SealDocuments.Where(s => s.DocumentId == Document.Id).Include(s => s.Files).Include(s => s.Document).Include(s => s.CreatedBy).ToList();
             var Parties = _context.DocumentParties.Where(a => a.DocumentId == Document.Id).Include(a => a.Party).ToList();
 
             List<DocumentDepartment> Deps = _context.DocumentDepartments.Where(a => a.DocumentId == Document.Id).Include(a=>a.Department).ToList();
@@ -3005,6 +3016,22 @@ namespace ArchiveProject2019.Controllers
                         }
                         );
                 }
+               
+                foreach (var seal in seals)
+                {
+                    //seal.Document.Subject = ManagedAes.DecryptText(seal.Document.Subject);
+                    seal.CreatedAt = ManagedAes.DecryptText(seal.CreatedAt);
+                    seal.FileName = ManagedAes.DecryptText(seal.FileName);
+                    seal.Message = ManagedAes.DecryptText(seal.Message);
+                    if (seal.Files != null)
+                    {
+                        foreach (var file in seal.Files)
+                        {
+                            file.FileName = ManagedAes.DecryptText(file.FileName);
+                        }
+                    }
+                }
+
                 var viewModel = new DocumentFieldsValuesViewModel
                 {
                     Document = Document,
@@ -3013,13 +3040,15 @@ namespace ArchiveProject2019.Controllers
                     FilesStoredInDbs = filesStoredInDbs,
                     IsSaveInDb = ManagedAes.IsSaveInDb,
                     Seals = seals,
-                documentParties=Parties,
-                DocumentDepartments=Deps,
-                DocumentGroups=Groups,
-                DocumentUsers=Users
+                    documentParties=Parties,
+                    DocumentDepartments=Deps,
+                    DocumentGroups=Groups,
+                    DocumentUsers=Users
 
                 };
-            
+
+                
+
                 return View(viewModel);
             }
 

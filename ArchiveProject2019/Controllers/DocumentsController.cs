@@ -613,10 +613,10 @@ namespace ArchiveProject2019.Controllers
                         var _DocumentDepartment = new DocumentDepartment()
                         {
 
-                            EnableEdit = true,
-                            EnableRelate = true,
-                            EnableReplay = true,
-                            EnableSeal = true,
+                            EnableEdit = viewModel.Document.IsGeneralize == true ? true : false,
+                            EnableRelate = viewModel.Document.IsGeneralize == true ? true : false,
+                            EnableReplay = viewModel.Document.IsGeneralize == true ? true : false,
+                            EnableSeal = viewModel.Document.IsGeneralize == true ? true : false,
                             DocumentId = viewModel.Document.Id,
                             DepartmentId = Convert.ToInt32(Department_Id),
                             CreatedAt = DateTime.Now.ToString("dd/MM/yyyy-HH:mm:ss"),
@@ -666,10 +666,10 @@ namespace ArchiveProject2019.Controllers
                         var _DocumentGroup = new DocumentGroup()
                         {
 
-                            EnableEdit = true,
-                            EnableRelate = true,
-                            EnableReplay = true,
-                            EnableSeal = true,
+                            EnableEdit =viewModel.Document.IsGeneralize==true? true:false,
+                            EnableRelate = viewModel.Document.IsGeneralize == true ? true : false,
+                            EnableReplay = viewModel.Document.IsGeneralize == true ? true : false,
+                            EnableSeal = viewModel.Document.IsGeneralize == true ? true : false,
                             DocumentId = viewModel.Document.Id,
                             GroupId = Convert.ToInt32(Group_Id),
                             CreatedAt = DateTime.Now.ToString("dd/MM/yyyy-HH:mm:ss"),
@@ -718,10 +718,10 @@ namespace ArchiveProject2019.Controllers
                         var _DocumentUser = new DocumentUser()
                         {
 
-                            EnableEdit = true,
-                            EnableRelate = true,
-                            EnableReplay = true,
-                            EnableSeal = true,
+                            EnableEdit = viewModel.Document.IsGeneralize == true ? true : false,
+                            EnableRelate = viewModel.Document.IsGeneralize == true ? true : false,
+                            EnableReplay = viewModel.Document.IsGeneralize == true ? true : false,
+                            EnableSeal = viewModel.Document.IsGeneralize == true ? true : false,
                             DocumentId = viewModel.Document.Id,
                             UserId = User_Id,
                             CreatedAt = DateTime.Now.ToString("dd/MM/yyyy-HH:mm:ss"),
@@ -1819,10 +1819,10 @@ namespace ArchiveProject2019.Controllers
                         {
 
                             DocumentId = viewModel.Document.Id,
-                            EnableEdit = true,
-                            EnableRelate = true,
-                            EnableReplay = true,
-                            EnableSeal = true,
+                            EnableEdit = viewModel.Document.IsGeneralize == true ? true : false,
+                            EnableRelate = viewModel.Document.IsGeneralize == true ? true : false,
+                            EnableReplay = viewModel.Document.IsGeneralize == true ? true : false,
+                            EnableSeal = viewModel.Document.IsGeneralize == true ? true : false,
                             DepartmentId = Convert.ToInt32(_DocumentDepartment_Id),
                             CreatedAt = DateTime.Now.ToString("dd/MM/yyyy-HH:mm:ss"),
                             CreatedById = this.User.Identity.GetUserId()
@@ -1974,10 +1974,10 @@ namespace ArchiveProject2019.Controllers
                         {
 
                             DocumentId = viewModel.Document.Id,
-                            EnableEdit = true,
-                            EnableRelate = true,
-                            EnableReplay = true,
-                            EnableSeal = true,
+                            EnableEdit = viewModel.Document.IsGeneralize == true ? true : false,
+                            EnableRelate = viewModel.Document.IsGeneralize == true ? true : false,
+                            EnableReplay = viewModel.Document.IsGeneralize == true ? true : false,
+                            EnableSeal = viewModel.Document.IsGeneralize == true ? true : false,
                             GroupId = Convert.ToInt32(_DocumentGroup_Id),
                             CreatedAt = DateTime.Now.ToString("dd/MM/yyyy-HH:mm:ss"),
                             CreatedById = this.User.Identity.GetUserId()
@@ -2107,10 +2107,10 @@ namespace ArchiveProject2019.Controllers
                         {
 
                             DocumentId = viewModel.Document.Id,
-                            EnableEdit = true,
-                            EnableRelate = true,
-                            EnableReplay = true,
-                            EnableSeal = true,
+                            EnableEdit = viewModel.Document.IsGeneralize == true ? true : false,
+                            EnableRelate = viewModel.Document.IsGeneralize == true ? true : false,
+                            EnableReplay = viewModel.Document.IsGeneralize == true ? true : false,
+                            EnableSeal = viewModel.Document.IsGeneralize == true ? true : false,
                             UserId = _DocumentUser_Id,
                             CreatedAt = DateTime.Now.ToString("dd/MM/yyyy-HH:mm:ss"),
                             CreatedById = this.User.Identity.GetUserId()
@@ -2332,22 +2332,22 @@ namespace ArchiveProject2019.Controllers
                 string CurrentUserId = this.User.Identity.GetUserId();
                 DateTime TodayDate = DateTime.ParseExact(DateTime.Now.ToString("yyyy/MM/dd").Replace("-", "/"), "yyyy/MM/dd", null);
 
-                documents = _context.Documents.Include(a=>a.TypeMail).Where(a => a.NotificationUserId.Equals(CurrentUserId) && a.NotificationDate != null).ToList();
+                documents = _context.Documents.Include(a => a.TypeMail).Include(a=>a.Department).Where(a => a.NotificationUserId.Equals(CurrentUserId) && a.NotificationDate != null).ToList();
+
                 documents = documents.Where(a => EqualDate(a.NotificationDate, TodayDate)).OrderByDescending(a=>a.NotificationDate);
             }
             else
             {
-             documents = _context.Documents.Where(a => a.CreatedById.Equals(currentUserId)).Include(a => a.TypeMail).OrderByDescending(a => a.CreatedAt).Take(10);
+             documents = _context.Documents.Where(a => a.CreatedById.Equals(currentUserId) &&a.IsGeneralize==false).Include(a => a.TypeMail).Include(a=>a.Department).OrderByDescending(a => a.CreatedAt).Take(50);
 
             }
 
-            var Documents = _context.Documents.Where(a => a.CreatedById.Equals(currentUserId)).Include(a => a.TypeMail).OrderByDescending(a => a.CreatedAt).Take(10).ToList();
 
 
             // Decrypt Document Attributes.
             if (ManagedAes.IsCipher)
             {
-                foreach (var Document in Documents)
+                foreach (var Document in documents)
                 {
                     Document.DocumentNumber = ManagedAes.DecryptText(Document.DocumentNumber);
                     Document.DocumentDate = ManagedAes.DecryptText(Document.DocumentDate);
@@ -2356,7 +2356,7 @@ namespace ArchiveProject2019.Controllers
                 }
             }
             
-            return View(Documents);
+            return View(documents);
         }
 
 
@@ -2436,9 +2436,39 @@ namespace ArchiveProject2019.Controllers
 
                     break;
 
+                case "9":
+                    MyDocId = UserDocumentsID.UserCreatedGeneralizedDocument(currentUserId).ToList();
+
+                    break;
+                case "10":
+                    MyDocId = UserDocumentsID.UserMyDepartmentGenralizedDocument(currentUserId).ToList();
+
+                    break;
+
+                case "11":
+                    MyDocId = UserDocumentsID.UserGeneralizedDocumentGroups(currentUserId).ToList();
+
+                    break;
+
+
+                case "12":
+                    MyDocId = UserDocumentsID.UserDepartmentGeneralizedDocument(currentUserId).ToList();
+
+                    break;
+
+                case "13":
+                    MyDocId = UserDocumentsID.UserGeneralizedDocumentTrend(currentUserId).ToList();
+
+                    break;
+
+                case "14":
+                    MyDocId = UserDocumentsID.UserGeneralizedDeocumentNotification(currentUserId).ToList();
+
+                    break;
+
             }
 
-            documents = _context.Documents.Where(a => MyDocId.Contains(a.Id)).Include(a => a.TypeMail).ToList();
+            documents = _context.Documents.Where(a => MyDocId.Contains(a.Id)).Include(a => a.TypeMail).Include(a=>a.Department).ToList();
 
             // Decrypt Document Attributes.
             if (ManagedAes.IsCipher)
@@ -2760,38 +2790,48 @@ namespace ArchiveProject2019.Controllers
 
             }
 
-            _context.Documents.Remove(document);
+           
 
-          
+
+
+            if (ManagedAes.IsSaveInDb)
+            {
+
+                List<FilesStoredInDb> Files = _context.FilesStoredInDbs.Where(a => a.DocumentId == document.Id).ToList();
+                foreach (FilesStoredInDb f in Files)
+                {
+                    _context.FilesStoredInDbs.Remove(f);
+                }
+                _context.SaveChanges();
+
+            }
 
             List<SealDocument> Seals = _context.SealDocuments.Where(a => a.DocumentId == id).ToList();
             foreach (SealDocument r in Seals)
             {
+
+                if (ManagedAes.IsSaveInDb)
+                {
+
+                    List<SealFiles> Files = _context.SealFiles.Where(a => a.SealId == r.Id).ToList();
+                    foreach (SealFiles f in Files)
+                    {
+                        _context.SealFiles.Remove(f);
+                    }
+                    _context.SaveChanges();
+
+                }
 
                 _context.SealDocuments.Remove(r);
             }
 
 
 
-            List<ReplayDocument> Replays = _context.ReplayDocuments.Where(a => a.ReplayDocId == id).ToList();
-            foreach (ReplayDocument r in Replays)
-            {
-               
-                _context.ReplayDocuments.Remove(r);
-            }
-
-
-            List <RelatedDocument> Relates = _context.RelatedDocuments.Where(a => a.RelatedDocId == id).ToList();
-            foreach (RelatedDocument r in Relates)
-            {
-                
-                
-                _context.RelatedDocuments.Remove(r);
-            }
+         
 
 
 
-
+            _context.Documents.Remove(document);
             _context.SaveChanges();
             return RedirectToAction("Index", new { Id = "DeleteSuccess" });
 
@@ -3257,7 +3297,7 @@ namespace ArchiveProject2019.Controllers
             }
             List<int> DocIds = new List<int>();
             DocIds = UserDocumentsID.UserRelateDocument(CurrentUserId, id).ToList();
-            var documents = _context.Documents.Where(a => DocIds.Contains(a.Id)).OrderByDescending(a=>a.CreatedAt).Include(a => a.TypeMail).ToList();
+            var documents = _context.Documents.Where(a => DocIds.Contains(a.Id)).OrderByDescending(a=>a.CreatedAt).Include(a => a.TypeMail).Include(a=>a.Department).ToList();
 
             // Decrypt Document Attributes.
             if (ManagedAes.IsCipher)
@@ -3311,7 +3351,7 @@ namespace ArchiveProject2019.Controllers
             List<int> DocIds = new List<int>();
 
             DocIds = UserDocumentsID.UserReplayDocument(CurrentUserId, id).ToList();
-            var documents = _context.Documents.Where(a => DocIds.Contains(a.Id)).OrderByDescending(a => a.CreatedAt).Include(a => a.TypeMail).ToList();
+            var documents = _context.Documents.Where(a => DocIds.Contains(a.Id)).OrderByDescending(a => a.CreatedAt).Include(a => a.TypeMail).Include(a => a.Department).ToList();
 
             // Decrypt Document Attributes.
             if (ManagedAes.IsCipher)

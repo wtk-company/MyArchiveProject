@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using ArchiveProject2019.HelperClasses;
+using ArchiveProject2019.Security;
+
 namespace ArchiveProject2019.Controllers
 {
     public class UsersController : Controller
@@ -758,6 +760,33 @@ namespace ArchiveProject2019.Controllers
                 db.Notifications.Remove(v);
             }
             db.SaveChanges();
+
+
+
+            List<SealDocument> Seals = db.SealDocuments.Where(a => a.CreatedById.Equals(Id)).ToList();
+            foreach (var v in Seals)
+            {
+
+
+
+                if (ManagedAes.IsSaveInDb)
+                {
+
+                    List<SealFiles> Files = db.SealFiles.Where(a => a.SealId == v.Id).ToList();
+                    foreach (SealFiles f in Files)
+                    {
+                        db.SealFiles.Remove(f);
+                    }
+                    db.SaveChanges();
+
+                }
+
+                db.SealDocuments.Remove(v);
+            }
+            db.SaveChanges();
+
+
+
 
 
             db.Users.Remove(user);

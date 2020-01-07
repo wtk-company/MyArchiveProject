@@ -10,18 +10,24 @@ namespace ArchiveProject2019.HelperClasses
     public class UserDocumentsID
     {
 
+
+        //User document{create || Responible}
         public static IEnumerable<int>UserCreatedDocument(string UserID)
         {
 
 
             ApplicationDbContext db = new ApplicationDbContext();
 
-            IEnumerable<int> MyDoc = db.Documents.Where(a => a.CreatedById.Equals(UserID)||a.ResponsibleUserId.Equals(UserID)).Select(a=>a.Id);
+            IEnumerable<int> MyDoc = db.Documents
+                .Where(a =>a.IsGeneralize==false&&( a.CreatedById.Equals(UserID)||a.ResponsibleUserId.Equals(UserID)))
+                .Select(a=>a.Id);
             return MyDoc;
 
         }
 
 
+
+        //User document notification in current day
         public static IEnumerable<int> UserNotificationTodayDocument(string UserID)
         {
 
@@ -48,7 +54,7 @@ namespace ArchiveProject2019.HelperClasses
             ApplicationDbContext db = new ApplicationDbContext();
 
             int _DepId = db.Users.Find(UserID).DepartmentId.HasValue ? db.Users.Find(UserID).DepartmentId.Value : -1;
-            IEnumerable<int> myDoc = db.Documents.Where(a => a.DepartmentId == _DepId).Select(a => a.Id);
+            IEnumerable<int> myDoc = db.Documents.Where(a => a.DepartmentId == _DepId && a.IsGeneralize==false).Select(a => a.Id);
             return myDoc;
 
         }
@@ -58,7 +64,9 @@ namespace ArchiveProject2019.HelperClasses
             ApplicationDbContext db = new ApplicationDbContext();
 
             int _DepId = db.Users.Find(UserID).DepartmentId.HasValue?db.Users.Find(UserID).DepartmentId.Value:-1;
-            IEnumerable<int> myDoc = db.DocumentDepartments.Where(a => a.DepartmentId == _DepId).Select(a => a.DocumentId);
+            IEnumerable<int> myDoc = db.DocumentDepartments
+                .Include(a=>a.document).Where(a => a.DepartmentId == _DepId && a.document.IsGeneralize==false)
+                .Select(a => a.DocumentId);
             return myDoc;
 
         }
@@ -69,7 +77,10 @@ namespace ArchiveProject2019.HelperClasses
         {
             ApplicationDbContext db = new ApplicationDbContext();
 
-            IEnumerable<int> myDoc = db.DocumentUsers.Where(a =>a.UserId.Equals(UserID)).Select(a => a.DocumentId);
+            IEnumerable<int> myDoc = db.DocumentUsers
+                .Include(a=>a.document)
+                .Where(a =>a.UserId.Equals(UserID) && a.document.IsGeneralize==false)
+                .Select(a => a.DocumentId);
             return myDoc;
 
         }
@@ -78,9 +89,13 @@ namespace ArchiveProject2019.HelperClasses
         {
             ApplicationDbContext db = new ApplicationDbContext();
 
-            IEnumerable<int> GroupId = db.UsersGroups.Where(a => a.UserId.Equals(UserID)).Select(a => a.GroupId);
-            IEnumerable<int> myDoc = db.DocumentGroups.Where(a => GroupId.Contains(a.GroupId
-                )).Select(a => a.DocumentId);
+            IEnumerable<int> GroupId = db.UsersGroups
+                .Where(a => a.UserId.Equals(UserID))
+                .Select(a => a.GroupId);
+            IEnumerable<int> myDoc = db.DocumentGroups
+                .Include(a=>a.document)
+                .Where(a => GroupId.Contains(a.GroupId) && a.document.IsGeneralize==false)
+                .Select(a => a.DocumentId).Distinct();
             return myDoc;
 
         }
@@ -90,7 +105,9 @@ namespace ArchiveProject2019.HelperClasses
         {
             ApplicationDbContext db = new ApplicationDbContext();
 
-            IEnumerable<int> myDoc = db.Documents.Where(a => a.NotificationUserId.Equals(UserID) && a.NotificationDate != null).Select(a=>a.Id);
+            IEnumerable<int> myDoc = db.Documents.
+                Where(a => a.NotificationUserId.Equals(UserID) && a.NotificationDate != null && a.IsGeneralize==false)
+                .Select(a=>a.Id);
             return myDoc;
 
         }
@@ -108,7 +125,7 @@ namespace ArchiveProject2019.HelperClasses
             IEnumerable<int> Doc5 = UserMyDepartmentDocument(UserId);
             IEnumerable<int> Doc6 =UserDocumentTrend(UserId);
 
-            IEnumerable<int> AllDoc = Doc1.Union(Doc2).Union(Doc3).Union(Doc4).Union(Doc5);
+            IEnumerable<int> AllDoc = Doc1.Union(Doc2).Union(Doc3).Union(Doc4).Union(Doc5).Distinct();
             return AllDoc;
 
 
@@ -124,22 +141,37 @@ namespace ArchiveProject2019.HelperClasses
 
             ApplicationDbContext db = new ApplicationDbContext();
             List<int> RelateDocumentId = db.RelatedDocuments.Where(a => a.Document_id == DocId).Select(a=>a.RelatedDocId).ToList();
-            IEnumerable<int> MyDoc1 = db.Documents.Where(a =>RelateDocumentId.Contains(a.Id)&& a.CreatedById.Equals(UserID)).Select(a => a.Id);
+            IEnumerable<int> MyDoc1 = db.Documents
+                .Where(a =>RelateDocumentId.Contains(a.Id)&& a.CreatedById.Equals(UserID) && a.IsGeneralize==false)
+                .Select(a => a.Id);
 
 
             //Department:
             int _DepId = db.Users.Find(UserID).DepartmentId.HasValue ? db.Users.Find(UserID).DepartmentId.Value : -1;
-            IEnumerable<int> myDoc2 = db.DocumentDepartments.Where(a => RelateDocumentId.Contains(a.Id)&& a.DepartmentId == _DepId).Select(a => a.DocumentId);
+            IEnumerable<Document>docs2= db.DocumentDepartments.Include(a=>a.document).Where(a => RelateDocumentId.Contains(a.Id)&& a.DepartmentId == _DepId).Select(a => a.document);
+            IEnumerable<int> myDoc2 = docs2.Where(a => a.IsGeneralize == false).Select(a=>a.Id);
+                
 
 
             //Groups :
 
             IEnumerable<int> GroupId = db.UsersGroups.Where(a => a.UserId.Equals(UserID)).Select(a => a.GroupId);
-            IEnumerable<int> myDoc3 = db.DocumentGroups.Where(a =>RelateDocumentId.Contains(a.Id)&& GroupId.Contains(a.GroupId
-                )).Select(a => a.DocumentId);
+              IEnumerable<Document>docs3  = db.DocumentGroups
+                .Include(a=>a.document)
+                .Where(a =>RelateDocumentId.Contains(a.Id)&& GroupId.Contains(a.GroupId
+                )).Select(a => a.document);
+            IEnumerable<int> myDoc3 = docs3.Where(a => a.IsGeneralize == false).Select(a => a.Id);
 
 
-            List<int> MyDoc = MyDoc1.Union(myDoc2).Union(myDoc3).ToList();
+            //Users:
+                IEnumerable<Document>docs4= db.DocumentUsers.Include(a=>a.document)
+                .Where(a => RelateDocumentId.Contains(a.Id) && a.UserId.Equals(UserID))
+                .Select(a => a.document);
+            IEnumerable<int> myDoc4 = docs4.Where(a=>a.IsGeneralize==false).Select(a=>a.Id);
+
+
+
+            List<int> MyDoc = MyDoc1.Union(myDoc2).Union(myDoc3).Union(myDoc4).Distinct().ToList();
             return MyDoc;
 
         }
@@ -153,22 +185,35 @@ namespace ArchiveProject2019.HelperClasses
 
             ApplicationDbContext db = new ApplicationDbContext();
             List<int> ReplayDocumentId = db.ReplayDocuments.Where(a => a.Document_id == DocId).Select(a => a.ReplayDocId).ToList();
-            IEnumerable<int> MyDoc1 = db.Documents.Where(a => ReplayDocumentId.Contains(a.Id) && a.CreatedById.Equals(UserID)).Select(a => a.Id);
+            IEnumerable<int> MyDoc1 = db.Documents.
+                Where(a => ReplayDocumentId.Contains(a.Id) && a.CreatedById.Equals(UserID)&& a.IsGeneralize==false)
+                .Select(a => a.Id);
 
 
             //Department:
             int _DepId = db.Users.Find(UserID).DepartmentId.HasValue ? db.Users.Find(UserID).DepartmentId.Value : -1;
-            IEnumerable<int> myDoc2 = db.DocumentDepartments.Where(a => ReplayDocumentId.Contains(a.Id) && a.DepartmentId == _DepId).Select(a => a.DocumentId);
-
+            IEnumerable<Document> docs2 = db.DocumentDepartments.Include(a => a.document).Where(a => ReplayDocumentId.Contains(a.Id) && a.DepartmentId == _DepId).Select(a => a.document);
+            IEnumerable<int> myDoc2 = docs2.Where(a => a.IsGeneralize == false).Select(a => a.Id);
 
             //Groups :
 
             IEnumerable<int> GroupId = db.UsersGroups.Where(a => a.UserId.Equals(UserID)).Select(a => a.GroupId);
-            IEnumerable<int> myDoc3 = db.DocumentGroups.Where(a => ReplayDocumentId.Contains(a.Id) && GroupId.Contains(a.GroupId
-                )).Select(a => a.DocumentId);
+            IEnumerable<Document> docs3 = db.DocumentGroups
+              .Include(a => a.document)
+              .Where(a => ReplayDocumentId.Contains(a.Id) && GroupId.Contains(a.GroupId
+              )).Select(a => a.document);
+            IEnumerable<int> myDoc3 = docs3.Where(a => a.IsGeneralize == false).Select(a => a.Id);
 
 
-            List<int> MyDoc = MyDoc1.Union(myDoc2).Union(myDoc3).ToList();
+            //Users:
+            IEnumerable<Document> docs4 = db.DocumentUsers.Include(a => a.document)
+            .Where(a => ReplayDocumentId.Contains(a.Id) && a.UserId.Equals(UserID))
+            .Select(a => a.document);
+            IEnumerable<int> myDoc4 = docs4.Where(a => a.IsGeneralize == false).Select(a => a.Id);
+
+
+
+            List<int> MyDoc = MyDoc1.Union(myDoc2).Union(myDoc3).Union(myDoc4).Distinct().ToList();
             return MyDoc;
 
         }
@@ -191,5 +236,91 @@ namespace ArchiveProject2019.HelperClasses
             }
 
         }
+
+
+
+
+        //Generailzed Document:
+
+
+        public static IEnumerable<int> UserCreatedGeneralizedDocument(string UserID)
+        {
+
+
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            IEnumerable<int> MyDoc = db.Documents
+                .Where(a => a.IsGeneralize == true && (a.CreatedById.Equals(UserID) || a.ResponsibleUserId.Equals(UserID)))
+                .Select(a => a.Id);
+            return MyDoc;
+
+        }
+
+
+        public static IEnumerable<int> UserMyDepartmentGenralizedDocument(string UserID)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            int _DepId = db.Users.Find(UserID).DepartmentId.HasValue ? db.Users.Find(UserID).DepartmentId.Value : -1;
+            IEnumerable<int> myDoc = db.Documents.Where(a => a.DepartmentId == _DepId && a.IsGeneralize == true).Select(a => a.Id);
+            return myDoc;
+
+        }
+
+
+        public static IEnumerable<int> UserDepartmentGeneralizedDocument(string UserID)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            int _DepId = db.Users.Find(UserID).DepartmentId.HasValue ? db.Users.Find(UserID).DepartmentId.Value : -1;
+            IEnumerable<int> myDoc = db.DocumentDepartments
+                .Include(a => a.document).Where(a => a.DepartmentId == _DepId && a.document.IsGeneralize == true)
+                .Select(a => a.DocumentId);
+            return myDoc;
+
+        }
+
+
+
+        public static IEnumerable<int> UserGeneralizedDocumentTrend(string UserID)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            IEnumerable<int> myDoc = db.DocumentUsers
+                .Include(a => a.document)
+                .Where(a => a.UserId.Equals(UserID) && a.document.IsGeneralize == true)
+                .Select(a => a.DocumentId);
+            return myDoc;
+
+        }
+
+        public static IEnumerable<int> UserGeneralizedDocumentGroups(string UserID)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            IEnumerable<int> GroupId = db.UsersGroups
+                .Where(a => a.UserId.Equals(UserID))
+                .Select(a => a.GroupId);
+            IEnumerable<int> myDoc = db.DocumentGroups
+                .Include(a => a.document)
+                .Where(a => GroupId.Contains(a.GroupId) && a.document.IsGeneralize == true)
+                .Select(a => a.DocumentId).Distinct();
+            return myDoc;
+
+        }
+
+
+        public static IEnumerable<int> UserGeneralizedDeocumentNotification(string UserID)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            IEnumerable<int> myDoc = db.Documents.
+                Where(a => a.NotificationUserId.Equals(UserID) && a.NotificationDate != null && a.IsGeneralize == true)
+                .Select(a => a.Id);
+            return myDoc;
+
+        }
+
+
     }
 }

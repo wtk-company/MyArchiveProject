@@ -37,12 +37,11 @@ namespace ArchiveProject2019.Controllers
                 return RedirectToAction("BadRequestError", "ErrorController");
             }
 
-            var seals = _context.SealDocuments.Where(s => s.DocumentId == id).Include(s => s.Files).Include(s => s.Document).Include(s => s.CreatedBy).ToList();
+            string currentUserId = this.User.Identity.GetUserId();
+            ViewBag.DocId = id.Value;
+            var seals = _context.SealDocuments.Where(s => s.DocumentId == id && s.CreatedById.Equals(currentUserId)).Include(s => s.Files).Include(s => s.Document).Include(s => s.CreatedBy).ToList();
 
-            if (seals == null)
-            {
-                return RedirectToAction("HttpNotFoundError", "ErrorController");
-            }
+            
 
             if (ManagedAes.IsCipher && seals.Count != 0)
             {
@@ -69,33 +68,51 @@ namespace ArchiveProject2019.Controllers
         }
 
 
-        //
-        //[AccessDeniedAuthorizeattribute(ActionName = "DocumentSealsDetails")]
 
 
 
 
-        //// GET: Seal/Details/5
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return RedirectToAction("BadRequestError", "ErrorController");
-        //    }
 
-        //    var seal = _context.SealDocuments.Find(id);
 
-        //    if (seal == null)
-        //    {
-        //        return RedirectToAction("HttpNotFoundError", "ErrorController");
-        //    }
+        [AccessDeniedAuthorizeattribute(ActionName = "DocumentSealsIndex")]
+        public ActionResult AllIndex(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("BadRequestError", "ErrorController");
+            }
 
-        //    return View(seal);
-        //}
+            string currentUserId = this.User.Identity.GetUserId();
+            ViewBag.DocId = id.Value;
+            var seals = _context.SealDocuments.Where(s => s.DocumentId == id).Include(s => s.Files).Include(s => s.Document).Include(s => s.CreatedBy).ToList();
 
-        // GET: Seal/Create
 
-        
+
+            if (ManagedAes.IsCipher && seals.Count != 0)
+            {
+                seals[0].Document.Subject = ManagedAes.DecryptText(seals[0].Document.Subject);
+            }
+
+            if (ManagedAes.IsCipher)
+            {
+                //seals[0].Document.Subject = ManagedAes.DecryptText(seals[0].Document.Subject);
+                foreach (var seal in seals)
+                {
+                    //seal.Document.Subject = ManagedAes.DecryptText(seal.Document.Subject);
+                    seal.CreatedAt = ManagedAes.DecryptText(seal.CreatedAt);
+                    seal.FileName = ManagedAes.DecryptText(seal.FileName);
+                    seal.Message = ManagedAes.DecryptText(seal.Message);
+                    foreach (var file in seal.Files)
+                    {
+                        file.FileName = ManagedAes.DecryptText(file.FileName);
+                    }
+                }
+            }
+
+            return View(seals);
+        }
+
+
         [AccessDeniedAuthorizeattribute(ActionName = "DocumentSealsCreate")]
         public ActionResult Create(int id)
         {
@@ -394,6 +411,18 @@ namespace ArchiveProject2019.Controllers
                 seal.CreatedAt = ManagedAes.DecryptText(seal.CreatedAt);
                 seal.FileName = ManagedAes.DecryptText(seal.FileName);
                 seal.Message = ManagedAes.DecryptText(seal.Message);
+            }
+
+            if(ManagedAes.IsSaveInDb)
+            {
+
+                List<SealFiles> Files = _context.SealFiles.Where(a => a.SealId == seal.Id).ToList();
+                foreach(SealFiles f in Files)
+                {
+                    _context.SealFiles.Remove(f);
+                }
+                _context.SaveChanges();
+
             }
 
             _context.SealDocuments.Remove(seal);

@@ -256,12 +256,6 @@ E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\Microsoft.Dia
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\vbc.exe.config
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\vbc.rsp
-E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\obj\Debug\ArchiveProject2019.Migrations.ahmadforce.resources
-E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\System.AppContext.dll
-E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\System.Console.dll
-E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\System.Diagnostics.StackTrace.dll
-E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\System.IO.FileSystem.dll
-E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\System.IO.FileSystem.Primitives.dll
 D:\GitHub\MyArchiveProject\ArchiveProject2019\bin\roslyn\csc.exe
 D:\GitHub\MyArchiveProject\ArchiveProject2019\bin\roslyn\csc.exe.config
 D:\GitHub\MyArchiveProject\ArchiveProject2019\bin\roslyn\csc.rsp
@@ -362,3 +356,13 @@ D:\GitHub\MyArchiveProject\ArchiveProject2019\obj\Debug\ArchiveProject2019.cspro
 D:\GitHub\MyArchiveProject\ArchiveProject2019\obj\Debug\ArchiveProject2019.dll
 D:\GitHub\MyArchiveProject\ArchiveProject2019\obj\Debug\ArchiveProject2019.pdb
 D:\GitHub\MyArchiveProject\ArchiveProject2019\obj\Debug\ArchiveProject2019.Migrations.intitialModel.resources
+E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\csi.exe.config
+E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\Microsoft.Managed.Core.targets
+E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\Microsoft.Managed.EditorConfig.targets
+E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\System.Buffers.dll
+E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\System.Memory.dll
+E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\System.Numerics.Vectors.dll
+E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
+E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\System.Text.Encoding.CodePages.dll
+E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\System.Threading.Tasks.Extensions.dll
+E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\obj\Debug\ArchiveProject2019.Migrations.intitialModel.resources

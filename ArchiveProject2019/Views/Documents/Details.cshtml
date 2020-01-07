@@ -538,13 +538,13 @@
                 for (int i = 0; i < Model.Seals.Count; i++)
                 {
 
-                    <article class=" col-md-6 col-sm-6">
+                    <article class=" col-md-12">
                         <div>
                             <div class="panel panel-default arrow right">
                                 <div class="panel-body">
                                     <header class="text-right">
-                                        <div class="comment-user"><i class="fa fa-user"></i> @Model.Seals[i].CreatedBy.UserName</div>
-                                        <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> @Model.Seals[i].CreatedAt</time>
+                                        <div style="font-size:18px" class="comment-user"><i class="fa fa-user"></i> @Model.Seals[i].CreatedBy.UserName</div>
+                                        <time style="font-size:18px" class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> @Model.Seals[i].CreatedAt</time>
 
                                         <div>
 
@@ -569,7 +569,10 @@
                                         <hr />
                                     </header>
                                     <div class="comment-post">
+                                        <h4>
+
                                         @Html.DisplayNameFor(it => Model.Seals[i].Message):
+                                        </h4>
                                         <p>
                                             @Model.Seals[i].Message
                                         </p>

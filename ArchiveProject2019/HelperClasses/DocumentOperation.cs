@@ -308,5 +308,23 @@ namespace ArchiveProject2019.HelperClasses
             return false;
         }
 
+
+
+
+        public static bool GeneralizedDocumentCanDeleteOrEdit(string UserId, int DocumentId)
+        {
+
+            //Create || Response:
+            ApplicationDbContext db = new ApplicationDbContext();
+            if (!db.Documents.Find(DocumentId).ResponsibleUserId.Equals(UserId))
+            {
+                return false;
+            }
+
+       
+
+            return true;
+        }
+
     }
 }

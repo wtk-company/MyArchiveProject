@@ -613,10 +613,10 @@ namespace ArchiveProject2019.Controllers
                         var _DocumentDepartment = new DocumentDepartment()
                         {
 
-                            EnableEdit = viewModel.Document.IsGeneralize == true ? true : false,
-                            EnableRelate = viewModel.Document.IsGeneralize == true ? true : false,
-                            EnableReplay = viewModel.Document.IsGeneralize == true ? true : false,
-                            EnableSeal = viewModel.Document.IsGeneralize == true ? true : false,
+                            EnableEdit = viewModel.Document.IsGeneralize == true ? false: true,
+                            EnableRelate = viewModel.Document.IsGeneralize == true ? false: true,
+                            EnableReplay = viewModel.Document.IsGeneralize == true ? false: true,
+                            EnableSeal = viewModel.Document.IsGeneralize == true ? false: true,
                             DocumentId = viewModel.Document.Id,
                             DepartmentId = Convert.ToInt32(Department_Id),
                             CreatedAt = DateTime.Now.ToString("dd/MM/yyyy-HH:mm:ss"),
@@ -667,9 +667,9 @@ namespace ArchiveProject2019.Controllers
                         {
 
                             EnableEdit =viewModel.Document.IsGeneralize==true? true:false,
-                            EnableRelate = viewModel.Document.IsGeneralize == true ? true : false,
-                            EnableReplay = viewModel.Document.IsGeneralize == true ? true : false,
-                            EnableSeal = viewModel.Document.IsGeneralize == true ? true : false,
+                            EnableRelate = viewModel.Document.IsGeneralize == true ? false: true,
+                            EnableReplay = viewModel.Document.IsGeneralize == true ? false: true,
+                            EnableSeal = viewModel.Document.IsGeneralize == true ? false: true,
                             DocumentId = viewModel.Document.Id,
                             GroupId = Convert.ToInt32(Group_Id),
                             CreatedAt = DateTime.Now.ToString("dd/MM/yyyy-HH:mm:ss"),
@@ -718,10 +718,10 @@ namespace ArchiveProject2019.Controllers
                         var _DocumentUser = new DocumentUser()
                         {
 
-                            EnableEdit = viewModel.Document.IsGeneralize == true ? true : false,
-                            EnableRelate = viewModel.Document.IsGeneralize == true ? true : false,
-                            EnableReplay = viewModel.Document.IsGeneralize == true ? true : false,
-                            EnableSeal = viewModel.Document.IsGeneralize == true ? true : false,
+                            EnableEdit = viewModel.Document.IsGeneralize == true ? false: true,
+                            EnableRelate = viewModel.Document.IsGeneralize == true ? false: true,
+                            EnableReplay = viewModel.Document.IsGeneralize == true ? false: true,
+                            EnableSeal = viewModel.Document.IsGeneralize == true ? false: true,
                             DocumentId = viewModel.Document.Id,
                             UserId = User_Id,
                             CreatedAt = DateTime.Now.ToString("dd/MM/yyyy-HH:mm:ss"),
@@ -1819,10 +1819,10 @@ namespace ArchiveProject2019.Controllers
                         {
 
                             DocumentId = viewModel.Document.Id,
-                            EnableEdit = viewModel.Document.IsGeneralize == true ? true : false,
-                            EnableRelate = viewModel.Document.IsGeneralize == true ? true : false,
-                            EnableReplay = viewModel.Document.IsGeneralize == true ? true : false,
-                            EnableSeal = viewModel.Document.IsGeneralize == true ? true : false,
+                            EnableEdit = viewModel.Document.IsGeneralize == true ? false: true,
+                            EnableRelate = viewModel.Document.IsGeneralize == true ? false: true,
+                            EnableReplay = viewModel.Document.IsGeneralize == true ? false: true,
+                            EnableSeal = viewModel.Document.IsGeneralize == true ? false: true,
                             DepartmentId = Convert.ToInt32(_DocumentDepartment_Id),
                             CreatedAt = DateTime.Now.ToString("dd/MM/yyyy-HH:mm:ss"),
                             CreatedById = this.User.Identity.GetUserId()
@@ -1974,10 +1974,10 @@ namespace ArchiveProject2019.Controllers
                         {
 
                             DocumentId = viewModel.Document.Id,
-                            EnableEdit = viewModel.Document.IsGeneralize == true ? true : false,
-                            EnableRelate = viewModel.Document.IsGeneralize == true ? true : false,
-                            EnableReplay = viewModel.Document.IsGeneralize == true ? true : false,
-                            EnableSeal = viewModel.Document.IsGeneralize == true ? true : false,
+                            EnableEdit = viewModel.Document.IsGeneralize == true ? false: true,
+                            EnableRelate = viewModel.Document.IsGeneralize == true ? false: true,
+                            EnableReplay = viewModel.Document.IsGeneralize == true ? false: true,
+                            EnableSeal = viewModel.Document.IsGeneralize == true ? false: true,
                             GroupId = Convert.ToInt32(_DocumentGroup_Id),
                             CreatedAt = DateTime.Now.ToString("dd/MM/yyyy-HH:mm:ss"),
                             CreatedById = this.User.Identity.GetUserId()
@@ -2107,10 +2107,10 @@ namespace ArchiveProject2019.Controllers
                         {
 
                             DocumentId = viewModel.Document.Id,
-                            EnableEdit = viewModel.Document.IsGeneralize == true ? true : false,
-                            EnableRelate = viewModel.Document.IsGeneralize == true ? true : false,
-                            EnableReplay = viewModel.Document.IsGeneralize == true ? true : false,
-                            EnableSeal = viewModel.Document.IsGeneralize == true ? true : false,
+                            EnableEdit = viewModel.Document.IsGeneralize == true ? false: true,
+                            EnableRelate = viewModel.Document.IsGeneralize == true ? false: true,
+                            EnableReplay = viewModel.Document.IsGeneralize == true ? false: true,
+                            EnableSeal = viewModel.Document.IsGeneralize == true ? false: true,
                             UserId = _DocumentUser_Id,
                             CreatedAt = DateTime.Now.ToString("dd/MM/yyyy-HH:mm:ss"),
                             CreatedById = this.User.Identity.GetUserId()

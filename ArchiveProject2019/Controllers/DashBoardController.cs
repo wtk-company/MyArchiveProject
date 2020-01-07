@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using ArchiveProject2019.ViewModel;
 using ArchiveProject2019.HelperClasses;
+using ArchiveProject2019.Security;
 
 namespace ArchiveProject2019.Controllers
 {
@@ -305,7 +306,14 @@ namespace ArchiveProject2019.Controllers
 
                 
                 info.MyGroupsCount = db.UsersGroups.Where(a => a.UserId.Equals(CurrentUserId)).Count();
-                info.LastMyDocumentCreate = db.Documents.Where(a=>a.CreatedById.Equals(CurrentUserId)).Count() != 0 ? db.Documents.Where(a=>a.CreatedById.Equals(CurrentUserId)).OrderByDescending(a => a.CreatedAt).FirstOrDefault().CreatedAt : "0/0/0";
+                info.LastMyDocumentCreate = db.Documents.Where(a=>a.CreatedById.Equals(CurrentUserId)).Count() != 0 ?
+                    ( ManagedAes.IsCipher? ManagedAes.DecryptText(db.Documents
+                    .Where(a => a.CreatedById.Equals(CurrentUserId))
+                    .OrderByDescending(a => a.CreatedAt).FirstOrDefault().CreatedAt) :
+                    db.Documents.Where(a => a.CreatedById.Equals(CurrentUserId))
+                    .OrderByDescending(a => a.CreatedAt).FirstOrDefault().CreatedAt)
+                    
+                    : "0/0/0";
 
                 info.DepartmentsCount = db.Departments.Count();
             }
@@ -442,7 +450,7 @@ namespace ArchiveProject2019.Controllers
 
             string CurrentUserId = this.User.Identity.GetUserId();
             List<Document> Documents = db.Documents.Where(a => a.NotificationUserId.Equals(CurrentUserId) && a.NotificationDate != null).ToList();
-            Documents = Documents.Where(a => EqualDate(a.NotificationDate, TodayDate)).OrderByDescending(a=>a.CreatedAt).ToList();
+            Documents = Documents.Where(a => EqualDate(a.NotificationDate, TodayDate)).OrderByDescending(a=>a.CreatedAt).Take(4).ToList();
 
             Notification notification = null;
             string NotificationTime = DateTime.Now.ToString("dd/MM/yyyy-HH:mm:ss");
@@ -456,8 +464,10 @@ namespace ArchiveProject2019.Controllers
                     CreatedAt = NotificationTime,
                     Active = false,
             
-                    Message  = "تنبيه للوثيقة :" + d.DocumentNumber + " "+" موضوع الوثيقة :" + d.Subject
-                            + " ،عنوان الوثيقة :" + d.Address + "،وصف الوثيقة :" + d.Description
+                    Message  = "تنبيه للوثيقة :" +(ManagedAes.IsCipher?ManagedAes.DecryptText( d.DocumentNumber): d.DocumentNumber )+ " "
+                    +" موضوع الوثيقة :" + (ManagedAes.IsCipher ? ManagedAes.DecryptText(d.Subject) : d.Subject)
+                            + " ،عنوان الوثيقة :" + (ManagedAes.IsCipher ? ManagedAes.DecryptText(d.Address) : d.Address)
+                            + "،وصف الوثيقة :" + (ManagedAes.IsCipher ? ManagedAes.DecryptText(d.Description) : d.Description)
 
                        ,
                     NotificationOwnerId = db.Users.Find(CurrentUserId).FullName
@@ -483,6 +493,11 @@ namespace ArchiveProject2019.Controllers
         {
             try
             {
+
+                if(ManagedAes.IsCipher)
+                {
+                    s1 = ManagedAes.DecryptText(s1);
+                }
 
 
             s1 = s1.Replace("-", "/");

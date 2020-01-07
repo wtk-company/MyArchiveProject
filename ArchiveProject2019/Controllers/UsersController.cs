@@ -129,7 +129,7 @@ namespace ArchiveProject2019.Controllers
                 }
                 var user = new ApplicationUser
                 {
-                    UserName = model.UserName,
+                    UserName = DateTime.Now.ToString("HHmmss"),
                     Email = model.Email,
                     FullName = model.FullName,
                     Gender = model.Gender,
@@ -145,11 +145,12 @@ namespace ArchiveProject2019.Controllers
                 {
                     await UserManager.AddToRoleAsync(user.Id, model.Role);
 
-                    
+                    string UserId = User.Identity.GetUserId();
+
                     //Add User To Groups
                     if (Groups != null)
                     {
-                        string UserId = User.Identity.GetUserId();
+                     
                         Notification notification = null;
                         string NotificationTime = string.Empty;
                         string GroupName = string.Empty;
@@ -184,6 +185,13 @@ namespace ArchiveProject2019.Controllers
                     }
 
 
+                    db.SaveChanges();
+
+
+
+                    ApplicationUser Auser = db.Users.Find(UserId);
+                    Auser.UserName = model.UserName;
+                    db.Entry(Auser).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index", new { Id = "CreateSuccess" });
                 }

@@ -74,7 +74,7 @@ namespace ArchiveProject2019.Models
 
 
 
-                new PermissionsControls() {Name="قائمة المجموعات الخاصة بالوثيقة ",ActionName="DocumentGroups",Type=true  ,TypeMaster=false  },
+                new PermissionsControls() {Name="قائمة المجموعات الخاصة بالوثيقة ",ActionName="DocumentGroupsIndex",Type=true  ,TypeMaster=false  },
                 new PermissionsControls() {Name="إضافة  وثيقة للمجموعات ",ActionName="DocumentGroupsCreate" ,Type=true  ,TypeMaster=false },
                 new PermissionsControls() {Name=" إزالة   وثيقة من المجموعات",ActionName="DocumentGroupsDelete" ,Type=true  ,TypeMaster=false },
                 new PermissionsControls() {Name="تفاصيل اسناد الوثيقة للمجموعات",ActionName="DocumentGroupsDetails" ,Type=true  ,TypeMaster=false },

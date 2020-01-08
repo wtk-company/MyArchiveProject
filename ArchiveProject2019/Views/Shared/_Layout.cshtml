@@ -6,9 +6,22 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
 
+        img {
+            position: absolute;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 <body style="font-family:DroidKufi-Regular">
+    <img src="~/Views/Shared/homebackground.jpg" />
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">

@@ -543,6 +543,7 @@
     <Content Include="Content\DashBoard\vendors\jquery\src\var\toString.js" />
     <Content Include="Content\DashBoard\vendors\jquery\src\wrap.js" />
     <Content Include="Content\green.png" />
+    <Content Include="Content\homebackground.jpg" />
     <Content Include="Content\loader.gif" />
     <Content Include="Content\Loaderrr.gif" />
     <Content Include="Content\logout.jpg" />

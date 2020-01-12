@@ -1,8 +1,10 @@
 ﻿@using ArchiveProject2019.Security
+@using ArchiveProject2019.Resources
+
 @{
 
 
-    ViewBag.Title = "النسخ الإحتياطي";
+    ViewBag.Title = main_lang.BackUpRestore.ToString();
     Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
 }
 
@@ -20,113 +22,115 @@
 
     if (ViewBag.Msg == "RestoreDbSuccess")
     {
-        <div class="alert alert-success enterRemove" style="text-align:center;font-size:larger">
-            <span class="glyphicon glyphicon-bell">
+                    <div class="alert alert-success enterRemove" style="text-align:center;font-size:larger">
+                        <span class="glyphicon glyphicon-bell">
 
-            </span>
-            تمت عملية إسترجاع نسخة البيانات بنجاح
-        </div>
+                        </span>
+                        @main_lang.SuccessBackupForData
+                    </div>
     }
 
 
     if (ViewBag.Msg == "RestoreFilesSuccess")
     {
-        <div class="alert alert-success enterRemove" style="text-align:center;font-size:larger">
-            <span class="glyphicon glyphicon-bell">
+                <div class="alert alert-success enterRemove" style="text-align:center;font-size:larger">
+                    <span class="glyphicon glyphicon-bell">
 
-            </span>
-            تمت عملية إسترجاع نسخة الملفات بنجاح
-        </div>
+                    </span>
+                    @main_lang.SuccessBackupForFiles
+
+                </div>
     }
 
     if (ViewBag.Msg == "RestoreFilesError")
     {
-        <div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
-            <span class="glyphicon glyphicon-bell">
+                <div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
+                    <span class="glyphicon glyphicon-bell">
 
-            </span>
-            حدث خطأ أثناء استرجاع نسخة الملفات
+                    </span>
+                    @main_lang.RestoreFilesError
 
-        </div>
+
+                </div>
     }
 
     if (ViewBag.Msg == "RestoreDbErrorType")
     {
-        <div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
-            <span class="glyphicon glyphicon-bell">
+                <div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
+                    <span class="glyphicon glyphicon-bell">
 
-            </span>
-            يجب أن يكون نوع الملف صحيح
+                    </span>
+                    @main_lang.RestoreFileTypeError
 
-        </div>
+
+                </div>
     }
 
     if (ViewBag.Msg == "RestoreFilesErrorType")
     {
-        <div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
-            <span class="glyphicon glyphicon-bell">
+            <div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
+                <span class="glyphicon glyphicon-bell">
 
-            </span>
-            يجب أن يكون نوع الملف صحيح
-
-        </div>
+                </span>
+                @main_lang.RestoreFileTypeError
+            </div>
     }
 
 
     if (ViewBag.Msg == "BackupDbError")
     {
-        <div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
-            <span class="glyphicon glyphicon-bell">
+                <div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
+                    <span class="glyphicon glyphicon-bell">
 
-            </span>
-            حدث خطأ أثناء انشاء نسخة من البيانات
+                    </span>
+                    @main_lang.ErrorBackupData
 
-        </div>
+                </div>
     }
 
     if (ViewBag.Msg == "RestoreDbError")
     {
-        <div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
-            <span class="glyphicon glyphicon-bell">
+                <div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
+                    <span class="glyphicon glyphicon-bell">
 
-            </span>
-            حدث خطأ أثناء عملية الاستعادة
+                    </span>
+                    @main_lang.ErrorRestoreData
 
-        </div>
+                </div>
     }
 
 
     if (ViewBag.Msg == "RestoreDbNullError")
     {
-        <div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
-            <span class="glyphicon glyphicon-bell">
+<div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
+    <span class="glyphicon glyphicon-bell">
 
-            </span>
-            يجل إختيار ملف، لا يمكت أن يكون فارغ
+    </span>
+    @main_lang.ErrorRestoreFileNull
 
-        </div>
+</div>
     }
 
     if (ViewBag.Msg == "RestoreFilesNullError")
     {
-        <div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
-            <span class="glyphicon glyphicon-bell">
+<div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
+    <span class="glyphicon glyphicon-bell">
 
-            </span>
-            يجل إختيار ملف، لا يمكت أن يكون فارغ
+    </span>
+    @main_lang.ErrorRestoreFileNull
 
-        </div>
+</div>
     }
 
     if (ViewBag.Msg == "BackupFilesError")
     {
-        <div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
-            <span class="glyphicon glyphicon-bell">
+<div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
+    <span class="glyphicon glyphicon-bell">
 
-            </span>
-            حدث خطأ أثناء تنزيل نسخة إحتياطية من الملفات
+    </span>
+    @main_lang.ErrorBackupFiles
 
-        </div>
+</div>
     }
 
 
@@ -142,7 +146,7 @@
 <div class="col-md-12">
     <div class="x_panel">
         <div class="x_title">
-            <h2>النسخ الإحتياطي والإسترجاع للبيانات</h2>
+            <h2>@main_lang.BackupRestoreForData</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
                     <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -161,7 +165,7 @@
             {
 
 
-                <input type="submit" id="btnSubmit" class="btn btn-success" value="إنشاء نسخة إحتياطية للبيانات" />
+                <input type="submit" id="btnSubmit" class="btn btn-success" value="@main_lang.CreateBackupRestoreForData" />
 
 
             }
@@ -173,7 +177,7 @@
 
                 <input type="file" name="BackupFile" />
                 <br />
-                <input type="submit" class="btn btn-success clickloading" value="استعادة نسخة إحتياطية" />
+                <input type="submit" class="btn btn-success clickloading" value="@main_lang.RestoreBackupRestoreForData" />
 
 
             }
@@ -187,7 +191,7 @@
 
 
 
-@if (ManagedAes.IsSaveInDb==false)
+@if (ManagedAes.IsSaveInDb == false)
 {
 
 
@@ -196,7 +200,7 @@
     <div class="col-md-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>النسخ الإحتياطي والإسترجاع للملفات</h2>
+                <h2> @main_lang.BackupRestoreForFiles</h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li>
                         <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -214,7 +218,7 @@
                 {
 
 
-                    <input id="btnSubmit2" type="submit" class="btn btn-warning" value="إنشاء نسخة احتياطية من الملفات" />
+                    <input id="btnSubmit2" type="submit" class="btn btn-warning" value="@main_lang.CreateBackupRestoreForFiles" />
 
 
                 }
@@ -228,7 +232,7 @@
 
                     <input type="file" name="BackupFile" />
                     <br />
-                    <input type="submit" class="btn btn-warning clickloading" value="استعادة نسخة من الملفات" />
+                    <input type="submit" class="btn btn-warning clickloading" value="@main_lang.RestoreBackupRestoreForFiles" />
 
 
                 }

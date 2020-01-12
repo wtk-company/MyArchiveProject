@@ -1,6 +1,7 @@
 ﻿@model ArchiveProject2019.ViewModel.Informations
+    @using ArchiveProject2019.Resources
 @{
-    ViewBag.Title = "اللوحة الرئيسية";
+    ViewBag.Title = main_lang.DashBoard;
     Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
 }
 
@@ -90,7 +91,7 @@
                             <b>
 
 
-                               نماذجي المفضلة
+                               @main_lang.MyFavoriteForm
                             </b>
 
                         </h2>
@@ -158,7 +159,7 @@
                             <b>
 
 
-                                مجموعاتي
+                                @main_lang.MyGroups
                             </b>
 
                         </h2>
@@ -225,8 +226,7 @@
                         <i class="fa fa-user"></i>
                         <b>
 
-
-                            المعلومات الشخصية
+                            @main_lang.MyPersonalInformation
                         </b>
 
                     </h2>
@@ -316,7 +316,7 @@
                     <h2>
                         <i class=""></i>
                         <b>
-                            معلومات الشركة
+                            @main_lang.CompanyInformations
                         </b>
 
                     </h2>
@@ -503,7 +503,7 @@
                         <i class="fa fa-sitemap"></i>
                         <b>
 
-                            الأقسام
+                            @main_lang.Departments
 
                         </b>
 
@@ -567,7 +567,7 @@
                         <b>
 
 
-                            المجموعات
+                            @main_lang.Groups
                         </b>
 
                     </h2>
@@ -645,7 +645,7 @@
                         <b>
 
 
-                            المستخدمين
+                            @main_lang.Users
                         </b>
 
                     </h2>
@@ -705,7 +705,7 @@
                         <b>
 
 
-                            النماذج
+                            @main_lang.Forms
                         </b>
 
                     </h2>
@@ -773,7 +773,7 @@
                         <b>
 
 
-                            أنواع الوثائق
+                            @main_lang.DocumentKinds
                         </b>
 
                     </h2>
@@ -840,7 +840,7 @@
                         <b>
 
 
-                            أنواع البريد
+                            @main_lang.DocumentTypeMails
                         </b>
 
                     </h2>

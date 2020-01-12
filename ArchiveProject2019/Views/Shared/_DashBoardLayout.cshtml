@@ -1,4 +1,4 @@
-﻿
+﻿@using ArchiveProject2019.Resources
 @using Microsoft.AspNet.Identity
 @using ArchiveProject2019.Models
 
@@ -54,7 +54,7 @@
 
     <div class="loadingg" align="center">
 
-        <h1>الرجاء الإنتظار</h1>
+        <h1>@main_lang.PleaseWait</h1>
         <img src="~/Content/Loader.gif" style="width:100px;height:100px;opacity:0.8" />
     </div>
 
@@ -64,7 +64,7 @@
             <div class="col-md-3 left_col menu_fixed hidden-print">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><i class="fa fa-archive"></i> <span>Archive System</span></a>
+                        <a href="index.html" class="site_title"><i class="fa fa-archive"></i> <span>@main_lang.ProjectName</span></a>
                     </div>
                     <div class="clearfix"></div>
                     <!-- menu profile quick info -->
@@ -89,54 +89,54 @@
 
                             <ul class="nav side-menu">
                                 <li>
-                                    <a href="@Url.Action("Index","DashBoard")"><i class="fa fa-home"></i>الرئيسية <span class="fa"></span></a>
+                                    <a href="@Url.Action("Index","DashBoard")"><i class="fa fa-home"></i>@main_lang.Home <span class="fa"></span></a>
 
                                 </li>
                                 <li class="@(ViewBag.Current == "Department" ? "current-page" : "")">
-                                    <a href="@Url.Action("Index","Departments")"><i class="fa fa-sitemap"></i>الأقسام <span class="fa"></span></a>
+                                    <a href="@Url.Action("Index","Departments")"><i class="fa fa-sitemap"></i>@main_lang.Departments <span class="fa"></span></a>
                                 </li>
 
 
                                 <li class="@(ViewBag.Current == "JobTitles" ? "current-page" : "")">
-                                    <a href="@Url.Action("Index","JobTitles")"><i class="fa fa-wheelchair"></i>المسمّيات الوظيفية <span class="fa"></span></a>
+                                    <a href="@Url.Action("Index","JobTitles")"><i class="fa fa-wheelchair"></i>@main_lang.JobTitles  <span class="fa"></span></a>
 
                                 </li>
 
 
                                 <li class="@(ViewBag.Current == "Group" ? "current-page" : "")">
-                                    <a href="@Url.Action("Index","Groups")"><i class="fa fa-codepen"></i>المجموعات <span class="fa"></span></a>
+                                    <a href="@Url.Action("Index","Groups")"><i class="fa fa-codepen"></i>@main_lang.Groups  <span class="fa"></span></a>
 
                                 </li>
 
                                 <li class="@(ViewBag.Current == "Kinds" ? "current-page" : "")">
-                                    <a href="@Url.Action("Index","Kinds")"><i class="fa fa-file-pdf-o"></i>أنواع الوثائق <span class="fa"></span></a>
+                                    <a href="@Url.Action("Index","Kinds")"><i class="fa fa-file-pdf-o"></i>@main_lang.DocumentKinds  <span class="fa"></span></a>
 
                                 </li>
 
 
                                 <li class="@(ViewBag.Current == "Partys" ? "current-page" : "")">
-                                    <a href="@Url.Action("Index","Parties")"><i class="fa fa-paper-plane-o"></i>الجهات المعنية <span class="fa"></span></a>
+                                    <a href="@Url.Action("Index","Parties")"><i class="fa fa-paper-plane-o"></i>@main_lang.DocumentParties  <span class="fa"></span></a>
 
                                 </li>
                                 <li class="@(ViewBag.Current == "TypeMails" ? "current-page" : "")">
-                                    <a href="@Url.Action("Index","TypeMails")"><i class="fa fa-envelope-o"></i>أنواع البريد <span class="fa"></span></a>
+                                    <a href="@Url.Action("Index","TypeMails")"><i class="fa fa-envelope-o"></i>@main_lang.DocumentTypeMails  <span class="fa"></span></a>
 
                                 </li>
 
 
                                 <li class="@(ViewBag.Current == "DocumentStatus" ? "current-page" : "")">
-                                    <a href="@Url.Action("Index","DocumentStatus")"><i class="fa fa-leaf"></i> حالات الوثائق <span class="fa"></span></a>
+                                    <a href="@Url.Action("Index","DocumentStatus")"><i class="fa fa-leaf"></i> @main_lang.DocumentStatus  <span class="fa"></span></a>
 
                                 </li>
 
                                 <li class="@(ViewBag.Current == "Forms" ? "current-page" : "")">
-                                    <a href="@Url.Action("Index","Forms")"><i class="fa fa-clone"></i>النماذج <span class="fa"></span></a>
+                                    <a href="@Url.Action("Index","Forms")"><i class="fa fa-clone"></i>@main_lang.Forms  <span class="fa"></span></a>
                                 </li>
 
 
 
                                 <li class="@(ViewBag.Current == "Notification" ? "current-page" : "")">
-                                    <a href="@Url.Action("NonSeenNotifications","DashBoard")"> <span class="fa fa-bell"></span>الإشعارات غير المقروءة</a>
+                                    <a href="@Url.Action("NonSeenNotifications","DashBoard")"> <span class="fa fa-bell"></span>@main_lang.Notifications </a>
                                 </li>
 
 
@@ -147,18 +147,18 @@
 
 
                                 <li class="@(ViewBag.Current == "Users" ? "current-page" : "")">
-                                    <a><i class="fa fa-user"></i>المستخدمين <span class="fa fa-chevron-down"></span></a>
+                                    <a><i class="fa fa-user"></i>@main_lang.Users <span class="fa fa-chevron-down"></span></a>
 
                                     <ul class="nav child_menu">
-                                        <li><a href="@Url.Action("Index","Users")"><span class="fa fa-male"></span>المستخدمين </a></li>
-                                        <li><a href="@Url.Action("Register", "Users")"><span class="fa fa-plus"></span>إضافة مستخدم جديد</a></li>
+                                        <li><a href="@Url.Action("Index","Users")"><span class="fa fa-male"></span>@main_lang.Users </a></li>
+                                        <li><a href="@Url.Action("Register", "Users")"><span class="fa fa-plus"></span>@main_lang.AddNewUser</a></li>
 
 
 
                                         @if(IsDefault!=true)
                                         {
 
-                                        <li><a href="@Url.Action("ChangeProfile","Users")"><span class="fa fa-edit"></span> تعديل حسابي</a></li>
+                                        <li><a href="@Url.Action("ChangeProfile","Users")"><span class="fa fa-edit"></span>  @main_lang.ChangeProfile</a></li>
                                         }
 
                                     </ul>
@@ -166,21 +166,21 @@
                                 </li>
 
                                 <li class="@(ViewBag.Current == "Roles" ? "current-page" : "")">
-                                    <a href="@Url.Action("Index","Roles")"><i class="fa fa-group"></i>الأدوار <span class="fa"></span></a>
+                                    <a href="@Url.Action("Index","Roles")"><i class="fa fa-group"></i>@main_lang.Roles <span class="fa"></span></a>
 
                                 </li>
 
 
 
                                 <li class="@(ViewBag.Current == "Company" ? "current-page" : "")">
-                                    <a href="@Url.Action("Create","Company")"><i class="fa fa-institution"></i>تهيئة معلومات الشركة <span class="fa"></span></a>
+                                    <a href="@Url.Action("Create","Company")"><i class="fa fa-institution"></i> @main_lang.CompanyInfor<span class="fa"></span></a>
 
                                 </li>
 
 
 
                                 <li class="@(ViewBag.Current == "Backup" ? "current-page" : "")">
-                                    <a href="@Url.Action("Index","BackupRestore")"><i class="fa fa-database"></i>النسخ والاسترجاع <span class="fa"></span></a>
+                                    <a href="@Url.Action("Index","BackupRestore")"><i class="fa fa-database"></i> @main_lang.BackUpRestore <span class="fa"></span></a>
 
                                 </li>
 
@@ -200,7 +200,7 @@
 
                         <ul class="nav side-menu">
                             <li>
-                                <a href="@Url.Action("Index","DashBoard")"><i class="fa fa-home"></i>الرئيسية <span class="fa"></span></a>
+                                <a href="@Url.Action("Index","DashBoard")"><i class="fa fa-home"></i>@main_lang.Home <span class="fa"></span></a>
 
                             </li>
 
@@ -213,10 +213,10 @@
 
 
                             <li class="@(ViewBag.Current == "Document" ? "current-page" : "")">
-                                <a><i class="fa fa-table"></i>الوثائق <span class="fa fa-chevron-down"></span></a>
+                                <a><i class="fa fa-table"></i>@main_lang.MyDocuments <span class="fa fa-chevron-down"></span></a>
 
                                 <ul class="nav child_menu">
-                                    <li><a href="@Url.Action("Index","Documents")"> <span class="fa fa-newspaper-o"></span>وثائقي</a></li>
+                                    <li><a href="@Url.Action("Index","Documents")"> <span class="fa fa-newspaper-o"></span>@main_lang.MyDocuments</a></li>
 
 
                                 </ul>
@@ -224,18 +224,18 @@
                             </li>
 
                             <li class="@(ViewBag.Current == "Notification" ? "current-page" : "")">
-                                <a href="@Url.Action("NonSeenNotifications","DashBoard")"> <span class="fa fa-bell"></span>الإشعارات غير المقروءة</a>
+                                <a href="@Url.Action("NonSeenNotifications","DashBoard")"> <span class="fa fa-bell"></span>  @main_lang.Notifications</a>
                             </li>
 
 
 
 
                             <li class="@(ViewBag.Current == "Information" ? "current-page" : "")">
-                                <a><i class="fa fa-qrcode"></i>معلومات <span class="fa fa-chevron-down"></span></a>
+                                <a><i class="fa fa-qrcode"></i>@main_lang.MyInformation <span class="fa fa-chevron-down"></span></a>
 
                                 <ul class="nav child_menu">
-                                    <li><a href="@Url.Action("UserGroups","Informatiom")"><span class="fa fa-codepen"></span>مجموعاتي</a></li>
-                                    <li><a href="@Url.Action("UserForms","Informatiom")"><span class="fa fa-clone"></span> النماذج</a></li>
+                                    <li><a href="@Url.Action("UserGroups","Informatiom")"><span class="fa fa-codepen"></span>@main_lang.MyGroups</a></li>
+                                    <li><a href="@Url.Action("UserForms","Informatiom")"><span class="fa fa-clone"></span> @main_lang.MyForms</a></li>
 
                                 </ul>
 
@@ -267,16 +267,16 @@
                     <!-- /sidebar menu -->
                     <!-- /menu footer buttons -->
                     <div class="sidebar-footer hidden-small">
-                        <a href="@Url.Action("ChangeProfile","Users")" data-toggle="tooltip" data-placement="top" title="تعديل الحساب">
+                        <a href="@Url.Action("ChangeProfile","Users")" data-toggle="tooltip" data-placement="top" title="@main_lang.ChangeProfile">
                             <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                         </a>
-                        <a data-toggle="tooltip" data-placement="top" title="عملية التعبئة" onclick="toggleFullScreen();">
+                        <a data-toggle="tooltip" data-placement="top" title="@main_lang.FillOperation " onclick="toggleFullScreen();">
                             <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
                         </a>
-                        <a data-toggle="tooltip" data-placement="top" title="تفعيل القفل" class="lock_btn">
+                        <a data-toggle="tooltip" data-placement="top" title=" @main_lang.CloaseOperation" class="lock_btn">
                             <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
                         </a>
-                        <a href="@Url.Action("LogOut","Account")" data-toggle="tooltip" data-placement="top" title="خروج للصفحة الرئيسية" href="login.html">
+                        <a href="@Url.Action("LogOut","Account")" data-toggle="tooltip" data-placement="top" title="  @main_lang.ToHomePage" >
                             <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                         </a>
                     </div>
@@ -301,10 +301,10 @@
 
                                     @if(IsDefault!=true)
                                     {
-                                    <li><a href="@Url.Action("ChangeProfile","Users")">تعديل الحساب</a></li>
+                                    <li><a href="@Url.Action("ChangeProfile","Users")"> @main_lang.ChangeProfile</a></li>
 
                                     }
-                                    <li><a href="@Url.Action("LogOut","Account")"><i class="fa fa-sign-out pull-right"></i> خروج</a></li>
+                                    <li><a href="@Url.Action("LogOut","Account")"><i class="fa fa-sign-out pull-right"></i> @main_lang.Exit</a></li>
                                 </ul>
                             </li>
                             <li role="presentation" class="dropdown">
@@ -320,7 +320,7 @@
                                     <li>
                                         <div class="text-center">
                                             <a href="@Url.Action("NonSeenNotifications","DashBoard")">
-                                                <strong>عرض كل الإشعارات غير المقروءة</strong>
+                                                <strong> @main_lang.ShowAllNotification</strong>
                                                 <i class="fa fa-angle-right"></i>
                                             </a>
                                         </div>
@@ -342,7 +342,7 @@
 
                             <li role="presentation" class="dropdown">
                                 <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
-                                   title="تنبيهات الوثائق" aria-expanded="false">
+                                   title="  @main_lang.DocumentNotification" aria-expanded="false">
                                     <i class="fa fa-bell"></i>
                                     <span class="badge bg-red">@Html.Action("DocumentNotificationsUserCount", "DashBoard")</span>
                                 </a>
@@ -353,7 +353,7 @@
                                     <li>
                                         <div class="text-center">
                                             <a href="@Url.Action("Index",new { controller="Documents",Notf="Notf"})">
-                                                <strong>عرض كل التنبيهات  المتاحة</strong>
+                                                <strong> @main_lang.ShowAllDocumentNotification</strong>
                                                 <i class="fa fa-angle-right"></i>
                                             </a>
                                         </div>
@@ -462,7 +462,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">×</button>
-                <h4 id="changeText" class="modal-title">القائمة الفرعية</h4>
+                <h4 id="changeText" class="modal-title"> @main_lang.Secondarymain </h4>
             </div>
             <div class="modal-body" id="partialPlaceHolder" style="margin-top:30px">
 

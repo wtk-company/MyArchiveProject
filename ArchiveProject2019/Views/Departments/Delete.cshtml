@@ -1,13 +1,14 @@
 ﻿@model ArchiveProject2019.Models.Department
+    @using ArchiveProject2019.Resources
 
 @{
-    ViewBag.Title = "حذف قسم";
+    ViewBag.Title =main_lang.Departments;
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
 
 
-<h3>هل أنت متأكد من عملية الحذف؟</h3>
+    <h3>@main_lang.DeleteMessage</h3>
 <div>
    
     <dl class="dl-horizontal">
@@ -55,9 +56,9 @@
 
 
         <div class="modal-footer justify-content-center" style="margin-top:50px">
-            <input title="حذف القسم المحدد" type="submit" value="حذف القسم" class="btn btn-danger" /> 
+            <input title="@main_lang.DeleteButton" type="submit" value="@main_lang.DeleteButton" class="btn btn-danger" /> 
 
-            <button title="إغلاق النافذة" type="button" class="btn btn-warning" data-dismiss="modal">إغلاق</button>
+            <button title="@main_lang.CloseButton" type="button" class="btn btn-warning" data-dismiss="modal">@main_lang.CloseButton</button>
         </div>
 
     }

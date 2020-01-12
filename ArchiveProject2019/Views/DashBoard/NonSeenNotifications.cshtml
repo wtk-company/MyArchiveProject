@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<ArchiveProject2019.Models.Notification>
+    @using ArchiveProject2019.Resources
 @{
-    /**/
+   
 
-    ViewBag.Title = "الإشعارات غير المقروءة";
+    ViewBag.Title = main_lang.Notifications;
     Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
 }
 
@@ -16,15 +17,15 @@
 
     <div id="NotId">
 
-        <a href="@Url.Action("NonSeenNotifications")" id="btnRefreshModel" title="تحديث الصفحة" class="btn btn-default glyphicon glyphicon-refresh"></a>
+        <a href="@Url.Action("NonSeenNotifications")" id="btnRefreshModel" title="@main_lang.Refreshutton" class="btn btn-default glyphicon glyphicon-refresh"></a>
 
 
         @if (Model.Count() > 0)
         {
 
-            <input type="submit" value="تحديد الإشعارات المحددة كمقروء" class="btn btn-primary" />
+            <input type="submit" value="@main_lang.SelectAllNotification" class="btn btn-primary" />
 
-            <a class="btn btn-warning" href="@Url.Action("ConvertAllToSeen")" title="جميع الإشعارات مقروءة">جعل جميع الإشعارات مقروءة</a>
+            <a class="btn btn-warning" href="@Url.Action("ConvertAllToSeen")" title="@main_lang.DeleteAllNotification">@main_lang.DeleteAllNotification</a>
 
             <br />
 
@@ -36,7 +37,7 @@
                 <div style="opacity:0.8" class="alert alert-success  alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <input style="width:20px;height:20px" type="checkbox" name="NotificationId" class="btn btn-default btn-xs" value="@v.Id" />
-                    <strong><i>@(v.NotificationOwner.FullName + " في الوقت :" + v.CreatedAt)</i></strong>
+                    <strong><i>@(v.NotificationOwner.FullName +  @main_lang.InTime.ToString() + v.CreatedAt)</i></strong>
                     <p style="font-size:16px;color:black">
 
                         @v.Message
@@ -50,7 +51,7 @@
         }
         else
         {
-            <p style="text-align:center;padding:20px;">لا يوجد أي إشعارات غير مقروءة</p>
+    <p style="text-align:center;padding:20px;">@main_lang.NoNotifications</p>
         }
 
     </div>

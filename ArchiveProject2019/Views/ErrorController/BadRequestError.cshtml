@@ -1,5 +1,5 @@
 ﻿
-
+@using ArchiveProject2019.Resources
 @{
     Layout = null;
 }
@@ -31,19 +31,19 @@
                         <div class="mid_center">
                             <h3>
 
-                                <a style="" class="btn btn-default " title="الذهاب للقائمة الرئيسية" href="@Url.Action("Index","Home")">
+                                <a style="" class="btn btn-default " title="@main_lang.GoToHome" href="@Url.Action("Index","Home")">
                                     <i class="glyphicon glyphicon-home"></i>
 
-                                    الذهاب للقائمة الرئيسية
+                                    @main_lang.GoToHome
                                 </a>
 
                             </h3>
 
                             <h3>
 
-                                <a style="" class="btn btn-default " title="الذهاب  للوحة التحكم" href="@Url.Action("Index","DashBoard")">
+                                <a style="" class="btn btn-default " title="@main_lang.GoToDashoard" href="@Url.Action("Index","DashBoard")">
                                     <i class="glyphicon glyphicon-pencil"></i>
-                                    الذهاب للوحة التحكم
+                                    @main_lang.GoToDashoard
 
                                 </a>
 
@@ -63,17 +63,3 @@
 @Scripts.Render("~/Content/DashBoardjs")
 
 </html>
-<script type="text/javascript">
-
-    $(document).ready(function () {
-
-        $("#anch").click(function () {
-
-            alert('The request could not be understood by the server due to malformed syntax.');
-        });
-
-    });
-
-
-
-</script>

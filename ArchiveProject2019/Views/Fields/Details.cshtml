@@ -1,7 +1,8 @@
 ﻿@model ArchiveProject2019.Models.Field
+    @using  ArchiveProject2019.Resources
 
 @{
-    ViewBag.Title = "تفاصيل الحقل";
+    ViewBag.Title = ;
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
@@ -42,40 +43,113 @@
         </dt>
 
         <dd>
-            
-                @switch (Model.Type)
-                {
+
+            @switch (Model.Type)
+            {
 
 
 
 
-                    case "float":
-                        @:حقل رقمي
-
-                        break;
+                case "float":
+                    @:@main_lang.Float
 
 
-                    case "date":
-                        @:تاريخ
-
-                        break;
-
-                    case "text":
-                        @:حقل نصي
-
-                        break;
-                    case "phone":
-                        @:رقم هاتف
-
-                        break;
-                    case "email":
-                        @:بريد ألكتروني
-
-                        break;
 
 
-                }
-           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    break;
+
+
+                case "date":
+                    @:@main_lang.Date
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    break;
+
+                case "text":
+                    @:@main_lang.Text
+
+
+
+
+
+
+
+
+                    break;
+                case "phone":
+                    @: @main_lang.PhoneField
+
+
+
+
+                    break;
+                case "email":
+                    @: @main_lang.EmailField
+
+
+                    break;
+
+
+            }
+
 
         </dd>
 
@@ -125,7 +199,7 @@
 
 <div class="modal-footer justify-content-center" style="margin-top:50px">
 
-    <button type="button"  title="إغلاق النافذة" class="btn btn-warning" data-dismiss="modal">إغلاق</button>
+    <button type="button" title=" @main_lang.CloseButton" class="btn btn-warning" data-dismiss="modal">@main_lang.CloseButton</button>
 </div>
 
 

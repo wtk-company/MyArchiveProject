@@ -1,7 +1,8 @@
 ﻿@model ArchiveProject2019.Models.Department
+    @using ArchiveProject2019.Resources
 
 @{
-    ViewBag.Title = "اضافة قسم";
+    ViewBag.Title = main_lang.Departments;
     Layout = "~/Views/Shared/_Layout2.cshtml";
 
 }
@@ -33,8 +34,8 @@
 
         <div class="modal-footer justify-content-center" style="margin-top:50px">
 
-            <input title="إضافة قسم جديد" type="submit" value="اضافة قسم" class="btn btn-primary" />
-            <button title="إغلاق النافذة"  type="button" class="btn btn-warning" data-dismiss="modal">إغلاق</button>
+            <input title="@main_lang.AddButton" type="submit" value="@main_lang.AddButton" class="btn btn-primary" />
+            <button title="@main_lang.CloseButton"  type="button" class="btn btn-warning" data-dismiss="modal">@main_lang.CloseButton</button>
         </div>
 
 

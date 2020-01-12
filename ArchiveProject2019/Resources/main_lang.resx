@@ -474,4 +474,343 @@
   <data name="DepartmentNameRequired" xml:space="preserve">
     <value>يجب إدخال إسم القسم</value>
   </data>
+  <data name="AddButton" xml:space="preserve">
+    <value>إضافة </value>
+  </data>
+  <data name="AddNewUser" xml:space="preserve">
+    <value>اضافة مستخدم جديد</value>
+  </data>
+  <data name="AllDepartmentsCount" xml:space="preserve">
+    <value>عدد الاقسام الكلية</value>
+  </data>
+  <data name="AllFormsCount" xml:space="preserve">
+    <value>عدد النماذج الكلية</value>
+  </data>
+  <data name="AllGroupsCount" xml:space="preserve">
+    <value>عدد المجموعات الكلية</value>
+  </data>
+  <data name="BackUpRestore" xml:space="preserve">
+    <value>النسخ والإسترجاع</value>
+  </data>
+  <data name="BackupRestoreForData" xml:space="preserve">
+    <value>النسخ والاسترجاع للبيانات</value>
+  </data>
+  <data name="BackupRestoreForFiles" xml:space="preserve">
+    <value>النسخ والاسترجاع للملفات</value>
+  </data>
+  <data name="ChangeAccount" xml:space="preserve">
+    <value>تعديل الحساب</value>
+  </data>
+  <data name="ChangeProfile" xml:space="preserve">
+    <value>تعديل حسابي</value>
+  </data>
+  <data name="CloaseOperation" xml:space="preserve">
+    <value>عمليةقفل الشاشة</value>
+  </data>
+  <data name="CloseButton" xml:space="preserve">
+    <value>إغلاق النافذة</value>
+  </data>
+  <data name="CompanyInfor" xml:space="preserve">
+    <value>تهيئة معلومات الشركة</value>
+  </data>
+  <data name="CompanyInformations" xml:space="preserve">
+    <value>معلومات الشركة</value>
+  </data>
+  <data name="CreateBackupRestoreForData" xml:space="preserve">
+    <value>انشاء نسخةإحتياطية من البيانات</value>
+  </data>
+  <data name="CreateBackupRestoreForFiles" xml:space="preserve">
+    <value>انشاء نسخة إحتياطية من الملفات</value>
+  </data>
+  <data name="DashBoard" xml:space="preserve">
+    <value>لوحة التحكم الرئيسية</value>
+  </data>
+  <data name="Departments" xml:space="preserve">
+    <value>الأقسام</value>
+  </data>
+  <data name="DocumentKinds" xml:space="preserve">
+    <value>أنواع الوثائق</value>
+  </data>
+  <data name="DocumentNotification" xml:space="preserve">
+    <value>تنبيهات الوثائق</value>
+  </data>
+  <data name="DocumentParties" xml:space="preserve">
+    <value>الجهات المعنية</value>
+  </data>
+  <data name="DocumentsKindCount" xml:space="preserve">
+    <value>عدد أنواع الوثائق</value>
+  </data>
+  <data name="DocumentStatus" xml:space="preserve">
+    <value>حالات الوثيقة</value>
+  </data>
+  <data name="DocumentTypeMails" xml:space="preserve">
+    <value>أنواع البريد</value>
+  </data>
+  <data name="EditButton" xml:space="preserve">
+    <value>حفظ التغييرات</value>
+  </data>
+  <data name="ErrorBackupData" xml:space="preserve">
+    <value>حدث خطأ أثناء انشاء نسخة إحتياطية من البيانات</value>
+  </data>
+  <data name="ErrorBackupFiles" xml:space="preserve">
+    <value>حدث خطأ أثناء انشاء نسخة من الملفات</value>
+  </data>
+  <data name="ErrorRestoreData" xml:space="preserve">
+    <value>حدث خطأ أثناء استرجاع نسخة من البيانات</value>
+  </data>
+  <data name="ErrorRestoreFileNull" xml:space="preserve">
+    <value>يجب إختبار ملف</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>خروج</value>
+  </data>
+  <data name="FileIsExistYouWantChage" xml:space="preserve">
+    <value>الملف موجود، اذا رغبت بالتعديل اختر غيره</value>
+  </data>
+  <data name="FillOperation" xml:space="preserve">
+    <value>عملية التعبئة</value>
+  </data>
+  <data name="Forms" xml:space="preserve">
+    <value>النماذج</value>
+  </data>
+  <data name="Groups" xml:space="preserve">
+    <value>المجموعات</value>
+  </data>
+  <data name="HightDocumentKindUsing" xml:space="preserve">
+    <value>أكثر نوع مستخدم</value>
+  </data>
+  <data name="HightFormUsing" xml:space="preserve">
+    <value>أكثر نموذج مستخدم</value>
+  </data>
+  <data name="HightGroupUsers" xml:space="preserve">
+    <value>أكثر مجموعة للمستخدمين</value>
+  </data>
+  <data name="HightMailUsing" xml:space="preserve">
+    <value>أكثر نوع بريد مستخدم</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>الرئيسية</value>
+  </data>
+  <data name="JobTitles" xml:space="preserve">
+    <value>المسميات الوظيفية</value>
+  </data>
+  <data name="LastCreateDocumentDate" xml:space="preserve">
+    <value>أخر تاريخ إضافة وثيقة</value>
+  </data>
+  <data name="LasteCreateDate" xml:space="preserve">
+    <value>آخر تاريخ إضافة</value>
+  </data>
+  <data name="LastUpdateDate" xml:space="preserve">
+    <value>آخر تاريخ تحديث</value>
+  </data>
+  <data name="MainDepartmentsCount" xml:space="preserve">
+    <value>عدد الاقسام الرئيسية</value>
+  </data>
+  <data name="MyDocumentCount" xml:space="preserve">
+    <value>عدد وثائقي المنشاة</value>
+  </data>
+  <data name="MyDocuments" xml:space="preserve">
+    <value>وثائقي</value>
+  </data>
+  <data name="MyFavoriteForm" xml:space="preserve">
+    <value>نماذجي المفضلة</value>
+  </data>
+  <data name="MyForms" xml:space="preserve">
+    <value>نماذجي</value>
+  </data>
+  <data name="MyGroups" xml:space="preserve">
+    <value>مجموعاتي</value>
+  </data>
+  <data name="MyGroupsCount" xml:space="preserve">
+    <value>عدد مجموعاتي</value>
+  </data>
+  <data name="MyInformation" xml:space="preserve">
+    <value>معلومات</value>
+  </data>
+  <data name="MyPersonalInformation" xml:space="preserve">
+    <value>معلوماتي الشخصية</value>
+  </data>
+  <data name="Notifications" xml:space="preserve">
+    <value>الاشعارات</value>
+  </data>
+  <data name="PleaseWait" xml:space="preserve">
+    <value>الرجاء الإنتظار</value>
+  </data>
+  <data name="ProjectName" xml:space="preserve">
+    <value>أرشفة الملفات</value>
+  </data>
+  <data name="RestoreBackupRestoreForData" xml:space="preserve">
+    <value>استرجاع نسخة من البيانات</value>
+  </data>
+  <data name="RestoreBackupRestoreForFiles" xml:space="preserve">
+    <value>استرجاع نسخة إحتياطية من الملفات</value>
+  </data>
+  <data name="RestoreFilesError" xml:space="preserve">
+    <value>حدث خطأ أثناء استرجاع الملفات</value>
+  </data>
+  <data name="RestoreFileTypeError" xml:space="preserve">
+    <value>يجب أن يكون صيغة الملف صحيحة، الملف غير مدعوم</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>الأدوار</value>
+  </data>
+  <data name="Secondarymain" xml:space="preserve">
+    <value>القائمة الفرعية</value>
+  </data>
+  <data name="ShowAllDocumentNotification" xml:space="preserve">
+    <value>عرض كل الوثائق المنبهة</value>
+  </data>
+  <data name="ShowAllNotification" xml:space="preserve">
+    <value>عرض كل الاشعارات</value>
+  </data>
+  <data name="SuccessBackupForData" xml:space="preserve">
+    <value>تم بنجاح إنشاء نسخة من البيانات</value>
+  </data>
+  <data name="SuccessBackupForFiles" xml:space="preserve">
+    <value>تم بنجاح  انشاء نسخة من الملفات</value>
+  </data>
+  <data name="ToHomePage" xml:space="preserve">
+    <value>خروج للصفحة الرئيسية</value>
+  </data>
+  <data name="TotalDepartmentsCount" xml:space="preserve">
+    <value>عدد الأقسام الكلية</value>
+  </data>
+  <data name="TotalDocumentCount" xml:space="preserve">
+    <value>عدد الوثائق الكلية</value>
+  </data>
+  <data name="TotalMailsCount" xml:space="preserve">
+    <value>عدد انواع البريد</value>
+  </data>
+  <data name="UserDepartment" xml:space="preserve">
+    <value>القسم</value>
+  </data>
+  <data name="UserEmail" xml:space="preserve">
+    <value>البريد الالكتروني</value>
+  </data>
+  <data name="UserFullName" xml:space="preserve">
+    <value>الاسم الثلاثي</value>
+  </data>
+  <data name="UserGender" xml:space="preserve">
+    <value>الجنس</value>
+  </data>
+  <data name="UserJopTitle" xml:space="preserve">
+    <value>المسمى الوظيفي</value>
+  </data>
+  <data name="UserRole" xml:space="preserve">
+    <value>الدور</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>المستخدمين</value>
+  </data>
+  <data name="UsersCountInGroups" xml:space="preserve">
+    <value>عدد المستخدمين ضمن المجموعات</value>
+  </data>
+  <data name="UserUserName" xml:space="preserve">
+    <value>اسم المستخدم</value>
+  </data>
+  <data name="AddChildDepartment" xml:space="preserve">
+    <value>اضافة قسم فرعي</value>
+  </data>
+  <data name="AddNew" xml:space="preserve">
+    <value>إضافة جديد</value>
+  </data>
+  <data name="BackToDepartments" xml:space="preserve">
+    <value>عودة لقائمة الاقسام</value>
+  </data>
+  <data name="ChooseTypeSp" xml:space="preserve">
+    <value>اختر نوع معين</value>
+  </data>
+  <data name="CreateError" xml:space="preserve">
+    <value>لا يمكن أن يكون الاسم مكرر، يجب اعادة الأدخال</value>
+  </data>
+  <data name="CreateSuccess" xml:space="preserve">
+    <value>تمت عملية الإضافة بنجاح</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>حقل تاريخ</value>
+  </data>
+  <data name="DeleteAllNotification" xml:space="preserve">
+    <value>إزالة كل الاشعارات</value>
+  </data>
+  <data name="DeleteButton" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+  <data name="DeleteElement" xml:space="preserve">
+    <value>عملية الحذف</value>
+  </data>
+  <data name="DeleteError" xml:space="preserve">
+    <value>العمليةغير متاحة  ، لا يمكن القيام بعمليةالحذف</value>
+  </data>
+  <data name="DeleteMessage" xml:space="preserve">
+    <value>هل أنت متأكد من عملية الحذف؟</value>
+  </data>
+  <data name="DeleteSuccess" xml:space="preserve">
+    <value>تمت عملية الحذف بنجاح</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>عرض التفاصيل</value>
+  </data>
+  <data name="DetailsElement" xml:space="preserve">
+    <value>عرض التفاصيل</value>
+  </data>
+  <data name="DuplicatedName" xml:space="preserve">
+    <value>لا يمكن أن يكون الاسم مكرر، يجب اعادة الأدخال</value>
+  </data>
+  <data name="EditElement" xml:space="preserve">
+    <value>عملية التعديل</value>
+  </data>
+  <data name="EditError" xml:space="preserve">
+    <value>لا يمكن أن يكون الاسم مكرر، يجب اعادة الأدخال</value>
+  </data>
+  <data name="EditSuccess" xml:space="preserve">
+    <value>تمت عملية تعديل البيانات بنجاح</value>
+  </data>
+  <data name="EmailField" xml:space="preserve">
+    <value>حقل بريد الكتروني</value>
+  </data>
+  <data name="Float" xml:space="preserve">
+    <value>حقل رقمي</value>
+  </data>
+  <data name="FormFields" xml:space="preserve">
+    <value>حقول النماذج</value>
+  </data>
+  <data name="GoToDashoard" xml:space="preserve">
+    <value>عودة للوحة التحكم</value>
+  </data>
+  <data name="GoToForm" xml:space="preserve">
+    <value>عودة لقائمة النماذج</value>
+  </data>
+  <data name="GoToHome" xml:space="preserve">
+    <value>عودة للقائمة الرئيسية</value>
+  </data>
+  <data name="InTime" xml:space="preserve">
+    <value>في الوقت :</value>
+  </data>
+  <data name="NoNotifications" xml:space="preserve">
+    <value>لا يوجد أي اشعارات</value>
+  </data>
+  <data name="NoRecords" xml:space="preserve">
+    <value>لا يوجد أي سجلات</value>
+  </data>
+  <data name="Operations" xml:space="preserve">
+    <value>العمليات المتاحة</value>
+  </data>
+  <data name="PhoneField" xml:space="preserve">
+    <value>حقل هاتف</value>
+  </data>
+  <data name="Refreshutton" xml:space="preserve">
+    <value>تحيث الصفحة</value>
+  </data>
+  <data name="SelectAllNotification" xml:space="preserve">
+    <value>تحديد كل الاشعارات</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>حقل نصي</value>
+  </data>
+  <data name="UserDetails" xml:space="preserve">
+    <value>تفاصيل المستخدم</value>
+  </data>
+  <data name="UsersDepartment" xml:space="preserve">
+    <value>مستخدمين القسم</value>
+  </data>
 </root>

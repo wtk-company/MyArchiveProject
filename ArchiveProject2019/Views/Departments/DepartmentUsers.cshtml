@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<ArchiveProject2019.Models.ApplicationUser>
 @using ArchiveProject2019.Models
+@using ArchiveProject2019.Resources
 @{
-    ViewBag.Title = "قائمة المستخدمين الخاصة بالقسم";
+    ViewBag.Title =main_lang.UsersDepartment ;
     Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
 
 }
@@ -10,7 +11,7 @@
 
 
 <p>
-    <a title="عودة لقائمة الأقسام" href="@Url.Action("index","Departments")" class="btn btn-warning">عودة لقائمة الاقسام</a>
+    <a title="@main_lang.BackToDepartments" href="@Url.Action("index","Departments")" class="btn btn-warning">@main_lang.BackToDepartments</a>
 
 
 </p>
@@ -25,7 +26,7 @@
             </th>
 
             <th>
-                @Html.DisplayName("اسم المستخدم")
+                @Html.DisplayName(main_lang.UserFullName.ToString())
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FullName)
@@ -38,7 +39,7 @@
 
 
             <th>
-                @Html.DisplayName("تفاصيل المستخدم")
+                @Html.DisplayName(main_lang.UserDetails.ToString())
 
 
             </th>
@@ -78,7 +79,7 @@
 
 
                 <td>
-                    <button data-form-id="@item.Id" title="تفاصيل المستخدم" class="btn-link js-Details  btn-xs  glyphicon glyphicon-book"></button>
+                    <button data-form-id="@item.Id" title="@main_lang.UserDetails" class="btn-link js-Details  btn-xs  glyphicon glyphicon-book"></button>
 
 
                 </td>
@@ -97,7 +98,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">×</button>
-                <h4 id="changeText" class="modal-title">القائمة الفرعية</h4>
+                <h4 id="changeText" class="modal-title"> </h4>
             </div>
             <div class="modal-body" id="partialPlaceHolder" style="margin-top:30px">
 
@@ -116,7 +117,7 @@
 
     $("#form").on("click", ".js-Details", function () {
 
-        $("#changeText").text("معلومات المستخدم");
+        $("#changeText").text('@main_lang.UserDetails');
 
         var url = '@Url.Action("Details", "Users")';
         url = url + '/' + $(this).attr("data-form-id");

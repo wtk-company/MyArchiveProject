@@ -1,0 +1,145 @@
+﻿@model IEnumerable<ArchiveProject2019.Models.SealDocument>
+
+@{
+    ViewBag.Title = "  قائمة تسديداتي للوثيقة";
+    Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
+}
+
+
+
+@Html.Partial("_StartView")
+
+
+<style>
+
+    .panel {
+        border: 1px solid black;
+        padding: 17px;
+    }
+    a:link {
+        text-decoration: none;
+    }
+
+    a:visited {
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    a:active {
+        text-decoration: underline;
+    }
+</style>
+
+
+<div>
+    <a href="@Url.Action("index","Documents")" class="btn btn-warning"> قائمة الوثائق  </a>
+    <a href="@Url.Action("Details","Documents",new { Id=ViewBag.DocId})" class="btn btn-primary">  تفاصيل الوثيقة الحالية  </a>
+    <a href="@Url.Action("AllIndex",new { Id=ViewBag.DocId})" class="btn btn-success">  كامل التسديدات للوثيقة الحالية  </a>
+
+
+    <hr />
+</div>
+
+
+
+@if (Model.Any())
+{
+   
+    <div id="form">
+        @foreach (var item in Model)
+        {
+
+        <article class=" col-md-12">
+            <div class="">
+                <div class="panel panel-default arrow right">
+                    <div class="panel-body">
+                        <header class="text-left">
+                            <a href="#" data-form-id="@item.Id" title="حذف التسديد" class="js-delete glyphicon glyphicon-remove"></a>
+                        </header>
+                        <header class="text-right">
+                            <div style="font-size:18px" class="comment-user"><i class="fa fa-user"></i> @item.CreatedBy.FullName</div>
+                            <time style="font-size:18px" class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> @item.CreatedAt</time>
+                            
+                            <div>
+
+                                @{
+                                    for (int i = 0; i < item.Files.Count; i++)
+                                    {
+                                        <label style="margin-top: 30px;">@item.Files.ElementAt(i).FileName</label>
+                                        <div>
+                                            @Html.ActionLink(" فتح الملف", "DisplayDocument", "Seals",
+                                                   new { id = item.Files.ElementAt(i).Id },
+                                                   new { @class = "btn btn-primary" }) |
+                                            @Html.ActionLink(" تنزيل الملف", "DownloadDocument", "Seals",
+                                                   new { id = item.Files.ElementAt(i).Id },
+                                                   new { @class = "btn btn-success" })
+                                        </div>
+                                    }
+                                }
+
+                            </div>
+                            <hr />
+                        </header>
+                        <div class="comment-post">
+                            <h4>
+
+                            @Html.DisplayNameFor(it => it.Message):
+                            </h4>
+                            <p>
+                                @item.Message
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        }
+    </div>
+}
+else
+{
+    <p>لا يوجد اي تسديد لهذه الوثيقة</p>
+}
+
+
+@Html.Partial("_LastView")
+
+
+<div class="modal fade" tabindex="-1" id="NewModal"
+     data-keyboard="true" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 id="changeText" class="modal-title"></h4>
+            </div>
+            <div class="modal-body" id="partialPlaceHolder" style="margin-top:30px">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+
+    $("#form").on("click", ".js-delete", function () {
+
+        $("#changeText").text(" إختيار نموذج معين");
+
+        var url = '@Url.Action("Delete", "Seals")'
+        url = url + '/' + $(this).attr("data-form-id");
+
+        $("#partialPlaceHolder").load(url, function () {
+            $('#NewModal').modal('show');
+        });
+    });
+    </script>
+
+
+

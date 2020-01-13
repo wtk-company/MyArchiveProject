@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<ArchiveProject2019.Models.UserGroup>
 @using ArchiveProject2019.HelperClasses
-
+@using ArchiveProject2019.Resources
 @{
-    ViewBag.Title = "مجموعات المستخدم";
+    ViewBag.Title = main_lang.Groups;
     Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
 }
 
@@ -27,7 +27,7 @@
             </th>
 
 
-            
+
 
             <th>
                 @Html.DisplayNameFor(model => model.CreatedById)
@@ -58,7 +58,7 @@
 
 
 
-              
+
             </tr>
 
 

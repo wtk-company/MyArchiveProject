@@ -88,6 +88,24 @@ namespace ArchiveProject2019.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to اضافة اقسام.
+        /// </summary>
+        public static string AddDepartments {
+            get {
+                return ResourceManager.GetString("AddDepartments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اضافة مجموعات.
+        /// </summary>
+        public static string AddGroups {
+            get {
+                return ResourceManager.GetString("AddGroups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to إضافة جديد.
         /// </summary>
         public static string AddNew {
@@ -111,6 +129,33 @@ namespace ArchiveProject2019.Resources {
         public static string Address {
             get {
                 return ResourceManager.GetString("Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اضافة للمفضلة.
+        /// </summary>
+        public static string AddToFavorite {
+            get {
+                return ResourceManager.GetString("AddToFavorite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to هل انت متأكد من الاضافة للمفضلة.
+        /// </summary>
+        public static string AddToFavoriteMessage {
+            get {
+                return ResourceManager.GetString("AddToFavoriteMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اضافة مستخدمين.
+        /// </summary>
+        public static string AddUsers {
+            get {
+                return ResourceManager.GetString("AddUsers", resourceCulture);
             }
         }
         
@@ -192,6 +237,24 @@ namespace ArchiveProject2019.Resources {
         public static string ChangeProfile {
             get {
                 return ResourceManager.GetString("ChangeProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اختر القسم.
+        /// </summary>
+        public static string ChooseDepartment {
+            get {
+                return ResourceManager.GetString("ChooseDepartment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اختر المجموعات.
+        /// </summary>
+        public static string ChooseGroups {
+            get {
+                return ResourceManager.GetString("ChooseGroups", resourceCulture);
             }
         }
         
@@ -628,6 +691,15 @@ namespace ArchiveProject2019.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to تعديل التفعيل.
+        /// </summary>
+        public static string EditActive {
+            get {
+                return ResourceManager.GetString("EditActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to حفظ التغييرات.
         /// </summary>
         public static string EditButton {
@@ -651,6 +723,15 @@ namespace ArchiveProject2019.Resources {
         public static string EditError {
             get {
                 return ResourceManager.GetString("EditError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تعديل.
+        /// </summary>
+        public static string EditForIndex {
+            get {
+                return ResourceManager.GetString("EditForIndex", resourceCulture);
             }
         }
         
@@ -871,6 +952,15 @@ namespace ArchiveProject2019.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to أقسام النموذج.
+        /// </summary>
+        public static string FormDepartments {
+            get {
+                return ResourceManager.GetString("FormDepartments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to حقول النماذج.
         /// </summary>
         public static string FormFields {
@@ -921,6 +1011,15 @@ namespace ArchiveProject2019.Resources {
         public static string Forms {
             get {
                 return ResourceManager.GetString("Forms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مجموعات النموذج.
+        /// </summary>
+        public static string FormsGroups {
+            get {
+                return ResourceManager.GetString("FormsGroups", resourceCulture);
             }
         }
         
@@ -1020,6 +1119,15 @@ namespace ArchiveProject2019.Resources {
         public static string Groups {
             get {
                 return ResourceManager.GetString("Groups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مستخدمين المجموعة.
+        /// </summary>
+        public static string GroupUsers {
+            get {
+                return ResourceManager.GetString("GroupUsers", resourceCulture);
             }
         }
         
@@ -1294,6 +1402,15 @@ namespace ArchiveProject2019.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to خيارات اضافية.
+        /// </summary>
+        public static string MoreChoise {
+            get {
+                return ResourceManager.GetString("MoreChoise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to عدد وثائقي المنشاة.
         /// </summary>
         public static string MyDocumentCount {
@@ -1461,6 +1578,15 @@ namespace ArchiveProject2019.Resources {
         public static string Notifications {
             get {
                 return ResourceManager.GetString("Notifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تأكيد الازالة.
+        /// </summary>
+        public static string OkRemove {
+            get {
+                return ResourceManager.GetString("OkRemove", resourceCulture);
             }
         }
         
@@ -1654,6 +1780,51 @@ namespace ArchiveProject2019.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to هل أنت متأكد من عملية الازالة.
+        /// </summary>
+        public static string RemoveElementMessage {
+            get {
+                return ResourceManager.GetString("RemoveElementMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ازالة النموذج من المفضلة.
+        /// </summary>
+        public static string RemoveFromFavorite {
+            get {
+                return ResourceManager.GetString("RemoveFromFavorite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ازالة من المفضلة.
+        /// </summary>
+        public static string RemoveFromFavoriteButton {
+            get {
+                return ResourceManager.GetString("RemoveFromFavoriteButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to هل أنت متأكد من إزالة النموذج من المفضلة.
+        /// </summary>
+        public static string RemoveFromFavoriteMessage {
+            get {
+                return ResourceManager.GetString("RemoveFromFavoriteMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to إزالة.
+        /// </summary>
+        public static string RemoveModal {
+            get {
+                return ResourceManager.GetString("RemoveModal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to المستخدم المسؤول.
         /// </summary>
         public static string ResponsibleUserId {
@@ -1771,11 +1942,29 @@ namespace ArchiveProject2019.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to تحديد الكل.
+        /// </summary>
+        public static string SelectAll {
+            get {
+                return ResourceManager.GetString("SelectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تحديد كل الاشعارات.
         /// </summary>
         public static string SelectAllNotification {
             get {
                 return ResourceManager.GetString("SelectAllNotification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to لم يتم إضافة أي قسم للنموذج، يرجى تحديد أقسام.
+        /// </summary>
+        public static string SelectNull {
+            get {
+                return ResourceManager.GetString("SelectNull", resourceCulture);
             }
         }
         

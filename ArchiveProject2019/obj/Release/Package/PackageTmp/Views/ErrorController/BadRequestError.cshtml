@@ -1,0 +1,65 @@
+﻿
+@using ArchiveProject2019.Resources
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Error 400</title>
+    @Styles.Render("~/Content/DashBoardCss")
+
+
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <!-- page content -->
+            <div class="col-md-12">
+                <div class="col-middle">
+                    <div class="text-center">
+                        <h1 class="error-number">400 !!!</h1>
+                        <h2>Bad Request Error </h2>
+                        <hr />
+
+                        <div class="mid_center">
+                            <h3>
+
+                                <a style="" class="btn btn-default " title="@main_lang.GoToHome" href="@Url.Action("Index","Home")">
+                                    <i class="glyphicon glyphicon-home"></i>
+
+                                    @main_lang.GoToHome
+                                </a>
+
+                            </h3>
+
+                            <h3>
+
+                                <a style="" class="btn btn-default " title="@main_lang.GoToDashoard" href="@Url.Action("Index","DashBoard")">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                    @main_lang.GoToDashoard
+
+                                </a>
+
+                            </h3>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /page content -->
+        </div>
+        <!-- footer content -->
+    </div>
+
+
+</body>
+@Scripts.Render("~/Content/DashBoardjs")
+
+</html>

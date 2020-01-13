@@ -1,0 +1,647 @@
+﻿@model ArchiveProject2019.ViewModel.DocumentFieldsValuesViewModel
+@using ArchiveProject2019.HelperClasses
+@{
+    ViewBag.Title = "تفاصيل الوثيقة";
+    Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
+}
+<style>
+    dt, dd {
+        margin-bottom: 15px;
+    }
+
+    .panel {
+        border: 1px solid black;
+        padding: 17px;
+    }
+</style>
+
+
+@Html.Partial("_StartView")
+<a href="@Url.Action("index", "Documents")" class="btn btn-warning">عودة لقائمةالوثائق  </a>
+
+<div style="margin-top:10px">
+
+
+
+    @*Start Basic Informations*@
+
+
+
+    <div class="row" style="text-align:center">
+        <div id="mainInfoPanel" class="panel" style="background-color:#c4d4ee;">
+
+            <strong style="font-size:large">المعلومات الأساسية </strong>
+        </div>
+        <div id="mainInfoSlide" style="text-align:right">
+
+
+
+
+            <div class="col-md-6">
+
+                <h5 style="padding: 10px;">
+                    <strong>
+                        <i class="fa fa-sitemap"></i>
+                        @Html.DisplayNameFor(a => Model.Document.DepartmentId):
+
+
+                        @DepartmentListDisplay.CreateDepartmentDisplay(Model.Document.DepartmentId)
+
+                    </strong>
+                </h5>
+                <h5 style="padding: 10px;">
+                    <strong>
+                        <i class="fa fa-clone"></i>
+                        @Html.DisplayNameFor(a => Model.Document.FormId):
+                        @Html.DisplayFor(a => Model.Document.Form.Name)
+
+                    </strong>
+                </h5>
+
+                <h5 style="padding: 10px;">
+                    <strong>
+                        <i class="fa fa-clock-o"></i>
+                        @Html.DisplayNameFor(a => Model.Document.CreatedAt):
+                        @Html.DisplayFor(a => Model.Document.CreatedAt)
+
+                    </strong>
+                </h5>
+
+                <h5 style="padding: 10px;">
+                    <strong>
+                        <i class="fa fa-user"></i>
+                        @Html.DisplayNameFor(a => Model.Document.CreatedById):
+                        @Html.DisplayFor(a => Model.Document.CreatedBy.FullName)
+
+                    </strong>
+                </h5>
+
+                <h5 style="padding: 10px;">
+                    <strong>
+                        <i class="fa fa-slack"></i>
+                        @Html.DisplayNameFor(a => Model.Document.Subject):
+                        @Html.DisplayFor(a => Model.Document.Subject)
+
+                    </strong>
+                </h5>
+
+                <h5 style="padding: 10px;">
+                    <strong>
+                        <i class="fa fa-slack"></i>
+                        @Html.DisplayNameFor(a => Model.Document.DocumentNumber):
+                        @Html.DisplayFor(a => Model.Document.DocumentNumber)
+
+                    </strong>
+                </h5>
+
+
+
+                <h5 style="padding: 10px;">
+                    <strong>
+                        <i class="fa fa-slack"></i>
+                        @Html.DisplayNameFor(a => Model.Document.Address):
+                        @Html.DisplayFor(a => Model.Document.Address)
+
+                    </strong>
+                </h5>
+
+
+
+            </div>
+            <div class="col-md-6">
+
+                <h5 style="padding: 10px;">
+                    <strong>
+                        <i class="fa fa-user"></i>
+                        @Html.DisplayNameFor(a => Model.Document.ResponsibleUserId):
+
+                        @Html.DisplayFor(a => Model.Document.ResponsibleUser.FullName)
+
+
+
+                    </strong>
+                </h5>
+                <h5 style="padding: 10px;">
+                    <strong>
+                        <i class="fa fa-file-pdf-o"></i>
+                        @Html.DisplayNameFor(a => Model.Document.KindId):
+                        @Html.DisplayFor(a => Model.Document.Kind.Name)
+
+                    </strong>
+                </h5>
+
+                <h5 style="padding: 10px;">
+                    <strong>
+                        <i class="fa fa-envelope-o"></i>
+                        @Html.DisplayNameFor(a => Model.Document.TypeMailId):
+                        @Html.DisplayFor(a => Model.Document.TypeMail.Name)
+
+                    </strong>
+                </h5>
+
+
+
+                <h5 style="padding: 10px;">
+                    <strong>
+                        <i class="fa fa-leaf"></i>
+                        @Html.DisplayNameFor(a => Model.Document.StatusId):
+                        @Html.DisplayFor(a => Model.Document.DocStatus.Name)
+
+                    </strong>
+                </h5>
+
+                <h5 style="padding: 10px;">
+                    <strong>
+                        <i class="fa fa-clock-o"></i>
+                        @Html.DisplayNameFor(a => Model.Document.NotificationDate):
+                        @Html.DisplayFor(a => Model.Document.NotificationDate)
+
+                    </strong>
+                </h5>
+
+                <h5 style="padding: 10px;">
+                    <strong>
+                        <i class="fa fa-clock-o"></i>
+                        @Html.DisplayNameFor(a => Model.Document.UpdatedAt):
+                        @Html.DisplayFor(a => Model.Document.UpdatedAt)
+
+                    </strong>
+                </h5>
+
+
+
+                <h5 style="padding: 10px;">
+                    <strong>
+                        <i class="fa fa-user"></i>
+                        @Html.DisplayNameFor(a => Model.Document.UpdatedById):
+                        @Html.DisplayFor(a => Model.Document.UpdatedBy.FullName)
+
+                    </strong>
+                </h5>
+
+
+
+            </div>
+
+
+            @if (Model.Document.TypeMailId.HasValue)
+            {
+
+                if (Model.Document.TypeMail.Type == 1)
+                {
+
+
+
+                    <div class="col-md-6">
+
+
+
+                        <h5 style="padding: 10px;">
+                            <strong>
+                                <i class="fa fa-slack"></i>
+                                @Html.DisplayNameFor(a => Model.Document.MailingNumber):
+                                @Html.DisplayFor(a => Model.Document.MailingNumber)
+
+                            </strong>
+                        </h5>
+
+                        <h5 style="padding: 10px;">
+                            <strong>
+                                <i class="fa fa-clock-o"></i>
+                                @Html.DisplayNameFor(a => Model.Document.MailingDate):
+                                @Html.DisplayFor(a => Model.Document.MailingDate)
+
+                            </strong>
+                        </h5>
+
+
+                    </div>
+
+                    <div class="col-md-6">
+
+
+                        <h5 style="padding: 10px;">
+                            <strong>
+                                <i class="fa fa-slack"></i>
+                                @Html.DisplayNameFor(a => Model.Document.PartyId):
+                                @Html.DisplayFor(a => Model.Document.Party.Name)
+
+                            </strong>
+                        </h5>
+
+                        <h5 style="padding: 10px;">
+                            <strong>
+                                @*<i class="fa fa-slack"></i>
+                                    @Html.DisplayNameFor(a => Model.Document.PartyId):
+                                    @Html.DisplayFor(a => Model.Document.Party.Name)*@
+
+                            </strong>
+                        </h5>
+
+
+                    </div>
+                }
+
+
+
+                //Parties List:
+                if (Model.Document.TypeMail.Type == 2)
+                {
+
+
+                    <div style="padding: 10px;margin-right:20px">
+
+                        <strong>
+                            <i class="fa fa-paper-plane-o"></i>
+                            @Html.DisplayName("الجهات المعنية بالوثيقة"):
+
+
+
+
+
+                        </strong>
+                        @for (int i = 0; i < Model.Document.DocumentParties.Count(); i++)
+                        {
+
+                            <h5 style="padding: 10px;">
+                                <strong>
+                                    <i>@(i + 1)-</i>
+
+                                    @Model.Document.DocumentParties.ElementAt(i).Party.Name
+
+                                </strong>
+                            </h5>
+                        }
+                    </div>
+                }
+
+
+
+            }
+
+
+
+
+
+        </div>
+
+
+
+    </div>
+
+    <div id="mainInfoDescr" style="padding: 10px;margin-right:20px">
+        <strong>
+            <i class="fa fa-slack"></i>
+            @Html.DisplayNameFor(a => Model.Document.Description):
+            @Html.DisplayFor(a => Model.Document.Description)
+
+
+
+
+
+
+        </strong>
+
+
+    </div>
+    <div id="mainInfoNote" style="padding: 10px;margin-right:20px">
+        <strong>
+            <i class="fa fa-pencil-square-o"></i>
+            @Html.DisplayNameFor(a => Model.Document.Notes):
+
+
+
+
+
+        </strong>
+        <br />
+        @Html.Raw(Model.Document.Notes)
+    </div>
+
+
+
+
+
+    @*end Basic Informations*@
+
+
+
+
+    <div class="row" style="text-align:center;margin-top:25px">
+        <div id="FileInfoPanel" class="panel" style="background-color:#f2c6c6;">
+
+            <strong style="font-size:large">ملفات الوثيقة</strong>
+        </div>
+        <div id="FileInfoSlide" style="text-align:center">
+
+
+
+
+            @if (Model.IsSaveInDb)
+            {
+                for (int i = 0; i < Model.FilesStoredInDbs.Count; i++)
+                {
+                    <div class="col-sm-6 col-md-5">
+                        <div class="thumbnail">
+
+
+                            <div class="">
+
+                                <h6>@Model.FilesStoredInDbs[i].FileName</h6>
+                                <h4>خيارات الملف:</h4>
+                                <p style="text-align:center">
+                                    @Html.ActionLink(" فتح الملف", "DisplayDocument", "Documents",
+                                   new { id = Model.FilesStoredInDbs[i].Id },
+                                   new { @class = "btn btn-primary" }) |
+                                    @Html.ActionLink(" تنزيل الملف", "DownloadDocument", "Documents",
+                                   new { id = Model.FilesStoredInDbs[i].Id },
+                                   new { @class = "btn btn-success" })
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+
+                if (Model.Document.FileUrl != null && Model.Document.FileUrl != "" && Model.Document.Name != null)
+                {
+                    var urls = Model.Document.FileUrl.Split(new string[] { "_##_" }, StringSplitOptions.None);
+                    var names = Model.Document.Name.Split(new string[] { "_##_" }, StringSplitOptions.None);
+
+                    for (int i = 0; i < urls.Length; i++)
+                    {
+
+                        <div class="col-sm-6 col-md-5">
+                            <div class="thumbnail">
+
+
+                                <div>
+                                    <h6>@names[i]</h6>
+                                    <h4>خيارات الملف:</h4>
+
+
+                                    <p style="text-align:center">
+                                        @Html.ActionLink(" فتح الملف", "DisplayDocument", "Documents", new { fileName = urls[i] }, new { @class = "btn btn-primary" }) |
+                                        @Html.ActionLink(" تنزيل الملف", "DownloadDocument", "Documents", new { fileName = urls[i] }, new { @class = " btn btn-success" })
+                                    </p>
+
+
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    }
+                }
+                else
+                {
+                    <div class="thumbnail">
+                        <p>لا يوجد ملفات!</p>
+                    </div>
+                }
+            }
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="row" style="text-align:center">
+        <div id="RelateInfoPanel" class="panel" style="background-color:#c4d4ee;">
+
+            <strong style="font-size:large">الأقسام والعناصر والمجموعات المرتبطة</strong>
+        </div>
+        <div id="RelateInfoSlide" style="text-align:right">
+
+
+            @if (Model.Document.DocumentDepartments != null)
+            {
+
+                <div style="padding: 10px;margin-right:20px">
+
+                    <strong>
+                        <i class="fa fa-sitemap"></i>
+                        @Html.DisplayName("الأقسام المرتبطة بالوثيقة"):
+
+
+
+
+
+                    </strong>
+                    @for (int i = 0; i < Model.Document.DocumentDepartments.Count(); i++)
+                    {
+
+                        <h5 style="padding: 10px;">
+                            <strong>
+                                <i>@(i + 1)-</i>
+                                @DepartmentListDisplay.CreateDepartmentDisplay(Model.Document.DocumentDepartments.ElementAt(i).DepartmentId)
+
+
+
+                            </strong>
+                        </h5>
+                    }
+                </div>
+            }
+
+
+            @if (Model.Document.DocumentGroups != null)
+            {
+                <div style="padding: 10px;margin-right:20px;margin-top:20px">
+
+                    <strong>
+                        <i class="fa fa-codepen"></i>
+                        @Html.DisplayName("المجموعات المرتبطة بالوثيقة"):
+
+
+
+
+
+                    </strong>
+                    @for (int i = 0; i < Model.Document.DocumentGroups.Count(); i++)
+                    {
+
+                        <h5 style="padding: 10px;">
+                            <strong>
+                                <i>@(i + 1)-</i>
+                                @Model.Document.DocumentGroups.ElementAt(i).Group.Name
+
+
+
+                            </strong>
+                        </h5>
+                    }
+                </div>
+
+            }
+
+
+
+            @if (Model.Document.DocumentUsers != null)
+            {
+
+                <div style="padding: 10px;margin-right:20px;margin-top:20px">
+
+                    <strong>
+                        <i class="fa fa-user"></i>
+                        @Html.DisplayName("المستخدمين المرتبطين بالوثيقة"):
+
+
+
+
+
+                    </strong>
+                    @for (int i = 0; i < Model.Document.DocumentUsers.Count(); i++)
+                    {
+
+                        <h5 style="padding: 10px;">
+                            <strong>
+                                <i>@(i + 1)-</i>
+                                @Model.Document.DocumentUsers.ElementAt(i).User.FullName
+
+
+
+                            </strong>
+                        </h5>
+                    }
+                </div>
+            }
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+    <div class="row" style="text-align:center;margin-top:25px">
+        <div id="SealsPanel" class="panel" style="background-color:#f2c6c6;">
+
+            <strong style="font-size:large">التسديدات على الوثيقة</strong>
+        </div>
+        <div id="SealsSlide" style="text-align:center">
+
+            @if (Model.Seals != null)
+            {
+                for (int i = 0; i < Model.Seals.Count; i++)
+                {
+
+                    <article class=" col-md-12">
+                        <div>
+                            <div class="panel panel-default arrow right">
+                                <div class="panel-body">
+                                    <header class="text-right">
+                                        <div style="font-size:18px" class="comment-user"><i class="fa fa-user"></i> @Model.Seals[i].CreatedBy.UserName</div>
+                                        <time style="font-size:18px" class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> @Model.Seals[i].CreatedAt</time>
+
+                                        <div>
+
+                                            @{
+                                                if (Model.Seals[i].Files != null) { 
+                                                    for (int j = 0; j < Model.Seals[i].Files.Count; j++)
+                                                    {
+                                                        <label style="margin-top: 30px;">@Model.Seals[i].Files.ElementAt(j).FileName</label>
+                                                        <div>
+                                                            @Html.ActionLink(" فتح الملف", "DisplayDocument", "Seals",
+                                                       new { id = Model.Seals[i].Files.ElementAt(j).Id },
+                                                       new { @class = "btn btn-primary" }) |
+                                                            @Html.ActionLink(" تنزيل الملف", "DownloadDocument", "Seals",
+                                                       new { id = Model.Seals[i].Files.ElementAt(j).Id },
+                                                       new { @class = "btn btn-success" })
+                                                        </div>
+                                                    }
+                                                }
+                                            }
+
+                                        </div>
+                                        <hr />
+                                    </header>
+                                    <div class="comment-post">
+                                        <h4>
+
+                                        @Html.DisplayNameFor(it => Model.Seals[i].Message):
+                                        </h4>
+                                        <p>
+                                            @Model.Seals[i].Message
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                                                    }
+                                                }
+
+        </div>
+    </div>
+
+
+
+
+</div>
+
+@Html.Partial("_LastView")
+
+@section Scripts {
+
+    <script>
+
+
+        $("#mainInfoPanel").click(function () {
+            $("#mainInfoSlide").slideToggle(400);
+            $("#mainInfoNote").slideToggle(400);
+            $("#mainInfoDescr").slideToggle(400);
+
+
+
+        });
+
+
+
+        $("#FileInfoPanel").click(function () {
+            $("#FileInfoSlide").slideToggle(400);
+
+
+
+        });
+
+
+        $("#SealsPanel").click(function () {
+            $("#SealsSlide").slideToggle(400);
+
+
+
+        });
+
+
+        $("#RelateInfoPanel").click(function () {
+            $("#RelateInfoSlide").slideToggle(400);
+
+
+
+        });
+
+
+
+
+    </script>
+
+}
+<style>
+    .thumbnail {
+        height: 100%;
+        overflow: auto;
+    }
+</style>

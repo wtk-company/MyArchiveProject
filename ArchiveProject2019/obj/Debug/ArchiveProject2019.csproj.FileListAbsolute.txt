@@ -365,4 +365,4 @@ E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\System.Numeri
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\System.Text.Encoding.CodePages.dll
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\System.Threading.Tasks.Extensions.dll
-E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\obj\Debug\ArchiveProject2019.Migrations.intitialModel.resources
+E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\obj\Debug\ArchiveProject2019.Migrations.ahforce.resources

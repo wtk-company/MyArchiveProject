@@ -1,8 +1,12 @@
 ﻿@model ArchiveProject2019.Models.Form
 
+
+@using ArchiveProject2019.Resources
 @{
-    ViewBag.Title = "تعديل نموذج";
-    Layout = "~/Views/Shared/_Layout2.cshtml";
+                /**/
+
+                ViewBag.Title = main_lang.Forms;
+                Layout = "~/Views/Shared/_Layout2.cshtml";
 
 }
 
@@ -36,8 +40,8 @@
 
         <div class="modal-footer justify-content-center" style="margin-top:50px">
 
-            <input type="submit" title="إضافة النموذج" value="تعديل نموذج" class="btn btn-success" />
-            <button type="button" title="إغلاق النافذة" class="btn btn-warning" data-dismiss="modal">إغلاق</button>
+            <input type="submit" title="@main_lang.EditButton" value="@main_lang.EditButton" class="btn btn-success" />
+            <button type="button" title="@main_lang.CloseButton" class="btn btn-warning" data-dismiss="modal">@main_lang.CloseButton</button>
         </div>
 
 

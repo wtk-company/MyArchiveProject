@@ -1,0 +1,153 @@
+﻿@model IEnumerable<ArchiveProject2019.Models.Document>
+@using ArchiveProject2019.HelperClasses
+@using Microsoft.AspNet.Identity;
+@{
+    ViewBag.Title = "وثائقي";
+    Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
+    string CurrentUserId = this.User.Identity.GetUserId();
+
+}
+
+
+@Html.Partial("_StartView")
+
+
+
+
+    <p>
+        <a href="@Url.Action("Index","Documents")" class="btn btn-warning">عودة لقائمة الوثائق الرئيسية</a>
+
+    </p>
+
+@using (Html.BeginForm())
+{
+
+
+    @Html.Hidden("DocId",(int)ViewBag.DocId)
+    <table id="form" class="table table-striped  table-hover dt" style="text-align:center;font-size:12px">
+        <thead>
+            <tr>
+
+
+                <th>
+                    @Html.DisplayNameFor(model => model.DocumentNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Subject)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedAt)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.DocumentDate)
+                </th>
+                <th>
+                    @Html.DisplayName("العمليات المتاحة")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(model => item.DocumentNumber)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedAt)
+                    </td>
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DocumentDate)
+                    </td>
+                    <td>
+
+
+                        <input style="width:20px;height:20px;opacity:0.5;vertical-align:middle;cursor:pointer" type="checkbox" name="Documents" value="@item.Id" />
+
+
+                    </td>
+                </tr>
+            }
+
+
+
+        </tbody>
+
+
+    </table>
+
+
+    if (Model.Count()>0)
+    {
+        <div class="form-group">
+            <div style="display:inline-block">
+                <label>
+
+                    <input style="width:20px;height:20px;opacity:0.5;vertical-align:middle;cursor:pointer" id="checkAll" type="checkbox">تحديدالكل/عدم تحديد
+
+                </label>
+            </div>
+            <div class="col-md-offset-2 col-md-10">
+
+                <input title="ربط الوثائق" type="submit" class="btn btn-primary" value="ربط الوثائق المحددة" />
+            </div>
+        </div>
+    }
+
+}
+@Html.Partial("_LastView")
+
+
+
+@section Scripts {
+
+    <script>
+
+
+        $(document).ready(function () {
+
+
+            $("#checkAll").click(function () {
+
+                $("input[name='Documents']").prop("checked", this.checked);
+
+
+                $("input[name='Documents']").click(function () {
+
+
+                    if ($("input[name='Documents']").length == $("input[name='Documents']:checked").length) {
+                        $("#checkAll").prop("checked", "checked");
+                    }
+                    else {
+                        $("#checkAll").removeAttr("checked");
+
+                    }
+
+                });
+
+
+            });
+
+
+
+
+
+
+
+
+
+        });
+
+    </script>
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+}

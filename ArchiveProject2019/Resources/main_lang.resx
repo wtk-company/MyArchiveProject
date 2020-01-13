@@ -717,6 +717,12 @@
   <data name="BackToDepartments" xml:space="preserve">
     <value>عودة لقائمة الاقسام</value>
   </data>
+  <data name="ChooseDepartment" xml:space="preserve">
+    <value>اختر القسم</value>
+  </data>
+  <data name="ChooseGroups" xml:space="preserve">
+    <value>اختر المجموعات</value>
+  </data>
   <data name="ChooseTypeSp" xml:space="preserve">
     <value>اختر نوع معين</value>
   </data>
@@ -756,6 +762,9 @@
   <data name="DuplicatedName" xml:space="preserve">
     <value>لا يمكن أن يكون الاسم مكرر، يجب اعادة الأدخال</value>
   </data>
+  <data name="EditActive" xml:space="preserve">
+    <value>تعديل التفعيل</value>
+  </data>
   <data name="EditElement" xml:space="preserve">
     <value>عملية التعديل</value>
   </data>
@@ -771,8 +780,14 @@
   <data name="Float" xml:space="preserve">
     <value>حقل رقمي</value>
   </data>
+  <data name="FormDepartments" xml:space="preserve">
+    <value>أقسام النموذج</value>
+  </data>
   <data name="FormFields" xml:space="preserve">
     <value>حقول النماذج</value>
+  </data>
+  <data name="FormsGroups" xml:space="preserve">
+    <value>مجموعات النموذج</value>
   </data>
   <data name="GoToDashoard" xml:space="preserve">
     <value>عودة للوحة التحكم</value>
@@ -792,6 +807,9 @@
   <data name="NoRecords" xml:space="preserve">
     <value>لا يوجد أي سجلات</value>
   </data>
+  <data name="OkRemove" xml:space="preserve">
+    <value>تأكيد الازالة</value>
+  </data>
   <data name="Operations" xml:space="preserve">
     <value>العمليات المتاحة</value>
   </data>
@@ -801,8 +819,20 @@
   <data name="Refreshutton" xml:space="preserve">
     <value>تحيث الصفحة</value>
   </data>
+  <data name="RemoveElementMessage" xml:space="preserve">
+    <value>هل أنت متأكد من عملية الازالة</value>
+  </data>
+  <data name="RemoveModal" xml:space="preserve">
+    <value>إزالة</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>تحديد الكل</value>
+  </data>
   <data name="SelectAllNotification" xml:space="preserve">
     <value>تحديد كل الاشعارات</value>
+  </data>
+  <data name="SelectNull" xml:space="preserve">
+    <value>لم يتم إضافة أي قسم للنموذج، يرجى تحديد أقسام</value>
   </data>
   <data name="Text" xml:space="preserve">
     <value>حقل نصي</value>
@@ -812,5 +842,38 @@
   </data>
   <data name="UsersDepartment" xml:space="preserve">
     <value>مستخدمين القسم</value>
+  </data>
+  <data name="AddDepartments" xml:space="preserve">
+    <value>اضافة اقسام</value>
+  </data>
+  <data name="AddGroups" xml:space="preserve">
+    <value>اضافة مجموعات</value>
+  </data>
+  <data name="AddToFavorite" xml:space="preserve">
+    <value>اضافة للمفضلة</value>
+  </data>
+  <data name="AddToFavoriteMessage" xml:space="preserve">
+    <value>هل انت متأكد من الاضافة للمفضلة</value>
+  </data>
+  <data name="AddUsers" xml:space="preserve">
+    <value>اضافة مستخدمين</value>
+  </data>
+  <data name="EditForIndex" xml:space="preserve">
+    <value>تعديل</value>
+  </data>
+  <data name="GroupUsers" xml:space="preserve">
+    <value>مستخدمين المجموعة</value>
+  </data>
+  <data name="MoreChoise" xml:space="preserve">
+    <value>خيارات اضافية</value>
+  </data>
+  <data name="RemoveFromFavorite" xml:space="preserve">
+    <value>ازالة النموذج من المفضلة</value>
+  </data>
+  <data name="RemoveFromFavoriteButton" xml:space="preserve">
+    <value>ازالة من المفضلة</value>
+  </data>
+  <data name="RemoveFromFavoriteMessage" xml:space="preserve">
+    <value>هل أنت متأكد من إزالة النموذج من المفضلة</value>
   </data>
 </root>

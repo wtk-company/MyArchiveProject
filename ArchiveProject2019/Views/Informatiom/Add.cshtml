@@ -1,13 +1,13 @@
 ﻿@model ArchiveProject2019.Models.Form
-
+@using   ArchiveProject2019.Resources
 @{
-    ViewBag.Title = "اضافة للمفضلة";
+    ViewBag.Title = main_lang.AddToFavorite;
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
 
 
-<h3>هل انت متأكد من عملية إضافة النموذج للمفضلة؟</h3>
+<h3>@main_lang.AddToFavoriteMessage</h3>
 <div>
 
     <dl class="dl-horizontal">
@@ -55,8 +55,8 @@
 
         <div class="modal-footer justify-content-center" style="margin-top:50px">
 
-            <input type="submit" title="إضافة النموذج للمفضلة" value="إضافة النموذج للمفضلة" class="btn btn-primary" />
-            <button type="button" title="إغلاق النافذة" class="btn btn-default" data-dismiss="modal">إغلاق</button>
+            <input type="submit" title="@main_lang.AddButton" value="@main_lang.AddButton" class="btn btn-primary" />
+            <button type="button" title="@main_lang.CloseButton" class="btn btn-default" data-dismiss="modal">@main_lang.CloseButton</button>
         </div>
     }
 </div>

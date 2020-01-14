@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<ArchiveProject2019.HelperClasses.DepartmentListDisplay>
 
+@using ArchiveProject2019.Resources
 @{
-    ViewBag.Title = "اضافة الاقسام للوثيقة";
+    ViewBag.Title = main_lang.DocumentDepartments;
     Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
 }
 
@@ -15,7 +16,7 @@
 
     <p>
 
-        <a title="عودة لقائمة الوثائق" href="@Url.Action("index","Documents")" class="btn btn-default">عودة لقائمة الوثائق  <i class="glyphicon glyphicon-backward"></i></a>
+        <a title="@main_lang.BackToDocuments" href="@Url.Action("index","Documents")" class="btn btn-default">@main_lang.BackToDocuments <i class="glyphicon glyphicon-backward"></i></a>
 
     </p>
 
@@ -29,8 +30,8 @@
                     @Html.DisplayNameFor(model => model.Name)
                 </th>
                 <th>
-                    @Html.DisplayName("اختر القسم")
-                    
+                    @Html.DisplayName(main_lang.ChooseDepartment)
+
                 </th>
             </tr>
         </thead>
@@ -38,7 +39,7 @@
 
         <tbody>
             @foreach (var item in Model)
-                {
+            {
                 <tr>
                     <td style="text-align:right">
                         @Html.DisplayFor(modelItem => item.Name)
@@ -53,19 +54,19 @@
 
     </table>
 
-        <div class="form-group">
-            <div style="display:inline-block">
-                <label>
+    <div class="form-group">
+        <div style="display:inline-block">
+            <label>
 
-                    <input style="width:20px;height:20px;opacity:0.5;vertical-align:middle;cursor:pointer" id="checkAll" type="checkbox">تحديدالكل/عدم تحديد
+                <input style="width:20px;height:20px;opacity:0.5;vertical-align:middle;cursor:pointer" id="checkAll" type="checkbox">@main_lang.SelectAll
 
-                </label>
-            </div>
-            <div class="col-md-offset-2 col-md-10">
-
-                <input title="إضافة الاقسام للوثيقة" type="submit" class="btn btn-primary" value="إضافة الاقسام للوثيقة" />
-            </div>
+            </label>
         </div>
+        <div class="col-md-offset-2 col-md-10">
+
+            <input title="@main_lang.AddButton" type="submit" class="btn btn-primary" value="@main_lang.AddButton" />
+        </div>
+    </div>
 }
 
 @Html.Partial("_LastView")
@@ -77,39 +78,39 @@
     <script>
 
 
-                $(document).ready(function () {
+        $(document).ready(function () {
 
 
-                    $("#checkAll").click(function () {
+            $("#checkAll").click(function () {
 
-                        $("input[name='Departments']").prop("checked", this.checked);
-
-
-                        $("input[name='Departments']").click(function () {
+                $("input[name='Departments']").prop("checked", this.checked);
 
 
-                            if ($("input[name='Departments']").length == $("input[name='Departments']:checked").length) {
-                                $("#checkAll").prop("checked", "checked");
-                            }
-                            else {
-                                $("#checkAll").removeAttr("checked");
-
-                            }
-
-                        });
+                $("input[name='Departments']").click(function () {
 
 
-                    });
+                    if ($("input[name='Departments']").length == $("input[name='Departments']:checked").length) {
+                        $("#checkAll").prop("checked", "checked");
+                    }
+                    else {
+                        $("#checkAll").removeAttr("checked");
 
-
-
-
-
-
-
-
+                    }
 
                 });
+
+
+            });
+
+
+
+
+
+
+
+
+
+        });
 
     </script>
     @*@Scripts.Render("~/bundles/jqueryval")*@

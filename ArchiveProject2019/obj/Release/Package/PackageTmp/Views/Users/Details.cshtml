@@ -1,7 +1,9 @@
 ﻿@model ArchiveProject2019.ViewModel.UserViewModel
+@using ArchiveProject2019.Resources
+
 
 @{
-    ViewBag.Title = "تفاصيل المستخدم";
+    ViewBag.Title = main_lang.Users;
     Layout = "~/Views/Shared/_Layout2.cshtml";
 
 }
@@ -9,7 +11,7 @@
 
 
 <div>
- 
+
     <dl class="dl-horizontal">
 
 
@@ -128,5 +130,5 @@
 
 <div class="modal-footer justify-content-center" style="margin-top:50px">
 
-    <button title="إغلاق النافذة" type="button" class="btn btn-warning" data-dismiss="modal">إغلاق</button>
+    <button title="@main_lang.CloseButton" type="button" class="btn btn-warning" data-dismiss="modal">@main_lang.CloseButton</button>
 </div>

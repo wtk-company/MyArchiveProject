@@ -1,7 +1,9 @@
 ﻿@model ArchiveProject2019.Models.UserGroup
+@using ArchiveProject2019.Resources
+
 
 @{
-    ViewBag.Title = "تفاصيل";
+    ViewBag.Title = main_lang.GroupUsers;
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
@@ -25,7 +27,7 @@
             @Html.DisplayFor(model => model.User.UserName)
         </dd>
 
-     
+
 
         <dt>
             @Html.DisplayNameFor(model => model.CreatedAt)
@@ -49,7 +51,7 @@
 
 <div class="modal-footer justify-content-center" style="margin-top:50px">
 
-    <button type="button" title="إغلاق النافذة" class="btn btn-warning" data-dismiss="modal">إغلاق</button>
+    <button type="button" title="@main_lang.CloseButton" class="btn btn-warning" data-dismiss="modal">@main_lang.CloseButton</button>
 
 
 </div>

@@ -1,6 +1,9 @@
 ﻿@model IEnumerable<ArchiveProject2019.Models.UserGroup>
+@using ArchiveProject2019.Resources
+
+
 @{
-    ViewBag.Title = "عرض مستخدمين المجموعة";
+    ViewBag.Title = main_lang.GroupUsers;
     Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
 }
 
@@ -13,40 +16,32 @@
     {
         <div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
             <span class="glyphicon glyphicon-bell"></span>
-            تمت عملية إزالة المستخدم بنجاح
-
+@main_lang.RemoveSuccess
 
         </div>
     }
 
-    if (ViewBag.Msg == "EditSuccess")
-    {
-        <div class="alert alert-success enterRemove" style="text-align:center;font-size:larger">
-            <span class="glyphicon glyphicon-bell"></span>
-            تمت عملية تعديل حالة المستخدم بنجاح
-        </div>
-    }
+  
 
 
     if (ViewBag.Msg == "CreateError")
     {
-        <div class="alert alert-warning enterRemove" style="text-align:center;font-size:larger">
-            <span class="glyphicon glyphicon-bell">
+<div class="alert alert-warning enterRemove" style="text-align:center;font-size:larger">
+    <span class="glyphicon glyphicon-bell">
 
-            </span>
-            لم يتم إضافة أي مستخدم للمجموعة ، يرجى تحديد مستخدمين
-
-        </div>
+    </span>
+    @main_lang.SelectNull
+</div>
     }
 
     if (ViewBag.Msg == "CreateSuccess")
     {
-        <div class="alert alert-info enterRemove" style="text-align:center;font-size:larger">
-            <span class="glyphicon glyphicon-bell">
+<div class="alert alert-info enterRemove" style="text-align:center;font-size:larger">
+    <span class="glyphicon glyphicon-bell">
 
-            </span>
-            تمت عملية الإضافة بنجاح
-        </div>
+    </span>
+    @main_lang.CreateSuccess
+</div>
     }
 
 }
@@ -77,10 +72,10 @@
                 @Html.DisplayNameFor(model => model.CreatedAt)
             </th>
 
-         
+
 
             <th>
-                العمليات المتاحة
+                @Html.Display(main_lang.Operations)
             </th>
         </tr>
     </thead>
@@ -99,13 +94,13 @@
                     @Html.DisplayFor(modelItem => item.CreatedAt)
                 </td>
 
-               
+
                 <td>
 
 
-                    <button data-UsersGroup-id="@item.Id" title="إزاله من المجموعة" class="btn btn-danger js-delete  btn-xs"><span class="glyphicon glyphicon-trash"></span></button>
-                    <button data-UsersGroup-id="@item.Id" title="التفاصيل" class="btn btn-default js-details  btn-xs"><span class="glyphicon glyphicon-book"></span></button>
-                    <button data-UsersGroup-id="@item.UserId" title="تفاصيل المستخدم" class="btn btn-default js-DetailsUser  btn-xs"><span class="glyphicon glyphicon-user"></span></button>
+                    <button data-UsersGroup-id="@item.Id" title="@main_lang.RemoveUser" class="btn btn-danger js-delete  btn-xs"><span class="glyphicon glyphicon-trash"></span></button>
+                    <button data-UsersGroup-id="@item.Id" title="@main_lang.Details" class="btn btn-default js-details  btn-xs"><span class="glyphicon glyphicon-book"></span></button>
+                    <button data-UsersGroup-id="@item.UserId" title="@main_lang.UserDetails" class="btn btn-default js-DetailsUser  btn-xs"><span class="glyphicon glyphicon-user"></span></button>
 
 
 
@@ -161,7 +156,7 @@
 
     $("#UsersGroup").on("click", ".js-delete", function () {
 
-        $("#changeText").text("إزالة مستخدم من المجموعة");
+        $("#changeText").text('@main_lang.RemoveModal');
 
         var url = '@Url.Action("Delete", "UsersGroups")';
         url = url + '/' + $(this).attr("data-UsersGroup-id") ;
@@ -178,7 +173,7 @@
 
     $("#UsersGroup").on("click", ".js-details", function () {
 
-        $("#changeText").text(" تفاصيل مستخدم من المجموعة");
+        $("#changeText").text('@main_lang.DetailsElement');
 
         var url = '@Url.Action("Details", "UsersGroups")';
         url = url + '/' + $(this).attr("data-UsersGroup-id") ;
@@ -193,7 +188,7 @@
 
     $("#UsersGroup").on("click", ".js-DetailsUser", function () {
 
-        $("#changeText").text(" معلومات مستخدم معين");
+        $("#changeText").text('@main_lang.DetailsElement');
 
         var url = '@Url.Action("Details", "Users")';
         url = url + '/' + $(this).attr("data-UsersGroup-id");

@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+@using ArchiveProject2019.Resources
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -38,7 +40,7 @@
                     <li>
                         <a href="@Url.Action("Index","home")">
                             <i class="glyphicon glyphicon-home"></i>
-                            الرئيسية
+                            @main_lang.Home
                         </a>
 
                     </li>
@@ -51,7 +53,8 @@
 
                             <a href="@Url.Action("Index","DashBoard")">
                                 <i class="glyphicon glyphicon-pencil"></i>
-                                لوحة التحكم
+                                @main_lang.DashBoard
+
                             </a>
 
                         </li>

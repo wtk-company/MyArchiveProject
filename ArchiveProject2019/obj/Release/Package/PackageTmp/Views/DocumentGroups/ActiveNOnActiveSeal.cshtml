@@ -1,12 +1,14 @@
 ﻿@model ArchiveProject2019.Models.DocumentGroup
 
+@using ArchiveProject2019.Resources
 @{
-    ViewBag.Title = " تعديل إمكانية التسديد ";
+    ViewBag.Title = main_lang.DocumentGroups;
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
 
-<h3>هل أنت متأكد من عملية    تعديل إمكانية التسديد ؟</h3>
+
+<h3>@main_lang.DocSealMessage</h3>
 <div>
 
     <dl class="dl-horizontal">
@@ -54,11 +56,11 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="modal-footer justify-content-center" style="margin-top:50px">
+<div class="modal-footer justify-content-center" style="margin-top:50px">
 
-            <input title="تعديل إمكانية التسديد" type="submit" value="تعديل إمكانية التسديد" class="btn btn-success" />
-            <button title="إغلاق النافذة" type="button" class="btn btn-default" data-dismiss="modal">إغلاق</button>
-        </div>
+    <input title="@main_lang.EditStatus" type="submit" value=" @main_lang.EditStatus" class="btn btn-success" />
+    <button title="@main_lang.CloseButton" type="button" class="btn btn-default" data-dismiss="modal">@main_lang.DocSealMessage</button>
+</div>
 
     }
 </div>

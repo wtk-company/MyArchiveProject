@@ -162,57 +162,7 @@ namespace ArchiveProject2019.Controllers
 
 
         
-        [AccessDeniedAuthorizeattribute(ActionName = "UsersGroupsEdit")]
-        public ActionResult Edit(int? id)
-        {
-            ViewBag.Current = "UserGroup";
 
-            if (id == null || Session["GroupId"]==null)
-            {
-                return RedirectToAction("BadRequestError", "ErrorController");
-            }
-
-            var UsersGroups = _context.UsersGroups.Include(g => g.Group).Include(a => a.CreatedBy).Include(u => u.User).FirstOrDefault(a=>a.Id==id);
-
-            if (UsersGroups == null)
-            {
-                return RedirectToAction("HttpNotFoundError", "ErrorController");
-            }
-
-          
-
-            return View(UsersGroups);
-        }
-
-        [HttpPost]
-        [ActionName("Edit")]
-        
-        [AccessDeniedAuthorizeattribute(ActionName = "UsersGroupsEdit")]
-        public ActionResult ConfirmEdit(int?id)
-        {
-            ViewBag.Current = "UserGroup";
-
-            if (id == null || Session["GroupId"] == null)
-            {
-                return RedirectToAction("BadRequestError", "ErrorController");
-            }
-
-            UserGroup UserGroup = _context.UsersGroups.Find(id);
-
-            if (UserGroup == null)
-            {
-                return RedirectToAction("HttpNotFoundError", "ErrorController");
-            }
-
-         
-            _context.Entry(UserGroup).State = EntityState.Modified;
-            _context.SaveChanges();
-
-
-            return RedirectToAction("ShowUsersGroup", new { Id = Convert.ToInt32(Session["GroupId"]), msg = "EditSuccess" });
-
-
-        }
 
 
         

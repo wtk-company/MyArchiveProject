@@ -1,9 +1,11 @@
 ﻿@model IEnumerable<ArchiveProject2019.Models.RoleViewModel>
 @using ArchiveProject2019.Models
+@using ArchiveProject2019.Resources
+@using ArchiveProject2019.HelperClasses
 
-@using ArchiveProject2019.HelperClasses;
+
 @{
-    ViewBag.Title = "قائمةالأدوار";
+    ViewBag.Title = main_lang.Roles;
     Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
 
 }
@@ -20,7 +22,7 @@
             <span class="glyphicon glyphicon-bell">
 
             </span>
-            العمليةغير متاحة  ، لا يمكن القيام بعمليةالحذف
+            @main_lang.DeleteError
         </div>
     }
 
@@ -30,7 +32,7 @@
             <span class="glyphicon glyphicon-bell">
 
             </span>
-            تمت عملية الإضافة بنجاح
+            @main_lang.CreateSuccess
         </div>
     }
 
@@ -41,45 +43,34 @@
             <span class="glyphicon glyphicon-bell">
 
             </span>
-            تمت عملية تعديل البيانات بنجاح
+            @main_lang.EditSuccess
         </div>
     }
 
     if (ViewBag.Msg == "EditError")
     {
-        <div class="alert alert-warning enterRemove" style="text-align:center;font-size:larger">
-            <span class="glyphicon glyphicon-bell">
+<div class="alert alert-warning enterRemove" style="text-align:center;font-size:larger">
+    <span class="glyphicon glyphicon-bell">
 
-            </span>
-            لا يمكن أن يكون الاسم مكرر، يجب إعادة الإدخال
-
-        </div>
+    </span>
+    @main_lang.EditError
+</div>
     }
 
 
 
-    if (ViewBag.Msg == "EditError")
-    {
-        <div class="alert alert-warning enterRemove" style="text-align:center;font-size:larger">
-            <span class="glyphicon glyphicon-bell">
-
-            </span>
-            لا يمكن أن يكون الاسم مكرر، يجب إعادة الإدخال
-
-        </div>
-    }
+  
 
 
 
     if (ViewBag.Msg == "CreateError")
     {
-        <div class="alert alert-warning enterRemove" style="text-align:center;font-size:larger">
-            <span class="glyphicon glyphicon-bell">
+<div class="alert alert-warning enterRemove" style="text-align:center;font-size:larger">
+    <span class="glyphicon glyphicon-bell">
 
-            </span>
-            لا يمكن أن يكون الاسم مكرر، يجب إعادة الإدخال
-
-        </div>
+    </span>
+    @main_lang.CreateError
+</div>
     }
 
 
@@ -88,8 +79,8 @@
 @Html.Partial("_StartView")
 
 <p>
-    <button id="btnNewModel" title="إضافة دور جديد" class="btn btn-primary">أضافة دور جديد</button>
-    <button title="تحديث القائمة" id="btnRefreshModel" class="btn btn-default glyphicon glyphicon-refresh"></button>
+    <button id="btnNewModel" title=" @main_lang.AddNew" class="btn btn-primary"> @main_lang.AddNew</button>
+    <button title=" @main_lang.Refreshutton" id="btnRefreshModel" class="btn btn-default glyphicon glyphicon-refresh"></button>
 
 </p>
 <table id="form" class="table table-striped  table-hover dt" style="text-align:center">
@@ -105,19 +96,19 @@
                 @Html.DisplayNameFor(model => model.CreatedAt)
             </th>
 
-           
+
             <th>
                 @Html.DisplayNameFor(model => model.UpdatedAt)
             </th>
 
 
-       
+
 
 
 
             <th>
 
-                @Html.DisplayName("العمليات المتاحة")
+                @Html.DisplayName( main_lang.Operations)
 
             </th>
         </tr>
@@ -126,38 +117,38 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
 
 
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedAt)
-            </td>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedAt)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdatedAt)
-            </td>
-
-
-            <td>
-
-                <button data-form-id="@item.Id" title="تفاصيل  الدور" class="js-Details  btn-xs btn-default "><span class="glyphicon glyphicon-book"></span></button>
-
-                <button data-form-id="@item.Id" title="تعديل اسم الدور" class="js-Edit  btn-xs btn-success "><span class="glyphicon glyphicon-edit"></span></button>
-
-                @if (CheckDelete.CheckRoleDelete(item.Id) == true)
-                {
-                    <button data-form-id="@item.Id" title=" حذف الدور المحدد " class="js-delete btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
-
-                }
-
-                @Html.ActionLink("الصلاحيّات", "Index", new { controller = "PermissionRoles", Id = item.Id})
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdatedAt)
+                </td>
 
 
-            </td>
-        </tr>
+                <td>
+
+                    <button data-form-id="@item.Id" title=" @main_lang.Details" class="js-Details  btn-xs btn-default "><span class="glyphicon glyphicon-book"></span></button>
+
+                    <button data-form-id="@item.Id" title=" @main_lang.EditForIndex" class="js-Edit  btn-xs btn-success "><span class="glyphicon glyphicon-edit"></span></button>
+
+                    @if (CheckDelete.CheckRoleDelete(item.Id) == true)
+                    {
+                        <button data-form-id="@item.Id" title="  @main_lang.DeleteButton" class="js-delete btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+
+                    }
+
+                    @Html.ActionLink("الصلاحيّات", "Index", new { controller = "PermissionRoles", Id = item.Id })
+
+
+                </td>
+            </tr>
         }
     </tbody>
 
@@ -189,7 +180,7 @@
     $("#btnNewModel").on("click", function () {
 
 
-        $("#changeText").text("إضافة دور جديد");
+        $("#changeText").text(' @main_lang.AddNew');
         var url = '@Url.Action("Create", "Roles")';
 
         $("#partialPlaceHolder").load(url, function () {
@@ -210,7 +201,7 @@
 
     $("#form").on("click", ".js-Edit", function () {
 
-        $("#changeText").text(" تعديل دور معين");
+        $("#changeText").text(' @main_lang.EditElement');
 
         var url = '@Url.Action("Edit", "Roles")';
         url = url + '/' + $(this).attr("data-form-id");
@@ -223,10 +214,10 @@
 
 
 
-    
+
     $("#form").on("click", ".js-Details", function () {
 
-        $("#changeText").text(" تفاصيل دور معين");
+        $("#changeText").text(' @main_lang.DetailsElement');
 
         var url = '@Url.Action("Details", "Roles")';
         url = url + '/' + $(this).attr("data-form-id");
@@ -241,7 +232,7 @@
 
     $("#form").on("click", ".js-delete", function () {
 
-        $("#changeText").text("حذف دور معين");
+        $("#changeText").text(' @main_lang.DeleteElement');
 
         var url = '@Url.Action("Delete", "Roles")';
         url = url + '/' + $(this).attr("data-form-id") ;

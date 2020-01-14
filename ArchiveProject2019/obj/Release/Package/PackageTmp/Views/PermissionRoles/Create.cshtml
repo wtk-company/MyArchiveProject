@@ -1,7 +1,12 @@
 ﻿@model IEnumerable<ArchiveProject2019.Models.Permission>
 @using ArchiveProject2019.Models
+
+@using ArchiveProject2019.Resources
+@using ArchiveProject2019.HelperClasses
+
+
 @{
-    ViewBag.Title = "اضافةالصلاحيات للأدوار";
+    ViewBag.Title = main_lang.PermissionRole;
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
@@ -13,7 +18,7 @@
 {
 
 
-            <!-- start project list -->
+    <!-- start project list -->
 
     <div class="form-horizontal">
         <div class="form-group" style="overflow:auto;height:300px">
@@ -24,8 +29,9 @@
                 <div class="alert alert-warning" style="text-align:center;font-size:larger">
                     <span class="glyphicon glyphicon-bell">
 
-                    </span> لا يوجد أي صلاحيات متوفرة
-                </div>
+                    </span>
+                    
+@main_lang.NoPermissionFound                </div>
             }
 
 
@@ -58,21 +64,21 @@
 
 
 
-@if (Model.Count() != 0)
-{
+                @if (Model.Count() != 0)
+                {
 
-    <div style="display:inline-block">
-        <label>
+                    <div style="display:inline-block">
+                        <label>
 
-            <input style="width:20px;height:20px;opacity:0.5;vertical-align:middle;cursor:pointer" id="checkAll" type="checkbox">تحديدالكل/عدم تحديد
+                            <input style="width:20px;height:20px;opacity:0.5;vertical-align:middle;cursor:pointer" id="checkAll" type="checkbox">@main_lang.SelectAll
 
-        </label>
-    </div>
-}
-<br />
-               
-            
-               
+                        </label>
+                    </div>
+                }
+                <br />
+
+
+
             </div>
 
         </div>
@@ -81,8 +87,8 @@
 
         <div class="modal-footer justify-content-center" style="margin-top:50px">
 
-            <input title="إضافة الصلاحيات للدور" type="submit" value=" إضافةالصلاحيات" class="btn btn-primary" />
-            <button title="اغلاق النافذة" type="button" class="btn btn-warning" data-dismiss="modal">إغلاق</button>
+            <input title="@main_lang.AddButton " type="submit" value=" @main_lang.AddButton " class="btn btn-primary" />
+            <button title="@main_lang.CloseButton " type="button" class="btn btn-warning" data-dismiss="modal">@main_lang.CloseButton </button>
         </div>
 
 
@@ -98,33 +104,33 @@
 
 
 
-    $(document).ready(function () {
+        $(document).ready(function () {
 
 
-        $("#checkAll").click(function () {
+            $("#checkAll").click(function () {
 
-            $("input[name='Sel']").prop("checked", this.checked);
-
-
-            $("input[name='Sel']").click(function () {
+                $("input[name='Sel']").prop("checked", this.checked);
 
 
-                if ($("input[name='Sel']").length == $("input[name='Sel']:checked").length) {
-                    $("#checkAll").prop("checked", "checked");
-                }
-                else {
-                    $("#checkAll").removeAttr("checked");
+                $("input[name='Sel']").click(function () {
 
-                }
+
+                    if ($("input[name='Sel']").length == $("input[name='Sel']:checked").length) {
+                        $("#checkAll").prop("checked", "checked");
+                    }
+                    else {
+                        $("#checkAll").removeAttr("checked");
+
+                    }
+
+                });
+
 
             });
 
 
+
         });
-
-        
-
-    });
 
     </script>
 }

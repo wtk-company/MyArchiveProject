@@ -1,7 +1,7 @@
 ﻿@model ArchiveProject2019.Models.JobTitle
-
+@using ArchiveProject2019.Resources
 @{
-    ViewBag.Title = "تعديل مسمى وظيفي ";
+    ViewBag.Title = main_lang.JobTitles;
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
@@ -67,8 +67,8 @@
 
         <div class="modal-footer justify-content-center" style="margin-top:50px">
 
-            <input title="تعديل  مسمى وظيفي" type="submit" value="تعديل  مسمى وظيفي" class="btn btn-success" />
-            <button type="button" title="اغلاق النافذة" class="btn btn-warning" data-dismiss="modal">إغلاق</button>
+            <input title="@main_lang.EditButton" type="submit" value="@main_lang.EditButton" class="btn btn-success" />
+            <button type="button" title="@main_lang.CloseButton" class="btn btn-warning" data-dismiss="modal">@main_lang.CloseButton</button>
         </div>
 
 

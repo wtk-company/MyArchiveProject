@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<ArchiveProject2019.Models.DocumentDepartment>
 @using ArchiveProject2019.HelperClasses
+@using ArchiveProject2019.Resources
 @{
-    ViewBag.Title = "الأقسام الخاصة بالوثيقة";
+    ViewBag.Title = main_lang.DocumentDepartments;
     Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
 }
 
@@ -17,8 +18,7 @@
             <span class="glyphicon glyphicon-bell">
 
             </span>
-            لم يتم إضافة أي قسم للوثيقة، يرجى تحديد أقسام
-
+@main_lang.DocumentDepartmentCreateError
         </div>
     }
 
@@ -26,24 +26,26 @@
 
     if (ViewBag.Msg == "CreateSuccess")
     {
-        <div class="alert alert-info enterRemove" style="text-align:center;font-size:larger">
-            <span class="glyphicon glyphicon-bell">
+<div class="alert alert-info enterRemove" style="text-align:center;font-size:larger">
+    <span class="glyphicon glyphicon-bell">
 
-            </span>
-            تمت عملية الإضافة بنجاح
-        </div>
+    </span>
+
+    @main_lang.CreateSuccess
+</div>
     }
 
 
 
     if (ViewBag.Msg == "EditSuccess")
     {
-        <div class="alert alert-info enterRemove" style="text-align:center;font-size:larger">
-            <span class="glyphicon glyphicon-bell">
+<div class="alert alert-info enterRemove" style="text-align:center;font-size:larger">
+    <span class="glyphicon glyphicon-bell">
 
-            </span>
-            تمت عملية التعديل  بنجاح
-        </div>
+    </span>
+
+    @main_lang.EditSuccess
+</div>
     }
 
 
@@ -52,14 +54,14 @@
 
     if (ViewBag.Msg == "DeleteSuccess")
     {
-        <div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
-            <span class="glyphicon glyphicon-bell">
+<div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
+    <span class="glyphicon glyphicon-bell">
 
-            </span>
-            تمت عملية إزالة الوثيقة من القسم بنجاح
+    </span>
 
+    @main_lang.RemoveSuccess
 
-        </div>
+</div>
     }
 
 
@@ -74,9 +76,9 @@
 
 
 <p>
-    <a title="عودة لقائمة الوثائق" href="@Url.Action("index","Documents")" class="btn btn-warning">عودة لقائمة الوثائق</a>
+    <a title="@main_lang.BackToDocuments" href="@Url.Action("index","Documents")" class="btn btn-warning">@main_lang.BackToDocuments</a>
 
-    <button id="btnRefreshModel" title="تحديث المحتوى" class="btn btn-default glyphicon glyphicon-refresh"></button>
+    <button id="btnRefreshModel" title="@main_lang.Refreshutton" class="btn btn-default glyphicon glyphicon-refresh"></button>
 
 </p>
 <table id="form" class="table table-striped table-hover dt" style="text-align:center">
@@ -94,10 +96,10 @@
                 @Html.DisplayNameFor(model => model.DocumentId)
             </th>
 
-         
+
 
             <th>
-                @Html.DisplayName("العمليات المتاحة")
+                @Html.DisplayName(main_lang.Operations)
 
 
             </th>
@@ -109,80 +111,80 @@
 
         @foreach (var item in Model)
         {
-        <tr>
-            <td style="text-align:right">
-                @DepartmentListDisplay.CreateDepartmentDisplay(item.DepartmentId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.document.Subject)
-            </td>
+            <tr>
+                <td style="text-align:right">
+                    @DepartmentListDisplay.CreateDepartmentDisplay(item.DepartmentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.document.Subject)
+                </td>
 
 
-            <td>
+                <td>
 
-                @if (item.EnableEdit == true)
-                {
+                    @if (item.EnableEdit == true)
+                    {
 
-                    <button data-form-id="@item.Id" title="الغاء التعديل" class="js-Active btn-xs btn-primary">إلغاء التعديل</button>
-                }
-                else
-                {
+                    <button data-form-id="@item.Id" title="@main_lang.DocCanNoteditButton" class="js-Active btn-xs btn-primary">@main_lang.DocCanNoteditButton</button>
+                    }
+                    else
+                    {
 
-                    <button data-form-id="@item.Id" title="تفعيل التعديل" class="js-Active btn-xs btn-success">تفعيل التعديل</button>
-                }
-
-
-
-
-
-                @if (item.EnableReplay == true)
-                {
-
-                    <button data-form-id="@item.Id" title="الغاء الرد" class="js-EnableReplay btn-xs btn-primary">إلغاء الرد</button>
-                }
-                else
-                {
-
-                    <button data-form-id="@item.Id" title="تفعيل الرد" class="js-EnableReplay btn-xs btn-success">تفعيل الرد</button>
-                }
+                <button data-form-id="@item.Id" title="@main_lang.DocCanEditButton" class="js-Active btn-xs btn-success">@main_lang.DocCanEditButton</button>
+                    }
 
 
 
-                @if (item.EnableSeal == true)
-                {
-
-                    <button data-form-id="@item.Id" title="الغاء التسديد" class="js-EnableSeal btn-xs btn-primary">إلغاء التسديد</button>
-                }
-                else
-                {
-
-                    <button data-form-id="@item.Id" title="تفعيل التسديد" class="js-EnableSeal btn-xs btn-success">تفعيل التسديد</button>
-                }
-
-                @if (item.EnableRelate == true)
-                {
-
-                    <button data-form-id="@item.Id" title="الغاء الربط" class="js-EnableRelate btn-xs btn-primary">إلغاء الريط</button>
-                }
-                else
-                {
-
-                    <button data-form-id="@item.Id" title="تفعيل الربط" class="js-EnableRelate btn-xs btn-success">تفعيل الربط</button>
-                }
-
-                @if(CheckDelete.CheckDocumentDepartmentDelete(item.DocumentId,item.DepartmentId)==false)
-                {
-
-                <butcton data-form-id="@item.Id" title="إزالة القسم" class="js-delete btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></butcton>
-
-                }
 
 
-                <button data-form-id="@item.Id" title="تفاصيل" class="js-Details btn-xs btn-default"><span class="glyphicon glyphicon-book"></span></button>
+                    @if (item.EnableReplay == true)
+                    {
+
+                <button data-form-id="@item.Id" title="@main_lang.DocCanNotReplayButton" class="js-EnableReplay btn-xs btn-primary">@main_lang.DocCanNotReplayButton</button>
+                    }
+                    else
+                    {
+
+                <button data-form-id="@item.Id" title="@main_lang.DocCanReplayButton" class="js-EnableReplay btn-xs btn-success">@main_lang.DocCanReplayButton</button>
+                    }
 
 
-            </td>
-        </tr>
+
+                    @if (item.EnableSeal == true)
+                    {
+
+                <button data-form-id="@item.Id" title="@main_lang.DocCanNotSealButton" class="js-EnableSeal btn-xs btn-primary">@main_lang.DocCanNotSealButton</button>
+                    }
+                    else
+                    {
+
+                <button data-form-id="@item.Id" title="@main_lang.DocCanSealButton" class="js-EnableSeal btn-xs btn-success">@main_lang.DocCanSealButton</button>
+                    }
+
+                    @if (item.EnableRelate == true)
+                    {
+
+                <button data-form-id="@item.Id" title="@main_lang.DocCanNotRelateButton" class="js-EnableRelate btn-xs btn-primary">@main_lang.DocCanNotRelateButton</button>
+                    }
+                    else
+                    {
+
+                <button data-form-id="@item.Id" title="@main_lang.DocCanRelateButton" class="js-EnableRelate btn-xs btn-success">@main_lang.DocCanRelateButton</button>
+                    }
+
+                    @if (CheckDelete.CheckDocumentDepartmentDelete(item.DocumentId, item.DepartmentId) == false)
+                    {
+
+                        <butcton data-form-id="@item.Id" title="@main_lang.Remove" class="js-delete btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></butcton>
+
+                    }
+
+
+                    <button data-form-id="@item.Id" title="@main_lang.Details" class="js-Details btn-xs btn-default"><span class="glyphicon glyphicon-book"></span></button>
+
+
+                </td>
+            </tr>
         }
     </tbody>
 
@@ -232,7 +234,7 @@
 
     $("#form").on("click", ".js-delete", function () {
 
-        $("#changeText").text("إزالة قسم معين");
+        $("#changeText").text('@main_lang.RemoveModal');
 
                        var url = '@Url.Action("Delete", "DocumentDepartments")';
                        url = url + '/' + $(this).attr("data-form-id") ;
@@ -247,7 +249,7 @@
 
     $("#form").on("click", ".js-Active", function () {
 
-        $("#changeText").text("عملية تعديل إمكانية التعديل");
+        $("#changeText").text('@main_lang.DocEditModal');
 
                        var url = '@Url.Action("ActiveNOnActive", "DocumentDepartments")';
                        url = url + '/' + $(this).attr("data-form-id") ;
@@ -261,7 +263,7 @@
 
     $("#form").on("click", ".js-EnableReplay", function () {
 
-        $("#changeText").text("عملية تعديل امكانية الرد");
+        $("#changeText").text('@main_lang.DocReplayModal');
 
                        var url = '@Url.Action("ActiveNOnActiveReplay", "DocumentDepartments")';
                        url = url + '/' + $(this).attr("data-form-id") ;
@@ -275,7 +277,7 @@
 
        $("#form").on("click", ".js-EnableSeal", function () {
 
-        $("#changeText").text("عملية تعديل امكانية التسديد");
+        $("#changeText").text('@main_lang.DocSealModel');
 
                        var url = '@Url.Action("ActiveNOnActiveSeal", "DocumentDepartments")';
                        url = url + '/' + $(this).attr("data-form-id") ;
@@ -286,11 +288,11 @@
 
                    });
 
-    
-    
+
+
        $("#form").on("click", ".js-EnableRelate", function () {
 
-        $("#changeText").text("عملية تعديل امكانية الربط");
+        $("#changeText").text('@main_lang.DocRelateModal');
 
                        var url = '@Url.Action("ActiveNOnActiveRelate", "DocumentDepartments")';
                        url = url + '/' + $(this).attr("data-form-id") ;
@@ -305,7 +307,7 @@
 
     $("#form").on("click", ".js-Details", function () {
 
-        $("#changeText").text("تفاصيل عملية الاسناد");
+        $("#changeText").text('@main_lang.DetailsElement');
 
                        var url = '@Url.Action("Details", "DocumentDepartments")';
                        url = url + '/' + $(this).attr("data-form-id") ;

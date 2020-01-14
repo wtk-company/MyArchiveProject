@@ -1,17 +1,21 @@
 ﻿@model ArchiveProject2019.Models.PermissionRole
 
+@using ArchiveProject2019.Resources
+@using ArchiveProject2019.HelperClasses
+
+
 @{
-    ViewBag.Title = "تفعيل الصلاحية";
+    ViewBag.Title = main_lang.PermissionRole;
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
 
 
-<h3>هل أنت متأكد من تعديل التفعيل؟</h3>
+<h3>@main_lang.DeleteMessage</h3>
 <div>
-  
+
     <dl class="dl-horizontal">
-      
+
 
         <dt>
             @Html.DisplayNameFor(model => model.PermissionId)
@@ -62,17 +66,18 @@
             @Html.DisplayFor(model => model.Updatedat)
         </dd>
 
-       
+
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="modal-footer justify-content-center" style="margin-top:50px">
 
-            <input title="تعديل حالة التفعيل" type="submit" value=" تعديل الحالة" class="btn btn-success" />
-            <button title="اغلاق النافذة"  type="button" class="btn btn-warning" data-dismiss="modal">إغلاق</button>
+            <input title="@main_lang.EditButton" type="submit" value=" @main_lang.EditButton" class="btn btn-success" />
+            <button title="@main_lang.CloseButton" type="button" class="btn btn-warning" data-dismiss="modal">@main_lang.CloseButton</button>
         </div>
 
     }

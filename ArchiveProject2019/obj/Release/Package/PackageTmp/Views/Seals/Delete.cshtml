@@ -1,11 +1,13 @@
 ﻿@model ArchiveProject2019.Models.SealDocument
+@using ArchiveProject2019.Resources
+
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = main_lang.MyDocumentSeals;
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-<h3>متأكد من الحذف؟</h3>
+<h3>@main_lang.DeleteMessage</h3>
 <div>
 
 
@@ -16,8 +18,8 @@
         @Html.HiddenFor(s => s.Id)
 
         <div class="modal-footer justify-content-center" style="margin-top:50px">
-            <input type="submit" title="حذف" value="حذف" class="btn btn-danger" />
-            <button type="button" title="إغلاق النافذة" class="btn btn-default" data-dismiss="modal">إغلاق</button>
+            <input type="submit" title="@main_lang.DeleteButton" value="@main_lang.DeleteButton" class="btn btn-danger" />
+            <button type="button" title="@main_lang.CloseButton" class="btn btn-default" data-dismiss="modal">@main_lang.CloseButton</button>
         </div>
     }
 </div>

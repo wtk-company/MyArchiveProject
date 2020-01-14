@@ -1,5 +1,4 @@
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\obj\Release\ArchiveProject2019.csprojAssemblyReference.cache
-E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\obj\Release\ArchiveProject2019.Resources.main_lang.resources
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\obj\Release\ArchiveProject2019.csproj.GenerateResource.cache
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\obj\Release\ArchiveProject2019.csproj.CoreCompileInputs.cache
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\roslyn\csc.exe
@@ -59,7 +58,6 @@ E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\Microsoft.Owin.Secur
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\Microsoft.Web.Infrastructure.dll
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\Newtonsoft.Json.dll
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\Owin.dll
-E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\System.Runtime.Handles.dll
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\System.Web.Helpers.dll
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\System.Web.Mvc.dll
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\bin\System.Web.Optimization.dll
@@ -104,3 +102,4 @@ E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\obj\Release\ArchiveProje
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\obj\Release\ArchiveProject2019.dll
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\obj\Release\ArchiveProject2019.pdb
 E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\obj\Release\ArchiveProject2019.Migrations.ahforce.resources
+E:\ArchiveGitHubWTK\MyArchiveProject\ArchiveProject2019\obj\Release\ArchiveProject2019.Resources.main_lang.resources

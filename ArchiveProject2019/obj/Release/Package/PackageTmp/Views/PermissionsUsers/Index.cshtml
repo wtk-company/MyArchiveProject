@@ -1,7 +1,9 @@
 ﻿@model  IEnumerable<ArchiveProject2019.Models.PermissionsUser>
+@using ArchiveProject2019.Resources
+
 
 @{
-    ViewBag.Title = "صلاحيات المستخدم";
+    ViewBag.Title = main_lang.UserPermissions;
     Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
 }
 
@@ -17,7 +19,7 @@
             <span class="glyphicon glyphicon-bell">
 
             </span>
-            تمت عملية تعديل حالة التعديل للصلاحية بنجاح
+            @main_lang.ActiveSuccess
         </div>
     }
 
@@ -28,7 +30,7 @@
             <span class="glyphicon glyphicon-bell">
 
             </span>
-            لم يتم إختيار أي صلاحية للتعديل
+            @main_lang.NoPermissionSelect
         </div>
     }
 
@@ -42,8 +44,8 @@
 
 <p>
 
-    <a title="عودة لقائمة المستخدمين الرئيسية" href="@Url.Action("index","users")" class="btn btn-warning">عودة لقائمة المستخدمين  </a>
-    <button title="تحديث المحتوى" id="btnRefreshModel" class="btn btn-default glyphicon glyphicon-refresh"></button>
+    <a title=" @main_lang.GoToUsers" href="@Url.Action("index","users")" class="btn btn-warning"> @main_lang.GoToUsers  </a>
+    <button title=" @main_lang.Refreshutton" id="btnRefreshModel" class="btn btn-default glyphicon glyphicon-refresh"></button>
 
 </p>
 
@@ -65,10 +67,10 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Is_Active)
                 </th>
-            
+
 
                 <th>
-                    @Html.DisplayName(" اختر الصلاحيات للتعديل")
+                    @Html.DisplayName(main_lang.ChoosePermissionForEdit)
 
                 </th>
             </tr>
@@ -106,16 +108,16 @@
         <div style="display:inline-block">
             <label>
 
-                <input style="width:20px;height:20px;opacity:0.5;vertical-align:middle;cursor:pointer" id="checkAll" type="checkbox">تحديدالكل/عدم تحديد
+                <input style="width:20px;height:20px;opacity:0.5;vertical-align:middle;cursor:pointer" id="checkAll" type="checkbox">@main_lang.SelectAll
 
             </label>
         </div>
-     
-            <div class="col-md-offset-2 col-md-10">
 
-                <input title=" تعديل حالة الصلاحيات المحددة" type="submit" class="btn btn-primary" value=" تعديل حالة صلاحيات المستخدم " />
-            </div>
-       
+        <div class="col-md-offset-2 col-md-10">
+
+            <input title=" @main_lang.EditChoosePermissionForEdit" type="submit" class="btn btn-primary" value=" @main_lang.EditChoosePermissionForEdit" />
+        </div>
+
     </div>
 }
 @Html.Partial("_LastView")
@@ -128,8 +130,8 @@
 <script>
 
 
-    
-   
+
+
 
 
 

@@ -1,7 +1,9 @@
 ﻿@model ArchiveProject2019.Models.EditUserNameAndPassword
+@using ArchiveProject2019.Resources
+
 
 @{
-    ViewBag.Title = "تعديل الحساب";
+    ViewBag.Title = main_lang.Users;
     Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
 }
 
@@ -11,9 +13,9 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-       
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.OldUserName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -57,7 +59,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="تعديل البيانات" class="btn btn-success" />
+                <input type="submit" value="@main_lang.EditButton" class="btn btn-success" />
             </div>
         </div>
     </div>

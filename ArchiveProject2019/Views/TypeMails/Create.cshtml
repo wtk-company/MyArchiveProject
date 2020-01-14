@@ -1,7 +1,11 @@
 ﻿@model ArchiveProject2019.Models.TypeMail
 
+
+@using ArchiveProject2019.Resources
+
+
 @{
-    ViewBag.Title = "انشاء نوع بردي جديد";
+    ViewBag.Title = main_lang.DocumentTypeMails;
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
@@ -27,8 +31,8 @@
 
         <div class="modal-footer justify-content-center" style="margin-top:50px">
 
-            <input type="submit" title="إضافة نوع جديد" value="اضافة نوع جديد" class="btn btn-primary" />
-            <button type="button" title="إغلاق النافذة" class="btn btn-warning" data-dismiss="modal">إغلاق</button>
+            <input type="submit" title="@main_lang.AddNew" value="@main_lang.AddNew" class="btn btn-primary" />
+            <button type="button" title="@main_lang.CloseButton" class="btn btn-warning" data-dismiss="modal">@main_lang.CloseButton</button>
         </div>
 
 

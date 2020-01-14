@@ -1,13 +1,17 @@
 ﻿@model ArchiveProject2019.Models.Kind
 
+@using ArchiveProject2019.Resources
+@using ArchiveProject2019.HelperClasses
+
+
 @{
-    ViewBag.Title = "حذف نوع الوثائق";
+    ViewBag.Title = main_lang.DocumentKinds;
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
 
 
-<h3>هل انت متأكد من عملية الحذف؟</h3>
+<h3>@main_lang.DeleteMessage</h3>
 <div>
 
     <dl class="dl-horizontal">
@@ -46,8 +50,8 @@
 
         <div class="modal-footer justify-content-center" style="margin-top:50px">
 
-            <input type="submit" title="حذف نوع معين" value="حذف نوع معين" class="btn btn-danger" />
-            <button type="button" title="إغلاق النافذة" class="btn btn-warning" data-dismiss="modal">إغلاق</button>
+            <input type="submit" title=" @main_lang.DeleteButton" value="@main_lang.DeleteButton" class="btn btn-danger" />
+            <button type="button" title=" @main_lang.CloseButton" class="btn btn-warning" data-dismiss="modal">@main_lang.CloseButton</button>
         </div>
     }
 </div>

@@ -1,7 +1,12 @@
 ﻿@model ArchiveProject2019.Models.RegisterViewModel
 @using ArchiveProject2019.Models
+@using ArchiveProject2019.HelperClasses
+
+@using ArchiveProject2019.Resources
+
+
 @{
-    ViewBag.Title = "تسجيل مستخدم جديد";
+    ViewBag.Title = main_lang.AddNewUser;
     Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
 
 
@@ -17,7 +22,7 @@
 @Html.Partial("_StartView")
 <p>
 
-    <a title="عودة لقائمة  المستخدمين" href="@Url.Action("index","Users")" class="btn btn-warning">عودة لقائمة المستخدمين  </a>
+    <a title="@main_lang.GoToUsers" href="@Url.Action("index","Users")" class="btn btn-warning">@main_lang.GoToUsers </a>
 
 </p>
 @using (Html.BeginForm())
@@ -68,7 +73,7 @@
         <div class="form-group">
             @Html.LabelFor(m => m.DepartmentID, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.DropDownList("DepartmentID", null, "اختر القسم",
+                @Html.DropDownList("DepartmentID", null, main_lang.ChooseDepartment,
 
        new { @class = "form-control", style = "padding:2px" })
                 @Html.ValidationMessageFor(model => model.DepartmentID, "", new { @class = "text-danger" })
@@ -82,7 +87,7 @@
         <div class="form-group">
             @Html.LabelFor(m => m.JobTitleId, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.DropDownList("JobTitleId", null, "اختر المسمى الوظيفي",
+                @Html.DropDownList("JobTitleId", null, main_lang.ChooseJobTitle,
 
        new { @class = "form-control", style = "padding:2px" })
                 @Html.ValidationMessageFor(model => model.JobTitleId, "", new { @class = "text-danger" })
@@ -115,8 +120,8 @@
 
 
 
-           new SelectListItem() { Text="ذكر",Value="Male"},
-           new SelectListItem() { Text="أنثى",Value="Female"}
+           new SelectListItem() { Text=main_lang.Male,Value="Male"},
+           new SelectListItem() { Text=main_lang.Female,Value="Female"}
        }
 
 
@@ -156,19 +161,19 @@
             </div>
         </div>
 
-      
-            <div>
-                <div class="form-group">
-                    @Html.Label("المجموعات", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("Groups", (SelectList)ViewBag.Groups, htmlAttributes: new { style = "padding:2px", multiple = "multiple", @class = "form-control chosen-select" })
-                    </div>
+
+        <div>
+            <div class="form-group">
+                @Html.Label(main_lang.Groups, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Groups", (SelectList)ViewBag.Groups, htmlAttributes: new { style = "padding:2px", multiple = "multiple", @class = "form-control chosen-select" })
                 </div>
             </div>
-        
+        </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" class="btn btn-primary" value="تسجيل جديد" />
+                <input type="submit" class="btn btn-primary" value="@main_lang.AddNewUser" />
             </div>
         </div>
     </div>
@@ -188,7 +193,7 @@
             $(".chosen-select").chosen({
 
                 rtl: true,
-                no_results_text: "لا يوجد نتائج!"
+                no_results_text: '@main_lang.ChosenNoResult'
             });
         });
 

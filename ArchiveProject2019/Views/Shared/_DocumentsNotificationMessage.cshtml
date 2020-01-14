@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<ArchiveProject2019.Models.Notification>
-
+@using ArchiveProject2019.Resources
 
 @if (Model.Count() > 0)
 {
@@ -30,6 +30,6 @@
 else
 {
     <li>
-        لا يوجد أي وثائق للتنبيه
+        @main_lang.NodocumentNotification
     </li>
 }

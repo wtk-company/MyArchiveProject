@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<ArchiveProject2019.Models.SealDocument>
+@using ArchiveProject2019.Resources
+
 
 @{
-    ViewBag.Title = "  قائمة التسديدات للوثيقة";
+    ViewBag.Title = main_lang.AllDocumentseals;
     Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
 }
 
@@ -16,6 +18,7 @@
         border: 1px solid black;
         padding: 17px;
     }
+
     a:link {
         text-decoration: none;
     }
@@ -35,8 +38,8 @@
 
 
 <div>
-    <a href="@Url.Action("index","Documents")" class="btn btn-warning"> قائمة الوثائق  </a>
-    <a href="@Url.Action("Details","Documents",new { Id=ViewBag.DocId})" class="btn btn-primary">  تفاصيل الوثيقة الحالية  </a>
+    <a href="@Url.Action("index","Documents")" class="btn btn-warning"> @main_lang.AllDocuments </a>
+    <a href="@Url.Action("Details","Documents",new { Id=ViewBag.DocId})" class="btn btn-primary">  @main_lang.DocumentDetails </a>
 
 
 
@@ -47,53 +50,53 @@
 
 @if (Model.Any())
 {
-   
+
     <div id="form">
         @foreach (var item in Model)
         {
 
-        <article class=" col-md-12">
-            <div class="">
-                <div class="panel panel-default arrow right">
-                    <div class="panel-body">
-                     
-                        <header class="text-right">
-                            <div style="font-size:18px" class="comment-user"><i class="fa fa-user"></i> @item.CreatedBy.FullName</div>
-                            <time style="font-size:18px" class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> @item.CreatedAt</time>
-                            
-                            <div>
+            <article class=" col-md-12">
+                <div class="">
+                    <div class="panel panel-default arrow right">
+                        <div class="panel-body">
 
-                                @{
-                                    for (int i = 0; i < item.Files.Count; i++)
-                                    {
-                                        <label style="margin-top: 30px;">@item.Files.ElementAt(i).FileName</label>
-                                        <div>
-                                            @Html.ActionLink(" فتح الملف", "DisplayDocument", "Seals",
-                                                   new { id = item.Files.ElementAt(i).Id },
-                                                   new { @class = "btn btn-primary" }) |
-                                            @Html.ActionLink(" تنزيل الملف", "DownloadDocument", "Seals",
-                                                   new { id = item.Files.ElementAt(i).Id },
-                                                   new { @class = "btn btn-success" })
-                                        </div>
+                            <header class="text-right">
+                                <div style="font-size:18px" class="comment-user"><i class="fa fa-user"></i> @item.CreatedBy.FullName</div>
+                                <time style="font-size:18px" class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> @item.CreatedAt</time>
+
+                                <div>
+
+                                    @{
+                                        for (int i = 0; i < item.Files.Count; i++)
+                                        {
+                                            <label style="margin-top: 30px;">@item.Files.ElementAt(i).FileName</label>
+                                            <div>
+                                                @Html.ActionLink(main_lang.OpenFile, "DisplayDocument", "Seals",
+                                                       new { id = item.Files.ElementAt(i).Id },
+                                                       new { @class = "btn btn-primary" }) |
+                                                @Html.ActionLink(main_lang.DownloadFile, "DownloadDocument", "Seals",
+                                                       new { id = item.Files.ElementAt(i).Id },
+                                                       new { @class = "btn btn-success" })
+                                            </div>
+                                        }
                                     }
-                                }
 
+                                </div>
+                                <hr />
+                            </header>
+                            <div class="comment-post">
+                                <h4>
+
+                                    @Html.DisplayNameFor(it => it.Message):
+                                </h4>
+                                <p>
+                                    @item.Message
+                                </p>
                             </div>
-                            <hr />
-                        </header>
-                        <div class="comment-post">
-                            <h4>
-
-                            @Html.DisplayNameFor(it => it.Message):
-                            </h4>
-                            <p>
-                                @item.Message
-                            </p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </article>
+            </article>
 
         }
     </div>
@@ -137,7 +140,7 @@ else
             $('#NewModal').modal('show');
         });
     });
-    </script>
+</script>
 
 
 

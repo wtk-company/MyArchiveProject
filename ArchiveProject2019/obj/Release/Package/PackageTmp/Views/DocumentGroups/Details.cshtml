@@ -1,7 +1,8 @@
 ﻿@model ArchiveProject2019.Models.DocumentGroup
-@using ArchiveProject2019.HelperClasses
+
+@using ArchiveProject2019.Resources
 @{
-    ViewBag.Title = "تفاصيل اسناد الوثيقة للمجموعة";
+    ViewBag.Title = main_lang.DocumentGroups;
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
@@ -105,7 +106,7 @@
 
     <div class="modal-footer justify-content-center" style="margin-top:50px">
 
-        <button title="إغلاق النافذة" type="button" class="btn btn-warning" data-dismiss="modal">إغلاق</button>
+        <button title="@main_lang.CloseButton" type="button" class="btn btn-warning" data-dismiss="modal">@main_lang.CloseButton</button>
     </div>
 
 

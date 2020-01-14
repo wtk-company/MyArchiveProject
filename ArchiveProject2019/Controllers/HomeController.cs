@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ArchiveProject2019.Resources;
 
 namespace ArchiveProject2019.Controllers
 {
@@ -30,7 +31,8 @@ namespace ArchiveProject2019.Controllers
 
         public ActionResult Index()
         {
-            //
+
+
             if(!IsAuthoriedHost.checkAuthorize())
             {
                 return RedirectToAction("ApplicationClosed", "ErrorController");

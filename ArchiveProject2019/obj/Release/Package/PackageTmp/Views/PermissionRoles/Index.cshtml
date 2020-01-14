@@ -1,7 +1,11 @@
 ﻿@model IEnumerable<ArchiveProject2019.Models.PermissionRole>
 
+@using ArchiveProject2019.Resources
+@using ArchiveProject2019.HelperClasses
+
+
 @{
-    ViewBag.Title = "صلاحيات الأدوار";
+    ViewBag.Title = main_lang.PermissionRole;
     Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
 }
 @if (ViewBag.Msg != null)
@@ -15,64 +19,67 @@
             <span class="glyphicon glyphicon-bell">
 
             </span>
-            لم يتم إختيار أي صلاحية لإضافتها، يرجى إعادة الإختيار من الصلاحيات المتوفرة
+            @main_lang.CreateError
+
 
         </div>
     }
 
     if (ViewBag.Msg == "DeleteError")
     {
-        <div class="alert alert-warning enterRemove" style="text-align:center;font-size:larger">
-            <span class="glyphicon glyphicon-bell">
+<div class="alert alert-warning enterRemove" style="text-align:center;font-size:larger">
+    <span class="glyphicon glyphicon-bell">
 
-            </span>
-            العمليةغير متاحة  ، لا يمكن القيام بعمليةالحذف
-        </div>
+    </span>
+    @main_lang.DeleteError
+</div>
     }
 
     if (ViewBag.Msg == "CreateSuccess")
     {
-        <div class="alert alert-info enterRemove" style="text-align:center;font-size:larger">
-            <span class="glyphicon glyphicon-bell">
+<div class="alert alert-info enterRemove" style="text-align:center;font-size:larger">
+    <span class="glyphicon glyphicon-bell">
 
-            </span>
-            تم إضافة الصلاحيات إلى الدور بنجاح
-        </div>
+    </span>
+    @main_lang.CreateSuccess
+</div>
     }
 
 
     if (ViewBag.Msg == "ActiveSuccess")
     {
-        <div class="alert alert-success enterRemove" style="text-align:center;font-size:larger">
-            <span class="glyphicon glyphicon-bell">
+<div class="alert alert-success enterRemove" style="text-align:center;font-size:larger">
+    <span class="glyphicon glyphicon-bell">
 
-            </span>
-            تمت عمليةتعديل حالة التعديل للصلاحية بنجاح
-        </div>
+    </span>
+    @main_lang.ActiveSuccess
+</div>
     }
 
     if (ViewBag.Msg == "EditError")
     {
-        <div class="alert alert-warning enterRemove" style="text-align:center;font-size:larger">
-            <span class="glyphicon glyphicon-bell">
+<div class="alert alert-warning enterRemove" style="text-align:center;font-size:larger">
+    <span class="glyphicon glyphicon-bell">
 
-            </span>
-            لا يمكن أن يكون الاسم مكرر، يجب إعادة الإدخال
+    </span>
+    @main_lang.EditError
 
-        </div>
+
+</div>
     }
 
 
     if (ViewBag.Msg == "DeleteSuccess")
     {
-        <div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
-            <span class="glyphicon glyphicon-bell">
+<div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
+    <span class="glyphicon glyphicon-bell">
 
-            </span>
-            تمت عملية الحذف بنجاح
+    </span>
+    @main_lang.DeleteError
 
 
-        </div>
+
+</div>
     }
 
 
@@ -84,10 +91,10 @@
 
 
 <p>
-    <button title="إضافة الصلاحيات للدور" id="btnNewModel" class="btn btn-primary">أضافة صلاحيات الممكنة للدور</button>
+    <button title="@main_lang.AddPermissionsToRole" id="btnNewModel" class="btn btn-primary">@main_lang.AddPermissionsToRole</button>
 
-    <a title="عودة لقائمة الأدوار الرئيسية" href="@Url.Action("index","Roles")" class="btn btn-warning">عودة لقائمة الأدوار  </a>
-    <button title="تحديث المحتوى" id="btnRefreshModel" class="btn btn-default glyphicon glyphicon-refresh"></button>
+    <a title="@main_lang.BackToRoles" href="@Url.Action("index","Roles")" class="btn btn-warning">@main_lang.BackToRoles </a>
+    <button title="   @main_lang.Refreshutton" id="btnRefreshModel" class="btn btn-default glyphicon glyphicon-refresh"></button>
 
 </p>
 <table id="form" class="table table-striped  table-hover dt" style="text-align:center">
@@ -119,7 +126,7 @@
             </th>
 
             <th>
-                @Html.DisplayName("العمليات المتاحة")
+                @Html.DisplayName(main_lang.Operations)
 
             </th>
         </tr>
@@ -128,36 +135,36 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Role.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Permission.Name)
-            </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Permission.Name)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Is_Active)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Is_Active)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedAt)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedAt)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Updatedat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdatedBy.FullName)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Updatedat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdatedBy.FullName)
+                </td>
 
 
 
-            <td>
-                <button data-form-id="@item.Id" title="تعديل التفعيل" class="js-active btn-xs btn-success"><span class="glyphicon glyphicon-check"></span></button>
-                <button data-form-id="@item.Id" title="إزالة الصلاحية" class="js-delete btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
-            </td>
-        </tr>
+                <td>
+                    <button data-form-id="@item.Id" title="@main_lang.EditActive" class="js-active btn-xs btn-success"><span class="glyphicon glyphicon-check"></span></button>
+                    <button data-form-id="@item.Id" title="@main_lang.RemoveModal" class="js-delete btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                </td>
+            </tr>
         }
     </tbody>
 
@@ -192,7 +199,7 @@
 <script>
     $("#btnNewModel").on("click", function () {
 
-        $("#changeText").text("إضافة الصلاحيات للأدوار");
+        $("#changeText").text('@main_lang.AddNew');
                        var url = '@Url.Action("Create", "PermissionRoles")'
 
         $("#partialPlaceHolder").load(url, function () {
@@ -212,7 +219,7 @@
 
 
     $("#form").on("click", ".js-active", function () {
-        $("#changeText").text("تعديل حقل معين");
+        $("#changeText").text('@main_lang.EditActive');
 
                        var url = '@Url.Action("Active", "PermissionRoles")';
                        url = url + '/' + $(this).attr("data-form-id");
@@ -225,7 +232,7 @@
 
     $("#form").on("click", ".js-delete", function () {
 
-        $("#changeText").text("إزالة صلاحية");
+        $("#changeText").text('@main_lang.RemoveModal');
 
                        var url = '@Url.Action("Delete", "PermissionRoles")';
                        url = url + '/' + $(this).attr("data-form-id") ;

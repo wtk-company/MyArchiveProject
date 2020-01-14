@@ -1,15 +1,18 @@
 ﻿@model ArchiveProject2019.Models.RoleViewModel
+@using ArchiveProject2019.Resources
+
+
 
 @{
-    ViewBag.Title = "حذف دور معين";
+    ViewBag.Title = main_lang.Roles;
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
 
 
-<h3>هل أنت متأكد من عمليةالحذف.؟</h3>
+<h3>@main_lang.DeleteMessage</h3>
 <div>
-    
+
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -25,24 +28,25 @@
         <dd>
             @Html.DisplayFor(model => model.CreatedAt)
         </dd>
-  
 
 
-        
+
+
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
         @Html.Hidden("RoleId", (string)ViewBag.RoleId)
-     
+
 
 
 
         <div class="modal-footer justify-content-center" style="margin-top:50px">
-            <input type="submit"  title="حذف الدورالمحدد" value="حذف الدور" class="btn btn-danger" /> 
+            <input type="submit" title="@main_lang.DeleteButton" value="@main_lang.DeleteButton" class="btn btn-danger" />
 
-            <button type="button"  title="اغلاق النافذة" class="btn btn-warning" data-dismiss="modal">إغلاق</button>
+            <button type="button" title="@main_lang.CloseButton" class="btn btn-warning" data-dismiss="modal">@main_lang.CloseButton</button>
         </div>
 
 

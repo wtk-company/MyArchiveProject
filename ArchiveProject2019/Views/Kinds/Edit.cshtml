@@ -1,7 +1,11 @@
 ﻿@model ArchiveProject2019.Models.Kind
 
+@using ArchiveProject2019.Resources
+@using ArchiveProject2019.HelperClasses
+
+
 @{
-    ViewBag.Title = "تعديل نوع الوثيقة ";
+    ViewBag.Title = main_lang.DocumentKinds;
     Layout = "~/Views/Shared/_Layout2.cshtml";
 
 }
@@ -11,7 +15,7 @@
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.CreatedAt)
-    @Html.Hidden("OldName",(string)ViewBag.OldName)
+    @Html.Hidden("OldName", (string)ViewBag.OldName)
     <div class="form-horizontal">
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -27,14 +31,14 @@
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
-        
+
 
 
 
         <div class="modal-footer justify-content-center" style="margin-top:50px">
 
-            <input type="submit" title="تعديل نوع معين" value="تعديل نوع معين" class="btn btn-success" />
-            <button type="button" title="إغلاق النافذة" class="btn btn-warning" data-dismiss="modal">إغلاق</button>
+            <input type="submit" title="@main_lang.EditButton" value=" @main_lang.EditButton" class="btn btn-success" />
+            <button type="button" title=" @main_lang.CloseButton" class="btn btn-warning" data-dismiss="modal">@main_lang.CloseButton</button>
         </div>
 
     </div>

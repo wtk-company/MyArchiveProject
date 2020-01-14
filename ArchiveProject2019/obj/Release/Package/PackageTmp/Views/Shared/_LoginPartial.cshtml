@@ -1,26 +1,29 @@
 ﻿@using Microsoft.AspNet.Identity
+
+@using ArchiveProject2019.Resources
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("أهلا بك " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li>
-        
-            
-            <a href="@Url.Action("LogOut","Account")">
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink(main_lang.Welcome + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li>
 
 
-                <i class="glyphicon glyphicon-log-out"></i>
+                <a href="@Url.Action("LogOut","Account")">
 
 
-                تسجيل الخروج
-            </a></li>
-    </ul>
+                    <i class="glyphicon glyphicon-log-out"></i>
+
+
+                    @main_lang.LogOut
+                </a>
+            </li>
+        </ul>
     }
 }
 else
@@ -33,7 +36,8 @@ else
                 <i class="glyphicon glyphicon-log-in"></i>
 
 
-                تسجيل الدخول
+                @main_lang.LogIn
             </a>
-        </li>    </ul>
+        </li>
+    </ul>
 }

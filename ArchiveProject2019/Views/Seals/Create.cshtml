@@ -1,7 +1,9 @@
 ﻿@model ArchiveProject2019.Models.SealDocument
+@using ArchiveProject2019.Resources
+
 
 @{
-    ViewBag.Title = "تسديد الوثيقة";
+    ViewBag.Title = main_lang.DocumentSealCreate;
     Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
 }
 
@@ -73,7 +75,7 @@
 </style>
 
 <div style="margin-bottom: 30px;">
-    <a href="@Url.Action("index","Documents")" class="btn btn-warning">عودة لقائمةالوثائق  </i></a>
+    <a href="@Url.Action("index","Documents")" class="btn btn-warning">@main_lang.AllDocuments  </a>
     <hr />
 </div>
 
@@ -105,9 +107,9 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("الملف", htmlAttributes: new { @class = "control-label col-md-1" })
+            @Html.Label(main_lang.File, htmlAttributes: new { @class = "control-label col-md-1" })
             <div class="col-md-11">
-                <button type="button" class="btn btn-info" onclick="scanToJpg();">مسح ضوئي</button>
+                <button type="button" class="btn btn-info" onclick="scanToJpg();">@main_lang.Scanner</button>
             </div>
         </div>
 
@@ -116,7 +118,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-1 col-md-10">
-                <input type="submit" value="تسديد" class="btn btn-primary" />
+                <input type="submit" value="@main_lang.AddButton" class="btn btn-primary" />
             </div>
         </div>
     </div>

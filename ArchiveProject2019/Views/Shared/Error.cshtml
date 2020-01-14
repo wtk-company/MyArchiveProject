@@ -1,20 +1,19 @@
-﻿@model System.Web.Mvc.HandleErrorInfo
-
-@{ 
+﻿@using ArchiveProject2019.Resources
+@{
     Layout = null;
 }
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- 
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>خطأ داخلي في التطبيق</title>
+    <title> @main_lang.InternalError </title>
     @Styles.Render("~/Content/DashBoardCss")
 
- 
+
 </head>
 
 <body class="nav-md">
@@ -24,19 +23,31 @@
             <div class="col-md-12">
                 <div class="col-middle">
                     <div class="text-center">
-                        <h1 class="error-number">خطأ</h1>
-                        <h2>حدث خطأ داخلي في التطبيق</h2>
+                        <h1 style="color:red" class="error-number">Internal error</h1>
+                        <h2> @main_lang.InternalErrorMessage</h2>
                         <hr />
 
                         <div class="mid_center">
                             <h3>
 
-                                <a style="" class="btn btn-success " title="الذهاب للقائمة الرئيسية" href="@Url.Action("Index","Home")">الذهاب للقائمة الرئيسية</a>
-                                <br />
-                                <a id="anch" style="" class="btn btn-danger " title="الذهاب للقائمة الرئيسية" href="#">عرض رسالة الخطأ</a>
+                                <a style="" class="btn btn-default " title="@main_lang.GoToHome " href="@Url.Action("Index","Home")">
+                                    <i class="glyphicon glyphicon-home"></i>
+
+                                    @main_lang.GoToHome
+                                </a>
 
                             </h3>
-                            
+
+                            <h3>
+
+                                <a style="" class="btn btn-default " title="@main_lang.GoToDashoard " href="@Url.Action("Index","DashBoard")">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                    @main_lang.GoToDashoard
+
+                                </a>
+
+                            </h3>
+
                         </div>
                     </div>
                 </div>
@@ -46,22 +57,6 @@
         <!-- footer content -->
     </div>
 
-   
+
 </body>
-@Scripts.Render("~/Content/DashBoardjs")
-
 </html>
-<script type="text/javascript">
-
-    $(document).ready(function () {
-
-        $("#anch").click(function () {
-
-            alert('@Model.Exception.Message');
-        });
-
-    });
-
-  
-    
-</script>

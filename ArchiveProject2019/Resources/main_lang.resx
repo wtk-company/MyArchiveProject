@@ -876,4 +876,238 @@
   <data name="RemoveFromFavoriteMessage" xml:space="preserve">
     <value>هل أنت متأكد من إزالة النموذج من المفضلة</value>
   </data>
+  <data name="EditErrorMaxNumber" xml:space="preserve">
+    <value>العملية غير متاحة، لا يمكن تقليل العدد الأعظمي للأعضاء لوجود الأعضاء مسبقا</value>
+  </data>
+  <data name="AccessDenied" xml:space="preserve">
+    <value>الوصول غير مسموح به</value>
+  </data>
+  <data name="AccessDeniedMessage" xml:space="preserve">
+    <value>لا تملك الصلاحية من أجل الوصول للعملية</value>
+  </data>
+  <data name="AccountLock" xml:space="preserve">
+    <value>الحساب مقفل</value>
+  </data>
+  <data name="AccountLockMessage" xml:space="preserve">
+    <value>تم عمليةقفل الحساب</value>
+  </data>
+  <data name="ActiveSuccess" xml:space="preserve">
+    <value>تم تعديل التفعيل بنجاح</value>
+  </data>
+  <data name="AddNewMaster" xml:space="preserve">
+    <value>اضافة مدير جديد</value>
+  </data>
+  <data name="AddPermissionsToRole" xml:space="preserve">
+    <value>اضافةالصلاحيات للدور</value>
+  </data>
+  <data name="AllDocuments" xml:space="preserve">
+    <value>قائمة الوثائق</value>
+  </data>
+  <data name="AllDocumentseals" xml:space="preserve">
+    <value>كل تسديدات الوثيقة</value>
+  </data>
+  <data name="ApplicationClosed" xml:space="preserve">
+    <value>التطبيق مغلق</value>
+  </data>
+  <data name="ApplicationClosedMessage" xml:space="preserve">
+    <value>التطبيق مغلق، لا يمكن الوصول لاي عملية</value>
+  </data>
+  <data name="BackToRoles" xml:space="preserve">
+    <value>عودة الى قائمة الادوار</value>
+  </data>
+  <data name="ChangeSetting" xml:space="preserve">
+    <value>تغيير الاعدادات</value>
+  </data>
+  <data name="ChooseJobTitle" xml:space="preserve">
+    <value>اختار المسمى الوظيفي</value>
+  </data>
+  <data name="ChoosePermissionForEdit" xml:space="preserve">
+    <value>اختيار الصلاحيات للتعديل</value>
+  </data>
+  <data name="ChosenNoResult" xml:space="preserve">
+    <value>لا يوجد أي نتائج</value>
+  </data>
+  <data name="DocumentDetails" xml:space="preserve">
+    <value>تفاصيل الوثيقة</value>
+  </data>
+  <data name="DocumentSealCreate" xml:space="preserve">
+    <value>انشاء تسديد للوثيقة</value>
+  </data>
+  <data name="DownloadFile" xml:space="preserve">
+    <value>تنزيل الملف</value>
+  </data>
+  <data name="EditChoosePermissionForEdit" xml:space="preserve">
+    <value>تعديل حالة الصلاحيات</value>
+  </data>
+  <data name="EditLock" xml:space="preserve">
+    <value>تعديل حالة قفل الحساب</value>
+  </data>
+  <data name="EditUser" xml:space="preserve">
+    <value>تعديل المستخدم</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>انثى</value>
+  </data>
+  <data name="GoToUsers" xml:space="preserve">
+    <value>عودة لقائمة المستخدمين</value>
+  </data>
+  <data name="InternalError" xml:space="preserve">
+    <value>خطأ داخلي</value>
+  </data>
+  <data name="InternalErrorMessage" xml:space="preserve">
+    <value>حدث خطأ داخلي في التطبيق</value>
+  </data>
+  <data name="LockMessage" xml:space="preserve">
+    <value>عمليةقفل الحساب</value>
+  </data>
+  <data name="LockSuccess" xml:space="preserve">
+    <value>تم عملية تعديل قفل الحساب بنجاح</value>
+  </data>
+  <data name="Lockutton" xml:space="preserve">
+    <value>قفل الحساب</value>
+  </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>تسجيل الدخول</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>تسجيل الخروج</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>ذكر</value>
+  </data>
+  <data name="MyDocumentSeals" xml:space="preserve">
+    <value>تسديداتي على الوثيقة</value>
+  </data>
+  <data name="NodocumentNotification" xml:space="preserve">
+    <value>لا يوجد أي وثائق منبهة</value>
+  </data>
+  <data name="NonAuthorize" xml:space="preserve">
+    <value>غير مسجل الدخول</value>
+  </data>
+  <data name="NonAuthorizeMessage" xml:space="preserve">
+    <value>لا يوجد تسجيل دخول للتطبيق، يرجى تسجيل الدخول</value>
+  </data>
+  <data name="NoPermissionFound" xml:space="preserve">
+    <value>لا يوجد أ صلاحيات متوفرة</value>
+  </data>
+  <data name="NoPermissionSelect" xml:space="preserve">
+    <value>لا يوجد صلاحيات محددة</value>
+  </data>
+  <data name="OpenFile" xml:space="preserve">
+    <value>فتح الملف</value>
+  </data>
+  <data name="OperationError" xml:space="preserve">
+    <value>العمليات غير متاحة</value>
+  </data>
+  <data name="PermissionRole" xml:space="preserve">
+    <value>صلاحيات الدور</value>
+  </data>
+  <data name="Scanner" xml:space="preserve">
+    <value>مسح ضوئي</value>
+  </data>
+  <data name="SelectFromResult" xml:space="preserve">
+    <value>اختر من النتائج</value>
+  </data>
+  <data name="UnLockButtton" xml:space="preserve">
+    <value>فك قفل الحساب</value>
+  </data>
+  <data name="Unlockmessage" xml:space="preserve">
+    <value>عملية فك قفل الحساب</value>
+  </data>
+  <data name="UserPermissions" xml:space="preserve">
+    <value>صلاحيات المستخدم</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>أهلا بك</value>
+  </data>
+  <data name="AddUsersToGroup" xml:space="preserve">
+    <value>اضافة مستخدمين للمجموعة</value>
+  </data>
+  <data name="BackToDocuments" xml:space="preserve">
+    <value>عودة لقائمة الوثائق</value>
+  </data>
+  <data name="BackToGroups" xml:space="preserve">
+    <value>عودة لقائمة المجموعات</value>
+  </data>
+  <data name="ChooseUsers" xml:space="preserve">
+    <value>اختر المستخدمين</value>
+  </data>
+  <data name="DocCanEditButton" xml:space="preserve">
+    <value>تفعيل التعديل</value>
+  </data>
+  <data name="DocCanNoteditButton" xml:space="preserve">
+    <value>الغاء التعديل</value>
+  </data>
+  <data name="DocCanNotRelateButton" xml:space="preserve">
+    <value>الغاء الربط</value>
+  </data>
+  <data name="DocCanNotReplayButton" xml:space="preserve">
+    <value>الغاء الرد</value>
+  </data>
+  <data name="DocCanNotSealButton" xml:space="preserve">
+    <value>الغاء التسديد</value>
+  </data>
+  <data name="DocCanRelateButton" xml:space="preserve">
+    <value>تفعيل الربط</value>
+  </data>
+  <data name="DocCanReplayButton" xml:space="preserve">
+    <value>تفعيل الرد</value>
+  </data>
+  <data name="DocCanSealButton" xml:space="preserve">
+    <value>تفعيل التسديد</value>
+  </data>
+  <data name="DocEditMessage" xml:space="preserve">
+    <value>هل أنت متأكد من عملية تعديل التعديل للوثيقة</value>
+  </data>
+  <data name="DocEditModal" xml:space="preserve">
+    <value>عملية تعديل التعديل على الوثيقة</value>
+  </data>
+  <data name="DocRelateMessage" xml:space="preserve">
+    <value>هل أنت متأكد من عملية تعديل الربط</value>
+  </data>
+  <data name="DocRelateModal" xml:space="preserve">
+    <value>عملية تعديل الربط</value>
+  </data>
+  <data name="DocReplayMessage" xml:space="preserve">
+    <value>هل أنت متأكد من عملية تعديل الرد</value>
+  </data>
+  <data name="DocReplayModal" xml:space="preserve">
+    <value>عملية تعديل الرد</value>
+  </data>
+  <data name="DocSealMessage" xml:space="preserve">
+    <value>هل أنت متأكد من عملية تعديل التسديد</value>
+  </data>
+  <data name="DocSealModel" xml:space="preserve">
+    <value>عملية تعديل التسديد</value>
+  </data>
+  <data name="DocumentDepartmentCreateError" xml:space="preserve">
+    <value>لم يتم اختيار اي قسم</value>
+  </data>
+  <data name="DocumentDepartments" xml:space="preserve">
+    <value>الاقسام الخاصة بالوثيقة</value>
+  </data>
+  <data name="DocumentGroups" xml:space="preserve">
+    <value>مجموعات الوثيقة</value>
+  </data>
+  <data name="DocumentGroupsCreateError" xml:space="preserve">
+    <value>لم يتم اختيار اي مجموعات للاضافة</value>
+  </data>
+  <data name="DocumentUsers" xml:space="preserve">
+    <value>عناصر الوثيقة</value>
+  </data>
+  <data name="DocumentUsersCreateError" xml:space="preserve">
+    <value>لم يتم اختيار اي عناصر للاضافة</value>
+  </data>
+  <data name="EditStatus" xml:space="preserve">
+    <value>تعديل الحالة</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>إزالة</value>
+  </data>
+  <data name="RemoveSuccess" xml:space="preserve">
+    <value>تمت عملية الازالة بنجاح</value>
+  </data>
+  <data name="RemoveUser" xml:space="preserve">
+    <value>ازالة مستخدم من المجموعة</value>
+  </data>
 </root>

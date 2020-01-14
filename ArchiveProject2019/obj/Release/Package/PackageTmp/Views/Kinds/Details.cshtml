@@ -1,7 +1,10 @@
 ﻿@model ArchiveProject2019.Models.Kind
+@using ArchiveProject2019.Resources
+@using ArchiveProject2019.HelperClasses
+
 
 @{
-    ViewBag.Title = "تفاصيل نوع الوثيقة";
+    ViewBag.Title = main_lang.DocumentKinds;
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
@@ -21,7 +24,7 @@
 
 
 
-       
+
 
 
         <dt>
@@ -70,7 +73,7 @@
 
 <div class="modal-footer justify-content-center" style="margin-top:50px">
 
-    <button type="button" title="إغلاق النافذة" class="btn btn-warning" data-dismiss="modal">إغلاق</button>
+    <button type="button" title=" @main_lang.CloseButton" class="btn btn-warning" data-dismiss="modal">@main_lang.CloseButton</button>
 </div>
 
 

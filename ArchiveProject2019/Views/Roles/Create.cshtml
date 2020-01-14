@@ -1,19 +1,22 @@
 ﻿@model ArchiveProject2019.Models.RoleViewModel
+@using ArchiveProject2019.Resources
+
+
 
 @{
-    ViewBag.Title = "إضافة دور جديد";
+    ViewBag.Title = main_lang.Roles;
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
 
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-    
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -30,9 +33,9 @@
 
 
         <div class="modal-footer justify-content-center" style="margin-top:50px">
-                <input title="إضافة دور جديد" type="submit" value="اضافة دور" class="btn btn-primary" />
+            <input title="@main_lang.AddButton" type="submit" value="@main_lang.AddButton" class="btn btn-primary" />
 
-            <button title="اغلاق القائمة" type="button" class="btn btn-warning" data-dismiss="modal">إغلاق</button>
+            <button title="@main_lang.CloseButton" type="button" class="btn btn-warning" data-dismiss="modal">@main_lang.CloseButton</button>
         </div>
 
 

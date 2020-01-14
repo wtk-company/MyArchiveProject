@@ -1,16 +1,19 @@
 ﻿@model ArchiveProject2019.Models.UserGroup
 
+@using ArchiveProject2019.Resources
+
+
 @{
-    ViewBag.Title = "إزالة مستخدم من المجموعة";
+    ViewBag.Title = main_lang.GroupUsers;
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
 
-<h3>هل أنت متأكد من عملية الإزاله؟</h3>
+<h3>@main_lang.OkRemove</h3>
 <div>
-    
+
     <dl class="dl-horizontal">
-        
+
 
         <dt>
             @Html.DisplayNameFor(model => model.GroupId)
@@ -30,7 +33,7 @@
 
 
 
-    
+
 
         <dt>
             @Html.DisplayNameFor(model => model.CreatedAt)
@@ -43,7 +46,8 @@
 
     </dl>
 
-    @using (Html.BeginForm("Delete","UsersGroups")) {
+    @using (Html.BeginForm("Delete", "UsersGroups"))
+    {
         @Html.AntiForgeryToken()
 
 
@@ -53,9 +57,9 @@
 
 
         <div class="modal-footer justify-content-center" style="margin-top:50px">
-            <input type="submit" title=" ازالة المستخدم" value="ازالة المستخدم" class="btn btn-danger" />
+            <input type="submit" title=" @main_lang.RemoveUser" value="@main_lang.RemoveUser" class="btn btn-danger" />
 
-            <button type="button" title="اغلاق النافذة" class="btn btn-warning" data-dismiss="modal">إغلاق</button>
+            <button type="button" title="@main_lang.CloseButton" class="btn btn-warning" data-dismiss="modal">@main_lang.CloseButton</button>
         </div>
     }
 </div>

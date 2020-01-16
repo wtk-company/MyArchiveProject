@@ -52,6 +52,9 @@ namespace ArchiveProject2019.Models
         public ApplicationUser UpdatedBy { set; get; }
 
 
+        [Display(Name = "EnableSearch", ResourceType = typeof(main_lang))]
+        public bool EnableSearch { get; set; }
+
         // Relate with Form Table
         [Display(Name = "FormId", ResourceType = typeof(main_lang))]
         public int FormId { get; set; }

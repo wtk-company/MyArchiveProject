@@ -21,20 +21,15 @@ namespace ArchiveProject2019.Controllers
 {
     public class DocumentsController : Controller
     {
-        
-
         ApplicationDbContext _context;
 
         public DocumentsController()
         {
             this._context = new ApplicationDbContext();
         }
-
-
         
 
         [AccessDeniedAuthorizeattribute(ActionName = "DocumentCreate")]
-
         public ActionResult Form()
         {
             ViewBag.Current = "Document";
@@ -2307,9 +2302,7 @@ namespace ArchiveProject2019.Controllers
         {
             ViewBag.Current = "Document";
             ViewBag.Page = 0;
-
-
-
+            
             if (!id.Equals("none"))
             {
                 ViewBag.Msg = id;
@@ -2332,17 +2325,16 @@ namespace ArchiveProject2019.Controllers
                 string CurrentUserId = this.User.Identity.GetUserId();
                 DateTime TodayDate = DateTime.ParseExact(DateTime.Now.ToString("yyyy/MM/dd").Replace("-", "/"), "yyyy/MM/dd", null);
 
-                documents = _context.Documents.Include(a => a.TypeMail).Include(a=>a.Department).Where(a => a.NotificationUserId.Equals(CurrentUserId) && a.NotificationDate != null).ToList();
+                documents = _context.Documents.Include(a => a.TypeMail).Include(a=>a.Department).Include(f => f.Form).Where(a => a.NotificationUserId.Equals(CurrentUserId) && a.NotificationDate != null).ToList();
 
                 documents = documents.Where(a => EqualDate(a.NotificationDate, TodayDate)).OrderByDescending(a=>a.NotificationDate);
             }
             else
             {
-             documents = _context.Documents.Where(a => a.CreatedById.Equals(currentUserId) &&a.IsGeneralize==false).Include(a => a.TypeMail).Include(a=>a.Department).OrderByDescending(a => a.CreatedAt).Take(50);
-
+                documents = _context.Documents.Where(a => a.CreatedById.Equals(currentUserId) &&a.IsGeneralize==false).Include(f => f.Form).Include(a => a.TypeMail).Include(a=>a.Department).OrderByDescending(a => a.CreatedAt).Take(50);
             }
 
-
+            
 
             // Decrypt Document Attributes.
             if (ManagedAes.IsCipher)
@@ -2363,13 +2355,15 @@ namespace ArchiveProject2019.Controllers
         
         [HttpPost]
         [AccessDeniedAuthorizeattribute(ActionName = "DocumentIndex")]
-        public ActionResult Index(string RetrievalCount, string DocumentSubject, string DocumentModel, string OrderBY, string OrderType, string DocumentNumber, string DocumentForm, string DocumentKind, string DocumentMail, string DocFirstDate, string DocEndDate)
+        public ActionResult Index(string RetrievalCount, string DocumentSubject, string DocumentModel, string OrderBY, string OrderType, string DocumentNumber, string DocumentForm, string DocumentKind, string DocumentMail, string DocFirstDate, string DocEndDate, List<ExtraFieldViewModel> ExtraField)
         {
 
             string currentUserId = this.User.Identity.GetUserId();
+            
+            
 
-            List<Document> documents = null;
             DateTime fdate, ldate;
+
             if (DocFirstDate == null || DocFirstDate == "")
             {
                 fdate = DateTime.MinValue;
@@ -2379,7 +2373,7 @@ namespace ArchiveProject2019.Controllers
                 DocFirstDate = DocFirstDate.Replace("-", "/");
                 fdate = DateTime.ParseExact(DocFirstDate, "yyyy/MM/dd", null);
             }
-
+            
             if (DocEndDate == null || DocEndDate == "")
             {
                 ldate = DateTime.MaxValue;
@@ -2468,13 +2462,47 @@ namespace ArchiveProject2019.Controllers
 
             }
 
-            documents = _context.Documents.Where(a => MyDocId.Contains(a.Id)).Include(a => a.TypeMail).Include(a=>a.Department).ToList();
+            List<Document> documents = new List<Document>();
+            List<int> tempDocId = new List<int>();
+            if (DocumentForm != "" && DocumentForm != null)
+            {
+                var FormId = Convert.ToInt32(DocumentForm);
 
+                var docs = _context.Documents.Where(a => MyDocId.Contains(a.Id) && a.FormId == FormId).Include(a => a.TypeMail).Include(d => d.Values).Include(a => a.Department).ToList();
+                
+                var Fields = _context.Fields.Where(f => f.FormId == FormId && f.EnableSearch).Include(f => f.Values).ToList();
+
+                for (int i = 0; i < docs.Count; i++)
+                {
+                    int matching = 0;
+
+                    for (int j = 0; j < ExtraField.Count; j++)
+                    {
+                        var values = docs[i].Values.Where(v => v.FieldId == ExtraField[j].Id && v.FieldValue.Equals(ExtraField[j].Value)).ToList();
+
+                        if (values.Count != 0 || ExtraField[j].Value == null)
+                        {
+                            matching++;
+                        }
+
+                    } 
+                    if (matching == ExtraField.Count)
+                    {
+                        documents.Add(docs[i]);
+                    }
+                }
+            }
+            else
+            {
+                documents = _context.Documents.Where(a => MyDocId.Contains(a.Id)).Include(a => a.TypeMail).Include(d => d.Values).Include(a => a.Department).ToList();
+            }
+            
             // Decrypt Document Attributes.
             if (ManagedAes.IsCipher)
             {
                 foreach (var Document in documents)
                 {
+                    
                     Document.Address = ManagedAes.DecryptText(Document.Address);
                     Document.CreatedAt = ManagedAes.DecryptText(Document.CreatedAt);
                     Document.Description = ManagedAes.DecryptText(Document.Description);
@@ -2505,8 +2533,8 @@ namespace ArchiveProject2019.Controllers
                                              )
                                           &&
 
-                                             d.FormId.ToString().Contains(DocumentForm)
-                                             &&
+                                             //d.FormId.ToString().Contains(DocumentForm)
+                                             //&&
 
 
                                              (
@@ -3396,6 +3424,19 @@ namespace ArchiveProject2019.Controllers
             }
 
         }
+
+        public ActionResult _ExtraSearchFields(int? id)
+        {
+            if (id == null)
+            {
+                id = 0;
+            }
+
+            var fields = _context.Fields.Where(f => f.FormId == id && f.EnableSearch).ToList();
+            
+            return PartialView("_ExtraSearchFields", fields);
+        }
+
         protected override void Dispose(bool disposing)
         {
             _context.Dispose();

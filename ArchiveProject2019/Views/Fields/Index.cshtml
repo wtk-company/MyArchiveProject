@@ -118,6 +118,9 @@
                 @Html.DisplayNameFor(model => model.IsRequired)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.EnableSearch)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Type)
             </th>
 
@@ -147,6 +150,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.IsRequired)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnableSearch)
                 </td>
                 <td>
                    @switch(item.Type)

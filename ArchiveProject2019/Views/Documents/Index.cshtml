@@ -164,6 +164,7 @@
                         </ul>
                         <div class="clearfix"></div>
                     </div>
+
                     <div class="x_content">
 
 
@@ -192,10 +193,12 @@
 
                                     @Html.Label("نموذج الوثيقة", htmlAttributes: new { @class = "control-label" })
 
-                                    @Html.DropDownList("DocumentForm", ViewBag.Forms as SelectList, "اختر النموذج", new { @class = "form-control" })
+                                    @Html.DropDownList("DocumentForm", ViewBag.Forms as SelectList, "اختر النموذج", new { @class = "form-control", @id = "FormIdToggle" })
 
 
                                 </div>
+
+                                <div id="ExtraFieldsPlace"></div>
 
                                 <div class="col-md-3">
 
@@ -224,9 +227,9 @@
 
 
 
-                            </div>
+                                @*</div>
 
-                            <div class="row">
+                                    <div class="row">*@
 
                                 <div class="col-md-3">
 
@@ -242,25 +245,18 @@
 
                                     <input class="form-control" type="text" onfocusin="(this.type='date')" onfocusout="(this.type='text')" placeholder="الى تاريخ الوثيقة" name="DocEndDate" id="DocEndDate">
                                 </div>
-                                <div class="col-md-6">
-
-                                    @Html.Label("موضوع الوثيقة", htmlAttributes: new { @class = "control-label" })
-
-                                    <input type="text" placeholder="موضوع الوثيقة ...." name="DocumentSubject" class="form-control" />
-
-
-                                </div>
 
 
 
 
 
 
-                            </div>
+
+                                @*</div>
 
 
 
-                            <div class="row">
+                                    <div class="row">*@
 
 
 
@@ -332,6 +328,16 @@
 
 
                                 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-9">
+
+                                    @Html.Label("موضوع الوثيقة", htmlAttributes: new { @class = "control-label" })
+
+                                    <input type="text" placeholder="موضوع الوثيقة ...." name="DocumentSubject" class="form-control" />
+
+
+                                </div>
 
                                 <div class="col-md-3">
                                     @Html.Label("نوع الترتيب", htmlAttributes: new { @class = "control-label" })
@@ -341,7 +347,6 @@
                                         <option selected="selected" value="2">تصاعدي</option>
                                     </select>
                                 </div>
-
 
 
 
@@ -790,8 +795,25 @@
                 </div>
             </div>
 
-            <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-            <script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+
+
+     $("#FormIdToggle").on("change", function () {
+
+
+        var id = $(this).val();
+
+        $.ajax({
+            url: '@Url.Action("_ExtraSearchFields", "Documents")',
+            type: 'GET',
+            data: { id: id },
+            success: function (partialView) {
+                $('#ExtraFieldsPlace').html(partialView);
+            }
+        });
+
+    });
 
     $("#btnNewModel").on("click", function () {
 

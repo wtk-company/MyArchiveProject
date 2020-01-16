@@ -130,7 +130,7 @@ namespace ArchiveProject2019.Controllers
 
         
         [AccessDeniedAuthorizeattribute(ActionName = "FieldsCreate")]
-        public ActionResult Create([Bind(Include = "Id,Name,IsRequired,Type")] Field field)
+        public ActionResult Create(Field field)
         {
             //No session
             ViewBag.Current = "Forms";

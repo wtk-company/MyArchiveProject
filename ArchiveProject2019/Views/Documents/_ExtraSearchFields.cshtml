@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ArchiveProject2019.Models.Field>
+
+
+
+@{
+    int i = 0;
+    foreach (var field in Model)
+    {
+    <div class="col-md-3">
+
+        @Html.Label(field.Name, htmlAttributes: new { @class = "control-label" })
+        @switch (field.Type)
+        {
+            case "bool":
+                @Html.Hidden("ExtraField[" + i + "].Id", field.Id)
+                @Html.RadioButton("ExtraField[" + i + "].Value", "", "true")@:نعم
+                @Html.RadioButton("ExtraField[" + i + "].Value", "","false")@:لا
+            break;
+
+
+            case "float":
+            case "text":
+            case "phone":
+            case "email":
+                @Html.Hidden("ExtraField[" + i + "].Id", field.Id)
+                @Html.TextBox("ExtraField[" + i + "].Value", "", new { @class = "form-control" })
+                break;
+
+
+
+            case "date":
+                @Html.Hidden("ExtraField[" + i + "].Id", field.Id)
+                @Html.TextBox("ExtraField[" + i + "].Value", "", new { @class = "form-control", @type = "date" })
+                break;
+
+                
+        }
+    </div>
+        i++;
+    }
+}

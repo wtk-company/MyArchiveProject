@@ -474,4 +474,13 @@
   <data name="DepartmentNameRequired" xml:space="preserve">
     <value>يجب إدخال إسم القسم</value>
   </data>
+  <data name="FormType" xml:space="preserve">
+    <value>نمط</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="EnableSearch" xml:space="preserve">
+    <value>تفعيل البحث؟</value>
+  </data>
 </root>

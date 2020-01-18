@@ -1,5 +1,6 @@
 ﻿using ArchiveProject2019.HelperClasses;
 using ArchiveProject2019.Models;
+using ArchiveProject2019.Security;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -48,6 +49,15 @@ namespace ArchiveProject2019.Controllers
             }
             Session["Document_Id"] = Id;
             var documentGroups = db.DocumentGroups.Where(a => a.DocumentId == Id).Include(f => f.CreatedBy).Include(f => f.Group).Include(f => f.document);
+
+            if (ManagedAes.CipherData)
+            {
+                foreach (DocumentGroup Dk in documentGroups)
+                {
+                    Dk.document.Subject = ManagedAes.DecryptText(Dk.document.Subject);
+
+                }
+            }
             return View(documentGroups.OrderByDescending(a=>a.CreatedAt).ToList());
         }
 
@@ -151,9 +161,18 @@ namespace ArchiveProject2019.Controllers
                             CreatedAt = NotificationTime,
                             Active = false,
                             UserId = user.Id,
-                            Message = "تم إضافة وثيقة جديدة للمجموعة :"+GroupName+"، رقم الوثيقة :"+doc.Name+" ، موضوع الوثيقة:"+doc.Subject+
-                            " ، عنوان الوثيقة:"+doc.Address+" ،وصف الوثيقة :"+doc.Description
+                            Message = "تم إضافة وثيقة جديدة للمجموعة :"+GroupName+
+                            "، رقم الوثيقة :"+
+
+                            (ManagedAes.CipherData ? ManagedAes.DecryptText(doc.DocumentNumber) : doc.DocumentNumber)
+                            + " موضوع الوثيقة :" +
+                            (ManagedAes.CipherData ? ManagedAes.DecryptText(doc.Subject) : doc.Subject)
+                            + " ،عنوان الوثيقة :" +
+                           (ManagedAes.CipherData ? ManagedAes.DecryptText(doc.Address) : doc.Address)
+                            + "،وصف الوثيقة :" +
+                            (ManagedAes.CipherData ? ManagedAes.DecryptText(doc.Description) : doc.Description)
                            ,
+
                             NotificationOwnerId = UserId
                         };
                         db.Notifications.Add(notification);
@@ -189,6 +208,14 @@ namespace ArchiveProject2019.Controllers
             {
                 return RedirectToAction("HttpNotFoundError", "ErrorController");
 
+            }
+
+            if (ManagedAes.CipherData)
+            {
+
+                documentGroup.document.Subject = ManagedAes.DecryptText(documentGroup.document.Subject);
+
+               
             }
             return View(documentGroup);
         }
@@ -226,9 +253,16 @@ namespace ArchiveProject2019.Controllers
                     CreatedAt = NotificationTime,
                     Active = false,
                     UserId = user.Id,
-                    Message = "تم حذف وثيقة من المجموعة :" + GroupName + "، رقم الوثيقة :" + doc.Name + " ، موضوع الوثيقة:" + doc.Subject +
-                    " ، عنوان الوثيقة:" + doc.Address + " ،وصف الوثيقة :" + doc.Description
-                   ,
+                    Message = "تم حذف وثيقة من المجموعة :" + GroupName + "، رقم الوثيقة :"
+
+                     + (ManagedAes.CipherData ? ManagedAes.DecryptText(doc.DocumentNumber) : doc.DocumentNumber)
+                            + " موضوع الوثيقة :" +
+                            (ManagedAes.CipherData ? ManagedAes.DecryptText(doc.Subject) : doc.Subject)
+                            + " ،عنوان الوثيقة :" +
+                           (ManagedAes.CipherData ? ManagedAes.DecryptText(doc.Address) : doc.Address)
+                            + "،وصف الوثيقة :" +
+                            (ManagedAes.CipherData ? ManagedAes.DecryptText(doc.Description) : doc.Description)
+                           ,
                     NotificationOwnerId = UserId
                 };
                 db.Notifications.Add(notification);
@@ -257,6 +291,13 @@ namespace ArchiveProject2019.Controllers
             if (documentGroup == null)
             {
                 return RedirectToAction("HttpNotFoundError", "ErrorController");
+
+            }
+            if (ManagedAes.CipherData)
+            {
+
+                documentGroup.document.Subject = ManagedAes.DecryptText(documentGroup.document.Subject);
+
 
             }
             return View(documentGroup);
@@ -313,9 +354,16 @@ namespace ArchiveProject2019.Controllers
                     CreatedAt = NotificationTime,
                     Active = false,
                     UserId = user.Id,
-                    Message = "تمت عملية  " + ActiveMode +" في المجموعة "+GroupName+" رقم الوثيقة :" + doc.DocumentNumber + " موضوع الوثيقة :" + doc.Subject
-                    + " ،عنوان الوثيقة :" + doc.Address + "،وصف الوثيقة :" + doc.Description
-                   ,
+                    Message = "تمت عملية  " + ActiveMode +" في المجموعة "+GroupName+" رقم الوثيقة :" +
+
+                    (ManagedAes.CipherData ? ManagedAes.DecryptText(doc.DocumentNumber) : doc.DocumentNumber)
+                            + " موضوع الوثيقة :" +
+                            (ManagedAes.CipherData ? ManagedAes.DecryptText(doc.Subject) : doc.Subject)
+                            + " ،عنوان الوثيقة :" +
+                           (ManagedAes.CipherData ? ManagedAes.DecryptText(doc.Address) : doc.Address)
+                            + "،وصف الوثيقة :" +
+                            (ManagedAes.CipherData ? ManagedAes.DecryptText(doc.Description) : doc.Description)
+                           ,
                     NotificationOwnerId = UserId
                 };
                 db.Notifications.Add(notification);
@@ -347,6 +395,13 @@ namespace ArchiveProject2019.Controllers
             if (documentGroup == null)
             {
                 return RedirectToAction("HttpNotFoundError", "ErrorController");
+
+            }
+            if (ManagedAes.CipherData)
+            {
+
+                documentGroup.document.Subject = ManagedAes.DecryptText(documentGroup.document.Subject);
+
 
             }
             return View(documentGroup);
@@ -403,9 +458,15 @@ namespace ArchiveProject2019.Controllers
                     CreatedAt = NotificationTime,
                     Active = false,
                     UserId = user.Id,
-                    Message = "تمت عملية  " + ActiveMode + " في المجموعة " + GroupName + " رقم الوثيقة :" + doc.DocumentNumber + " موضوع الوثيقة :" + doc.Subject
-                    + " ،عنوان الوثيقة :" + doc.Address + "،وصف الوثيقة :" + doc.Description
-                   ,
+                    Message = "تمت عملية  " + ActiveMode + " في المجموعة " + GroupName + " رقم الوثيقة :" +
+                  (ManagedAes.CipherData ? ManagedAes.DecryptText(doc.DocumentNumber) : doc.DocumentNumber)
+                            + " موضوع الوثيقة :" +
+                            (ManagedAes.CipherData ? ManagedAes.DecryptText(doc.Subject) : doc.Subject)
+                            + " ،عنوان الوثيقة :" +
+                           (ManagedAes.CipherData ? ManagedAes.DecryptText(doc.Address) : doc.Address)
+                            + "،وصف الوثيقة :" +
+                            (ManagedAes.CipherData ? ManagedAes.DecryptText(doc.Description) : doc.Description)
+                           ,
                     NotificationOwnerId = UserId
                 };
                 db.Notifications.Add(notification);
@@ -434,6 +495,13 @@ namespace ArchiveProject2019.Controllers
             if (documentGroup == null)
             {
                 return RedirectToAction("HttpNotFoundError", "ErrorController");
+
+            }
+            if (ManagedAes.CipherData)
+            {
+
+                documentGroup.document.Subject = ManagedAes.DecryptText(documentGroup.document.Subject);
+
 
             }
             return View(documentGroup);
@@ -490,9 +558,16 @@ namespace ArchiveProject2019.Controllers
                     CreatedAt = NotificationTime,
                     Active = false,
                     UserId = user.Id,
-                    Message = "تمت عملية  " + ActiveMode + " في المجموعة " + GroupName + " رقم الوثيقة :" + doc.DocumentNumber + " موضوع الوثيقة :" + doc.Subject
-                    + " ،عنوان الوثيقة :" + doc.Address + "،وصف الوثيقة :" + doc.Description
-                   ,
+                    Message = "تمت عملية  " + ActiveMode + " في المجموعة " + GroupName + " رقم الوثيقة :" +
+
+                   (ManagedAes.CipherData ? ManagedAes.DecryptText(doc.DocumentNumber) : doc.DocumentNumber)
+                            + " موضوع الوثيقة :" +
+                            (ManagedAes.CipherData ? ManagedAes.DecryptText(doc.Subject) : doc.Subject)
+                            + " ،عنوان الوثيقة :" +
+                           (ManagedAes.CipherData ? ManagedAes.DecryptText(doc.Address) : doc.Address)
+                            + "،وصف الوثيقة :" +
+                            (ManagedAes.CipherData ? ManagedAes.DecryptText(doc.Description) : doc.Description)
+                           ,
                     NotificationOwnerId = UserId
                 };
                 db.Notifications.Add(notification);
@@ -522,6 +597,13 @@ namespace ArchiveProject2019.Controllers
             if (documentGroup == null)
             {
                 return RedirectToAction("HttpNotFoundError", "ErrorController");
+
+            }
+            if (ManagedAes.CipherData)
+            {
+
+                documentGroup.document.Subject = ManagedAes.DecryptText(documentGroup.document.Subject);
+
 
             }
             return View(documentGroup);
@@ -578,9 +660,16 @@ namespace ArchiveProject2019.Controllers
                     CreatedAt = NotificationTime,
                     Active = false,
                     UserId = user.Id,
-                    Message = "تمت عملية  " + ActiveMode + " في المجموعة " + GroupName + " رقم الوثيقة :" + doc.DocumentNumber + " موضوع الوثيقة :" + doc.Subject
-                    + " ،عنوان الوثيقة :" + doc.Address + "،وصف الوثيقة :" + doc.Description
-                   ,
+                    Message = "تمت عملية  " + ActiveMode + " في المجموعة " + GroupName + " رقم الوثيقة :" +
+
+                                (ManagedAes.CipherData ? ManagedAes.DecryptText(doc.DocumentNumber) : doc.DocumentNumber)
+                            + " موضوع الوثيقة :" +
+                            (ManagedAes.CipherData ? ManagedAes.DecryptText(doc.Subject) : doc.Subject)
+                            + " ،عنوان الوثيقة :" +
+                           (ManagedAes.CipherData ? ManagedAes.DecryptText(doc.Address) : doc.Address)
+                            + "،وصف الوثيقة :" +
+                            (ManagedAes.CipherData ? ManagedAes.DecryptText(doc.Description) : doc.Description)
+                           ,
                     NotificationOwnerId = UserId
                 };
                 db.Notifications.Add(notification);
@@ -605,6 +694,13 @@ namespace ArchiveProject2019.Controllers
             if (documentGroup == null)
             {
                 return RedirectToAction("HttpNotFoundError", "ErrorController");
+
+            }
+            if (ManagedAes.CipherData)
+            {
+
+                documentGroup.document.Subject = ManagedAes.DecryptText(documentGroup.document.Subject);
+
 
             }
             return View(documentGroup);

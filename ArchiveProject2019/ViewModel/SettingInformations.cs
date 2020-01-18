@@ -9,31 +9,41 @@ namespace ArchiveProject2019.ViewModel
 {
     public class SettingInformations
     {
-        [Display(Name = "التخزين في قاعدة البيانات")]
-        [Required(ErrorMessage ="الحقل ضروري")]
+        [Display(Name = "SaveInDb", ResourceType = typeof(main_lang))]
+     
         public bool SaveDataBase { set; get; }
-        [Display(Name = " تشفير البيانات المهمة ")]
-        [Required(ErrorMessage = "الحقل ضروري")]
+        [Display(Name = "CipherData", ResourceType = typeof(main_lang))]
+
 
         public bool Cigher { set; get; }
 
-        [StringLength(maximumLength: 300,MinimumLength =12,ErrorMessage = "يجب أن تكون كلمةالسر طويلة بالقدر الكافي")]
-        [Display(Name = "كلمة سر التشفير")]
-        [Required(ErrorMessage = "الحقل ضروري")]
 
-        public string CipherPassword { set; get; }
-        [Display(Name = "رقم اللوحة الام للجهاز")]
-        [Required(ErrorMessage = "الحقل ضروري")]
+
+        [Display(Name = "CipherFiles", ResourceType = typeof(main_lang))]
+
+        public bool CigherFiles { set; get; }
+
+
+        [Display(Name = "MD")]
+        
+        [DataType(DataType.Password)]
+        [Required(ErrorMessageResourceType = typeof(main_lang), ErrorMessageResourceName = "FieldRequired")]
+
 
         public string MotherBoardId { set; get; }
-        [Display(Name = "رقم المعالج للجهاز")]
-        [Required(ErrorMessage = "الحقل ضروري")]
+        [Display(Name = "CD")]
+        [Required(ErrorMessageResourceType = typeof(main_lang), ErrorMessageResourceName = "FieldRequired")]
+
+        [DataType(DataType.Password)]
+
 
         public string CpudId { set; get; }
 
 
         [Required(ErrorMessageResourceType = typeof(main_lang), ErrorMessageResourceName = "UserNameRequired")]
         [Display(Name = "UserName", ResourceType = typeof(main_lang))]
+        [DataType(DataType.Password)]
+
         public string UserName { get; set; }
 
 

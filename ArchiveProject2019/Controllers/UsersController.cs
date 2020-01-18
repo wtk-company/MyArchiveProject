@@ -129,7 +129,7 @@ namespace ArchiveProject2019.Controllers
                 }
                 var user = new ApplicationUser
                 {
-                    UserName = DateTime.Now.ToString("HHmmss"),
+                    UserName = DateTime.Now.ToString("ddMMyyyyHHmmss"),
                     Email = model.Email,
                     FullName = model.FullName,
                     Gender = model.Gender,
@@ -189,7 +189,7 @@ namespace ArchiveProject2019.Controllers
 
 
 
-                    ApplicationUser Auser = db.Users.Find(UserId);
+                    ApplicationUser Auser = db.Users.Find(user.Id);
                     Auser.UserName = model.UserName;
                     db.Entry(Auser).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();

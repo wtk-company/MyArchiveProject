@@ -15,74 +15,85 @@
 
     if (ViewBag.Msg == "CreateError")
     {
-    <div class="alert alert-warning enterRemove" style="text-align:center;font-size:larger">
-        <span class="glyphicon glyphicon-bell">
+        <div class="alert alert-warning enterRemove" style="text-align:center;font-size:larger">
+            <span class="glyphicon glyphicon-bell">
 
-        </span>
-        @main_lang.CreateError
+            </span>
+            @main_lang.CreateError
 
-    </div>
+        </div>
     }
 
 
     if (ViewBag.Msg == "CreateSuccess")
     {
-<div class="alert alert-info enterRemove" style="text-align:center;font-size:larger">
-    <span class="glyphicon glyphicon-bell">
+        <div class="alert alert-info enterRemove" style="text-align:center;font-size:larger">
+            <span class="glyphicon glyphicon-bell">
 
-    </span>
-    @main_lang.CreateSuccess
-</div>
+            </span>
+            @main_lang.CreateSuccess
+        </div>
     }
 
 
+
+    if (ViewBag.Msg == "EditSearch")
+    {
+        <div class="alert alert-info enterRemove" style="text-align:center;font-size:larger">
+            <span class="glyphicon glyphicon-bell">
+
+            </span>
+            @main_lang.EditSearch
+        </div>
+    }
+
     if (ViewBag.Msg == "EditSuccess")
     {
-<div class="alert alert-success enterRemove" style="text-align:center;font-size:larger">
-    <span class="glyphicon glyphicon-bell">
+        <div class="alert alert-success enterRemove" style="text-align:center;font-size:larger">
+            <span class="glyphicon glyphicon-bell">
 
-    </span>
-    @main_lang.EditSuccess
-</div>
+            </span>
+            @main_lang.EditSuccess
+        </div>
     }
 
     if (ViewBag.Msg == "EditError")
     {
-<div class="alert alert-warning enterRemove" style="text-align:center;font-size:larger">
-    <span class="glyphicon glyphicon-bell">
+        <div class="alert alert-warning enterRemove" style="text-align:center;font-size:larger">
+            <span class="glyphicon glyphicon-bell">
 
-    </span>
-    @main_lang.EditError
+            </span>
+            @main_lang.EditError
 
-</div>
+        </div>
     }
 
 
     if (ViewBag.Msg == "DeleteError")
     {
-<div class="alert alert-warning enterRemove" style="text-align:center;font-size:larger">
-    <span class="glyphicon glyphicon-bell">
+        <div class="alert alert-warning enterRemove" style="text-align:center;font-size:larger">
+            <span class="glyphicon glyphicon-bell">
 
-    </span>
-    @main_lang.DeleteError
+            </span>
+            @main_lang.DeleteError
 
-</div>
+        </div>
     }
 
-  
+
 
 
 
     if (ViewBag.Msg == "DeleteSuccess")
     {
-<div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
-    <span class="glyphicon glyphicon-bell">
+        <div class="alert alert-danger enterRemove" style="text-align:center;font-size:larger">
+            <span class="glyphicon glyphicon-bell">
 
-    </span>
-    @main_lang.DeleteSuccess
+            </span>
+            @main_lang.DeleteSuccess
 
 
-</div>
+        </div>
     }
 
 
@@ -114,7 +125,10 @@
             </th>
 
 
-         
+            <th>
+                @Html.DisplayNameFor(model => model.EnableSearch)
+            </th>
+
 
 
             <th>
@@ -173,6 +187,78 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             break;
 
 
@@ -180,10 +266,31 @@
                             @:@main_lang.Date
 
 
+
+
+
+
+
+
                             break;
 
                         case "text":
                             @: @main_lang.Text
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -196,9 +303,27 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
                             break;
                         case "email":
                             @:@main_lang.EmailField
+
+
+
+
+
+
 
 
                             break;
@@ -206,8 +331,12 @@
 
                     }
                 </td>
-          
 
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnableSearch)
+                </td>
 
                 <td>
                     @Html.DisplayFor(modelItem => item.UpdatedAt)
@@ -221,6 +350,7 @@
                         <button data-form-id="@item.Id" title="@main_lang.DeleteButton" class="js-delete btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
                     }
                     <button data-form-id="@item.Id" title=" @main_lang.Details" class="btn-default js-Details  btn-xs  glyphicon glyphicon-book"></button>
+                    <button data-form-id="@item.Id" title=" @main_lang.EditSearchButton" class="btn-warning js-EditSearch  btn-xs  glyphicon glyphicon-edit"></button>
 
 
                 </td>
@@ -305,7 +435,20 @@
 
                    });
 
+    
 
+
+      $("#form").on("click", ".js-EditSearch", function () {
+        $("#changeText").text('@main_lang.EditSearchModal');
+
+                       var url = '@Url.Action("EditSerach", "Fields")';
+                       url = url + '/' + $(this).attr("data-form-id") ;
+
+        $("#partialPlaceHolder").load(url, function () {
+            $('#NewModal').modal('show');
+                       });
+
+                   });
 
 
     $("#form").on("click", ".js-Details", function () {

@@ -1,5 +1,6 @@
 ﻿using ArchiveProject2019.HelperClasses;
 using ArchiveProject2019.Models;
+using ArchiveProject2019.Security;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -46,6 +47,15 @@ namespace ArchiveProject2019.Controllers
             }
             Session["Document_Id"] = Id;
             var DocumentParties = db.DocumentParties.Where(a => a.DocumentId == Id).Include(f => f.CreatedBy).Include(f => f.Party).Include(f => f.Document);
+
+            if (ManagedAes.CipherData)
+            {
+                foreach (DocumentParty Dk in DocumentParties)
+                {
+                    Dk.Document.Subject = ManagedAes.DecryptText(Dk.Document.Subject);
+
+                }
+            }
             return View(DocumentParties.OrderByDescending(a=>a.CreatedAt).ToList());
         }
 
@@ -146,6 +156,11 @@ namespace ArchiveProject2019.Controllers
             {
                 return RedirectToAction("HttpNotFoundError", "ErrorController");
 
+            }
+
+            if(ManagedAes.CipherData)
+            {
+                DocumentParty.Document.Subject = ManagedAes.DecryptText(DocumentParty.Document.Subject);
             }
             return View(DocumentParty);
         }

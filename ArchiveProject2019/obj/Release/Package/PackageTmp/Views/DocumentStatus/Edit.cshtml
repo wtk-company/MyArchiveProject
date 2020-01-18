@@ -1,7 +1,7 @@
 ﻿@model ArchiveProject2019.Models.DocumentStatus
-
+@using ArchiveProject2019.Resources
 @{
-    ViewBag.Title = "تعديل حالة وثيقة ";
+    ViewBag.Title = main_lang.DocumentStatus;
     Layout = "~/Views/Shared/_Layout2.cshtml";
 
 }
@@ -33,8 +33,8 @@
 
         <div class="modal-footer justify-content-center" style="margin-top:50px">
 
-            <input type="submit" title="تعديل حالة الوثيقة" value="تعديل حالة الوثيقة " class="btn btn-success" />
-            <button type="button" title="إغلاق النافذة" class="btn btn-warning" data-dismiss="modal">إغلاق</button>
+            <input type="submit" title="@main_lang.EditButton" value="@main_lang.EditButton" class="btn btn-success" />
+            <button type="button" title="@main_lang.CloseButton" class="btn btn-warning" data-dismiss="modal">@main_lang.CloseButton</button>
         </div>
 
     </div>

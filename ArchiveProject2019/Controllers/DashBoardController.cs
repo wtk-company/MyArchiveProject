@@ -307,7 +307,7 @@ namespace ArchiveProject2019.Controllers
                 
                 info.MyGroupsCount = db.UsersGroups.Where(a => a.UserId.Equals(CurrentUserId)).Count();
                 info.LastMyDocumentCreate = db.Documents.Where(a=>a.CreatedById.Equals(CurrentUserId)).Count() != 0 ?
-                    ( ManagedAes.IsCipher? ManagedAes.DecryptText(db.Documents
+                    ( ManagedAes.CipherData? ManagedAes.DecryptText(db.Documents
                     .Where(a => a.CreatedById.Equals(CurrentUserId))
                     .OrderByDescending(a => a.CreatedAt).FirstOrDefault().CreatedAt) :
                     db.Documents.Where(a => a.CreatedById.Equals(CurrentUserId))
@@ -464,10 +464,10 @@ namespace ArchiveProject2019.Controllers
                     CreatedAt = NotificationTime,
                     Active = false,
             
-                    Message  = "تنبيه للوثيقة :" +(ManagedAes.IsCipher?ManagedAes.DecryptText( d.DocumentNumber): d.DocumentNumber )+ " "
-                    +" موضوع الوثيقة :" + (ManagedAes.IsCipher ? ManagedAes.DecryptText(d.Subject) : d.Subject)
-                            + " ،عنوان الوثيقة :" + (ManagedAes.IsCipher ? ManagedAes.DecryptText(d.Address) : d.Address)
-                            + "،وصف الوثيقة :" + (ManagedAes.IsCipher ? ManagedAes.DecryptText(d.Description) : d.Description)
+                    Message  = "تنبيه للوثيقة :" +(ManagedAes.CipherData?ManagedAes.DecryptText( d.DocumentNumber): d.DocumentNumber )+ " "
+                    +" موضوع الوثيقة :" + (ManagedAes.CipherData ? ManagedAes.DecryptText(d.Subject) : d.Subject)
+                            + " ،عنوان الوثيقة :" + (ManagedAes.CipherData ? ManagedAes.DecryptText(d.Address) : d.Address)
+                            + "،وصف الوثيقة :" + (ManagedAes.CipherData ? ManagedAes.DecryptText(d.Description) : d.Description)
 
                        ,
                     NotificationOwnerId = db.Users.Find(CurrentUserId).FullName
@@ -494,7 +494,7 @@ namespace ArchiveProject2019.Controllers
             try
             {
 
-                if(ManagedAes.IsCipher)
+                if(ManagedAes.CipherData)
                 {
                     s1 = ManagedAes.DecryptText(s1);
                 }

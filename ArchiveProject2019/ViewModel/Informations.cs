@@ -107,9 +107,10 @@ namespace ArchiveProject2019.ViewModel
 
 
 
+        
 
+              [Display(Name = "AlUsersCount", ResourceType = typeof(main_lang))]
 
-        [Display(Name = "عدد  المستخدمين الكلي ")]
 
         public int TotalUserCount { set; get; }
         [Display(Name = "LasteCreateDate", ResourceType = typeof(main_lang))]

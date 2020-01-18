@@ -1,4 +1,5 @@
 ﻿using ArchiveProject2019.Models;
+using ArchiveProject2019.Security;
 using ArchiveProject2019.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -26,12 +27,12 @@ namespace ArchiveProject2019.Controllers
             ds.ReadXml(fileName);
             SettingInformations model = new SettingInformations()
             {
-                MotherBoardId = ds.Tables[0].Rows[0]["motherid"].ToString(),
-                CpudId = ds.Tables[0].Rows[0]["cpuid"].ToString(),
-                CipherPassword = ds.Tables[0].Rows[0]["cipherpassword"].ToString(),
-                Cigher = ds.Tables[0].Rows[0]["cipher"].ToString().Equals("true")?true:false,
-                SaveDataBase = ds.Tables[0].Rows[0]["savedatabase"].ToString().Equals("tru")?true:false
-
+                MotherBoardId = ds.Tables[0].Rows[0]["md"].ToString(),
+                CpudId = ds.Tables[0].Rows[0]["cd"].ToString(),
+           
+                Cigher = ds.Tables[0].Rows[0]["ci"].ToString().Equals("true")?true:false,
+                SaveDataBase = ds.Tables[0].Rows[0]["sd"].ToString().Equals("true")?true:false
+                , CigherFiles = ds.Tables[0].Rows[0]["cf"].ToString().Equals("true") ? true : false
 
 
 
@@ -56,11 +57,13 @@ namespace ArchiveProject2019.Controllers
             {
                 if (ConfirmLogin(model.UserName, model.Password))
                 {
-                    ds.Tables[0].Rows[0]["savedatabase"] = (model.SaveDataBase==true)?"true":"false";
-                    ds.Tables[0].Rows[0]["cipher"] = (model.Cigher == true) ? "true" : "false";
-                    ds.Tables[0].Rows[0]["cipherpassword"] = model.CipherPassword;
-                    ds.Tables[0].Rows[0]["motherid"] = model.MotherBoardId;
-                    ds.Tables[0].Rows[0]["cpuid"] = model.CpudId;
+                    ds.Tables[0].Rows[0]["sd"] = (model.SaveDataBase==true)?"true":"false";
+                    ds.Tables[0].Rows[0]["ci"] = (model.Cigher == true) ? "true" : "false";
+                    ds.Tables[0].Rows[0]["cf"] = (model.Cigher == true) ? "true" : "false";
+
+                    ds.Tables[0].Rows[0]["md"] = ManagedAes.EncryptText( model.MotherBoardId);
+                    ds.Tables[0].Rows[0]["cd"] = ManagedAes.EncryptText( model.CpudId);
+
 
                     ds.WriteXml(fileName);
 
@@ -89,8 +92,8 @@ namespace ArchiveProject2019.Controllers
             var passwordBytes = Encoding.UTF8.GetBytes(UserName+Password);
             string s1=System.Text.Encoding.Default.GetString(SHA256.Create().ComputeHash(passwordBytes));
 
-            string UName = Properties.Settings.Default.MasterUserName;
-            string UPsd = Properties.Settings.Default.MasterPassword;
+            string UName = Setting.MasterUserName;
+            string UPsd = Setting.MasterPassword;
 
             var passwordBytes2 = Encoding.UTF8.GetBytes(UName + UPsd);
 

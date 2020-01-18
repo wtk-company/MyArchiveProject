@@ -113,12 +113,14 @@ namespace ArchiveProject2019.Models
                 new PermissionsControls() {Name="تعديل حقل النموذج",ActionName="FieldsEdit",Type=false,TypeMaster=true  },
                 new PermissionsControls() {Name="حذف حقول النموذج",ActionName="FieldsDelete" ,Type=false,TypeMaster=true },
                 new PermissionsControls() {Name="تفاصيل حقول النموذج",ActionName="FieldsDetails",Type=false ,TypeMaster=true },
-
-
-
-
+                new PermissionsControls() {Name="تعديل حالة البحث",ActionName="FieldsEditSerch",Type=false ,TypeMaster=true },
 
                 
+
+
+
+
+
 
                 new PermissionsControls() {Name="قائمة الأقسام الخاصة بالنموذج",ActionName="FormDepartmentsIndex",Type=false ,TypeMaster=true },
                 new PermissionsControls() {Name="إضافة أقسام للنماذج",ActionName="FormDepartmentsCreate",Type=false ,TypeMaster=true },

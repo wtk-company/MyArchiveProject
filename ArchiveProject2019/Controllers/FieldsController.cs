@@ -130,7 +130,7 @@ namespace ArchiveProject2019.Controllers
 
         
         [AccessDeniedAuthorizeattribute(ActionName = "FieldsCreate")]
-        public ActionResult Create([Bind(Include = "Id,Name,IsRequired,Type")] Field field)
+        public ActionResult Create([Bind(Include = "Id,Name,IsRequired,Type,EnableSearch")] Field field)
         {
             //No session
             ViewBag.Current = "Forms";
@@ -207,7 +207,7 @@ namespace ArchiveProject2019.Controllers
 
         
         [AccessDeniedAuthorizeattribute(ActionName = "FieldsEdit")]
-        public ActionResult Edit([Bind(Include = "Id,Name,IsRequired,Type,CreatedAt,CreatedById,FormId")] Field field)
+        public ActionResult Edit([Bind(Include = "Id,Name,IsRequired,Type,CreatedAt,CreatedById,FormId,EnableSearch")] Field field)
         {
             ViewBag.Current = "Forms";
 
@@ -289,6 +289,68 @@ namespace ArchiveProject2019.Controllers
             db.SaveChanges();
             return RedirectToAction("Index", new { Id = Convert.ToInt32(Session["Form_Id"]), msg = "DeleteSuccess" });
         }
+
+
+
+
+
+
+
+
+        [AccessDeniedAuthorizeattribute(ActionName = "FieldsEditSerch")]
+        public ActionResult EditSerach(int? id)
+        {
+            ViewBag.Current = "Forms";
+
+            if (Session["Form_Id"] == null)
+            {
+                return RedirectToAction("BadRequestError", "ErrorController");
+
+
+            }
+
+
+            if (id == null)
+            {
+                return RedirectToAction("BadRequestError", "ErrorController");
+
+            }
+            Field field = db.Fields.Include(s => s.Form).Include(a => a.Values).Include(a => a.CreatedBy).FirstOrDefault(a => a.Id == id);
+            if (field == null)
+            {
+                return RedirectToAction("HttpNotFoundError", "ErrorController");
+
+            }
+
+
+          
+
+            return View(field);
+        }
+
+        // POST: Fields/Delete/5
+        [HttpPost, ActionName("EditSerach")]
+        [ValidateAntiForgeryToken]
+
+
+
+        [AccessDeniedAuthorizeattribute(ActionName = "FieldsEditSerch")]
+        public ActionResult EditSerachConfirmed(int id)
+        {
+            ViewBag.Current = "Forms";
+
+            Field field = db.Fields.Find(id);
+            field.EnableSearch = (field.EnableSearch == true ? false : true);
+            field.UpdatedAt = DateTime.Now.ToString("dd/MM/yyyy-HH:mm:ss");
+            field.UpdatedById = User.Identity.GetUserId();
+            db.Entry(field).State = EntityState.Modified;
+
+            db.SaveChanges();
+            return RedirectToAction("Index", new { Id = Convert.ToInt32(Session["Form_Id"]), msg = "EditSearch" });
+        }
+
+
+
 
         protected override void Dispose(bool disposing)
         {

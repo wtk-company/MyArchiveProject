@@ -9,6 +9,7 @@ using System.Web;
 using System.Management;
 using System.IO;
 using System.Collections;
+using System.Data;
 
 namespace ArchiveProject2019.Security
 {
@@ -16,15 +17,12 @@ namespace ArchiveProject2019.Security
     {
       
 
-        private static string password = "wtkc2019";
-        private static string processorId = "wtkc2019";
-        private static string uuid = "wtkc2019";
-
+   
         public static bool checkAuthorize()
         {
             //string AuthoridHost = getHash(processorId, uuid);
 
-            var AuthoridHost = getHash(GetCpuId(), UUID());
+            var AuthoridHost = getHash(AppCPUID(), AppUUID());
             var CurrentHost = getHash(GetCpuId(), UUID());
 
             if (AuthoridHost.Equals(CurrentHost))
@@ -37,7 +35,7 @@ namespace ArchiveProject2019.Security
 
         public static string getHash(string processorid, string uuid)
         {
-            var passwordBytes = Encoding.UTF8.GetBytes(password + processorid + uuid + password);
+            var passwordBytes = Encoding.UTF8.GetBytes(Setting.Password + processorid + uuid);
             return System.Text.Encoding.Default.GetString( SHA256.Create().ComputeHash(passwordBytes));
         }
 
@@ -70,6 +68,56 @@ namespace ArchiveProject2019.Security
 
             return uuid;
         }
+
+
+
+        private static string AppCPUID()
+        {
+
+         string fileName =   System.Web.Hosting.HostingEnvironment.MapPath("~/Resources/MySecretFile.xml");
+
+            DataSet ds = new DataSet();
+            ds.ReadXml(fileName);
+
+            string Cpu = "xxxxx123xxxx";
+            try
+            {
+
+            Cpu =ManagedAes.DecryptText( ds.Tables[0].Rows[0]["cd"].ToString());
+
+            }
+            catch(Exception ex)
+            {
+                Cpu = "xxxxx123xxxx";
+            }
+            return Cpu;
+
+
+        }
+
+        private static string AppUUID()
+        {
+
+            string fileName = System.Web.Hosting.HostingEnvironment.MapPath("~/Resources/MySecretFile.xml");
+
+            DataSet ds = new DataSet();
+            ds.ReadXml(fileName);
+            string UUd = "xxxxx123xxxx";
+            try
+            {
+
+             UUd = ManagedAes.DecryptText(ds.Tables[0].Rows[0]["md"].ToString());
+            }
+            catch (Exception ex)
+            {
+                UUd = "xxxxx123xxxx";
+            }
+
+            return UUd;
+
+
+        }
+
     }
     
 }

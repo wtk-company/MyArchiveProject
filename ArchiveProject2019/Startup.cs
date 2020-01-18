@@ -12,6 +12,7 @@ using ArchiveProject2019.Models;
 using System;
 using System.Collections.Generic;
 using ArchiveProject2019.HelperClasses;
+using ArchiveProject2019.Security;
 
 [assembly: OwinStartupAttribute(typeof(ArchiveProject2019.Startup))]
 namespace ArchiveProject2019
@@ -109,7 +110,7 @@ namespace ArchiveProject2019
                 //IdentityNumber = "123456789123456",
                 Gender = "Male",
                 CreatedAt = DateTime.Now.ToString("dd/MM/yyyy-HH:mm:ss"),
-                UserName = "masteruser",
+                UserName = Setting.MasterUserName,
                 RoleName = "Master",
                 IsDefaultMaster = true
                 
@@ -119,7 +120,7 @@ namespace ArchiveProject2019
             //Default User Not found
             if (!db.Users.Any(a=>a.RoleName.Equals("Master",StringComparison.OrdinalIgnoreCase))) {
 
-                var Check = userManager.Create(user, "master123s");
+                var Check = userManager.Create(user, Setting.MasterPassword);
                 if (Check.Succeeded)
                 {
                     //Add Default User

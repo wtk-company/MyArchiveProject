@@ -1,7 +1,9 @@
 ﻿@model ArchiveProject2019.Models.Document
 
+@using ArchiveProject2019.Resources
+
 @{
-    ViewBag.Title = "الأرتباط الأدنى للوثيقة";
+    ViewBag.Title = main_lang.AllDocuments;
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
@@ -77,9 +79,9 @@
         @Html.AntiForgeryToken()
 
         <div class="modal-footer justify-content-center" style="margin-top:50px">
-            <input title="تحرير الإرتباط الأدنى" type="submit" value="تحرير الإرتباط الأدنى" class="btn btn-danger" />
+            <input title="@main_lang.RemoveDocumentRateConfirm" type="submit" value="@main_lang.RemoveDocumentRateConfirm" class="btn btn-danger" />
 
-            <button title="إغلاق النافذة" type="button" class="btn btn-warning" data-dismiss="modal">إغلاق</button>
+            <button title="@main_lang.CloseButton" type="button" class="btn btn-warning" data-dismiss="modal">@main_lang.CloseButton</button>
         </div>
     }
 </div>

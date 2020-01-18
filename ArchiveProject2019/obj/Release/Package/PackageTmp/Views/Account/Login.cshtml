@@ -1,12 +1,14 @@
 ﻿@using ArchiveProject2019.Models
 @model LoginViewModel
+@using ArchiveProject2019.Resources
+
 @{
-    ViewBag.Title = "تسجيل الدخول";
+    ViewBag.Title = main_lang.LogIn;
 }
 
 <h2>@ViewBag.Title</h2>
 <br />
-<div class="row" >
+<div class="row">
     <div class="" style="">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -18,7 +20,7 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
                     <div class="col-md-8">
-                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control",placeholder="ادخل اسم المستخدم" })
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -27,7 +29,7 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
                     <div class="col-md-8">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control",placeholder="ادخل كلمة السر " })
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -41,14 +43,14 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2">
-                        <input type="submit" value="تسجيل الدخول" class="btn  btn-success" />
+                        <input type="submit" value=" @main_lang.LogIn" class="btn  btn-success" />
                     </div>
                 </div>
-               
+
             }
         </section>
     </div>
-   
+
 </div>
 
 @section Scripts {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArchiveProject2019.Resources;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,9 +10,12 @@ namespace ArchiveProject2019.ViewModel
     public class GroupsUserInformation
     {
 
-        [Display(Name="اسم المجموعة")]
+        [Display(Name = "GroupName", ResourceType = typeof(main_lang))]
+
+     
         public string Name { set; get; }
-        [Display(Name = "عدد الأعضاء")]
+      [Display(Name = "MemberCounts", ResourceType = typeof(main_lang))]
+
 
         public int UsersCount { set; get; }
 

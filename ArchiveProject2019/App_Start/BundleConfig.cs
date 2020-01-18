@@ -35,6 +35,7 @@ namespace ArchiveProject2019
               "~/Content/DataTables/css/dataTables.bootstrap.css",
               //Bootstrap:
               "~/Content/DashBoard/vendors/bootstrap/dist/css/bootstrap.min.css",
+               //"~/Content/bootstrap-arabic.css",
               "~/Content/DashBoard/vendors/bootstrap-rtl/dist/css/bootstrap-rtl.min.css",
               //Font Awesome
               "~/Content/DashBoard/vendors/font-awesome/css/font-awesome.min.css",
@@ -75,6 +76,7 @@ namespace ArchiveProject2019
 
                //Bootstrap
                "~/Content/DashBoard/vendors/bootstrap/dist/js/bootstrap.min.js",
+               //"~/Scripts/bootstrap.js",
                //FastClick
                "~/Content/DashBoard/vendors/fastclick/lib/fastclick.js",
                //nprogress
@@ -93,10 +95,10 @@ namespace ArchiveProject2019
 
                //DataTables:
                "~/Scripts/DataTables/jquery.dataTables.min.js",
-               "~/Scripts/DataTables/dataTables.bootstrap.js",
+               "~/Scripts/DataTables/dataTables.bootstrap.js"
 
                // Custom Scanner js
-               "~/Scripts/scanner.js"
+               //"~/Scripts/scanner.js"
 
 
 

@@ -114,7 +114,10 @@
             </th>
 
 
-         
+            <th>
+                @Html.DisplayNameFor(model => model.EnableSearch)
+            </th>
+
 
 
             <th>
@@ -133,27 +136,22 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsRequired)
-                </td>
-                <td>
-                    @switch (item.Type)
-                    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsRequired)
+            </td>
+            <td>
+                @switch (item.Type)
+                {
 
 
 
 
-                        case "float":
-                            @:@main_lang.Float
-
-
-
-
-
+                    case "float":
+                        @:@main_lang.Float
 
 
 
@@ -173,58 +171,104 @@
 
 
 
-                            break;
-
-
-                        case "date":
-                            @:@main_lang.Date
-
-
-                            break;
-
-                        case "text":
-                            @: @main_lang.Text
 
 
 
 
 
-                            break;
-                        case "phone":
-                            @:@main_lang.PhoneField
 
 
 
 
-                            break;
-                        case "email":
-                            @:@main_lang.EmailField
 
 
-                            break;
 
 
-                    }
-                </td>
-          
 
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.UpdatedAt)
-                </td>
-
-                <td>
-                    @if (CheckDelete.checkFieldsDelete(item.Id) == true)
-                    {
-                        <button data-form-id="@item.Id" title=" @main_lang.EditForIndex" class="js-Edit  btn-xs btn-success "><span class="glyphicon glyphicon-edit"></span></button>
-
-                        <button data-form-id="@item.Id" title="@main_lang.DeleteButton" class="js-delete btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
-                    }
-                    <button data-form-id="@item.Id" title=" @main_lang.Details" class="btn-default js-Details  btn-xs  glyphicon glyphicon-book"></button>
 
 
-                </td>
-            </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+                        break;
+
+
+                    case "date":
+                        @:@main_lang.Date
+
+
+
+
+                        break;
+
+                    case "text":
+                        @: @main_lang.Text
+
+
+
+
+
+
+
+
+
+
+                        break;
+                    case "phone":
+                        @:@main_lang.PhoneField
+
+
+
+
+
+
+
+
+                        break;
+                    case "email":
+                        @:@main_lang.EmailField
+
+
+
+
+                        break;
+
+
+                }
+            </td>
+
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.EnableSearch)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedAt)
+            </td>
+
+            <td>
+                @if (CheckDelete.checkFieldsDelete(item.Id) == true)
+                {
+                    <button data-form-id="@item.Id" title=" @main_lang.EditForIndex" class="js-Edit  btn-xs btn-success "><span class="glyphicon glyphicon-edit"></span></button>
+
+                    <button data-form-id="@item.Id" title="@main_lang.DeleteButton" class="js-delete btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                }
+                <button data-form-id="@item.Id" title=" @main_lang.Details" class="btn-default js-Details  btn-xs  glyphicon glyphicon-book"></button>
+
+
+            </td>
+        </tr>
         }
     </tbody>
 

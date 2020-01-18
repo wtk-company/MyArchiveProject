@@ -59,6 +59,9 @@ namespace ArchiveProject2019.Models
         public Form Form { get; set; }
 
 
+        [Display(Name = "EnableSearch", ResourceType = typeof(main_lang))]
+        public bool EnableSearch { get; set; }
+
         //Collections:
         public ICollection<Value> Values { set; get; }
     }

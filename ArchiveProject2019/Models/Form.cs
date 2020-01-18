@@ -30,7 +30,7 @@ namespace ArchiveProject2019.Models
         public ApplicationUser CreatedBy { set; get; }
 
 
-        [Display(Name = "FormType", ResourceType = typeof(main_lang))]
+        [Display(Name = "Type", ResourceType = typeof(main_lang))]
         public int Type { set; get; }
 
         [Display(Name = "UpdatedAt", ResourceType = typeof(main_lang))]

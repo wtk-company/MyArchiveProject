@@ -11,7 +11,7 @@
     bool IsDefault = db.Users.Find(CurrentUserId).IsDefaultMaster;
 }
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html  dir="rtl">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="icon" href="~/Content/DashBoard/build/images/favicon.png" type="image/png" />
@@ -45,6 +45,7 @@
         }
     </style>
     @Styles.Render("~/Content/DashBoardCss")
+    <link href="~/Content/DashBoard/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 
 </head>
 <!-- /header content -->
@@ -64,7 +65,7 @@
             <div class="col-md-3 left_col menu_fixed hidden-print">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><i class="fa fa-archive"></i> <span>@main_lang.ProjectName</span></a>
+                        <a href="index.html" class="site_title"><i class="glyphicon glyphicon-briefcase"></i> <span>@main_lang.ProjectName</span></a>
                     </div>
                     <div class="clearfix"></div>
                     <!-- menu profile quick info -->
@@ -89,7 +90,7 @@
 
                             <ul class="nav side-menu">
                                 <li>
-                                    <a href="@Url.Action("Index","DashBoard")"><i class="fa fa-home"></i>@main_lang.Home <span class="fa"></span></a>
+                                    <a href="@Url.Action("Index","DashBoard")"><span class="glyphicon glyphicon-home"></span>@main_lang.Home <span class="fa"></span></a>
 
                                 </li>
                                 <li class="@(ViewBag.Current == "Department" ? "current-page" : "")">

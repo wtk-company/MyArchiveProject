@@ -13,7 +13,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-       
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -33,21 +33,36 @@
             </div>
         </div>
 
+
+
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EnableSearch, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.EnableSearch)
+                    @Html.ValidationMessageFor(model => model.EnableSearch, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               @* @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })*@
-             
+                @* @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })*@
 
-                @Html.DropDownListFor(model=>Model.Type,new List<SelectListItem>() {
+
+                @Html.DropDownListFor(model => Model.Type, new List<SelectListItem>() {
                new SelectListItem(){Value="float",Text=@main_lang.Float},
            new SelectListItem() { Text=@main_lang.EmailField,Value="email"},
            new SelectListItem() { Text=@main_lang.PhoneField,Value="phone"},
 
            //new SelectListItem(){Value="bool" ,Text="حقل منطقي"},
             new SelectListItem(){Value="date" ,Text=@main_lang.Date},
-           new SelectListItem() { Value = "text", Text = @main_lang.Text}} , @main_lang.ChooseTypeSp,new { @style="padding:4px",@class="form-control"})
-            @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+           new SelectListItem() { Value = "text", Text = @main_lang.Text}}, @main_lang.ChooseTypeSp, new { @style = "padding:4px", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
             </div>
         </div>
 

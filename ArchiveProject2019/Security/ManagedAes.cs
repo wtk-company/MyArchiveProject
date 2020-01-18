@@ -6,19 +6,30 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web.Mvc;
+using System.Data;
+using ArchiveProject2019.Models;
+using ArchiveProject2019.Security;
+using ArchiveProject2019.ViewModel;
+
+using System.Xml;
 
 namespace ArchiveProject2019.Security
 {
     public class ManagedAes
     {
 
-        public static bool IsSaveInDb = false;
-        public static bool IsCipher = true;
+        public static bool IsSaveInDb = Setting.SaveInDb();
+        public static bool IsCipher = Setting.CipherFiles();
+        public static bool CipherData = Setting.CipherData();
+
+
+        //Password:
+        private static string password = Setting.Password;
+        
 
 
         // Encryption Key
         // private static string password = "wtk2019companypasswordwtkwtk2019companypasswordwtk";
-        private static string password = "wtk2019companypassword";
 
         public static byte[] DecodeUrlBase64(string s)
         {

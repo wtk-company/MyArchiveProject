@@ -1110,4 +1110,274 @@
   <data name="RemoveUser" xml:space="preserve">
     <value>ازالة مستخدم من المجموعة</value>
   </data>
+  <data name="EnableSearch" xml:space="preserve">
+    <value>حقل بحث؟</value>
+  </data>
+  <data name="AddDepartmentToDocument" xml:space="preserve">
+    <value>اضافة اقسام للوثيقة</value>
+  </data>
+  <data name="AddGroupsToDocument" xml:space="preserve">
+    <value>اضافةمجموعات للوثيقة</value>
+  </data>
+  <data name="AddPartiesToDocument" xml:space="preserve">
+    <value>إضافة الجهات للوثيقة</value>
+  </data>
+  <data name="AddUsersToDocument" xml:space="preserve">
+    <value>مجموعات الوثيقة</value>
+  </data>
+  <data name="ChhooseForm" xml:space="preserve">
+    <value>اختر النموذج</value>
+  </data>
+  <data name="ChooseFile" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ChooseKind" xml:space="preserve">
+    <value>اختر النوع</value>
+  </data>
+  <data name="ChoosePaties" xml:space="preserve">
+    <value>اختر الجهات</value>
+  </data>
+  <data name="ChooseTypemail" xml:space="preserve">
+    <value>اختر نوع البريد</value>
+  </data>
+  <data name="ChosenResult" xml:space="preserve">
+    <value>اختر من النتائج</value>
+  </data>
+  <data name="CreateDocument" xml:space="preserve">
+    <value>إنشاء الوثيقة</value>
+  </data>
+  <data name="DepartmentDocuments" xml:space="preserve">
+    <value>الاقسام الخاصة بالوثيقة</value>
+  </data>
+  <data name="DocAddGeneralizedDoc" xml:space="preserve">
+    <value>اضافةوثيقة معممة</value>
+  </data>
+  <data name="DocAddOptions" xml:space="preserve">
+    <value>خيارات اضافة الوثائق</value>
+  </data>
+  <data name="DocAddStandardDoc" xml:space="preserve">
+    <value>اضافة وثيقة تقليدية</value>
+  </data>
+  <data name="DocEndDate" xml:space="preserve">
+    <value>تاريخ نهاية الوثيقة</value>
+  </data>
+  <data name="DocSerachOption" xml:space="preserve">
+    <value>خيارات بحث الوثائق</value>
+  </data>
+  <data name="DocStartDate" xml:space="preserve">
+    <value>تاريخ بداية الوثيقة</value>
+  </data>
+  <data name="DocumentCreateSeal" xml:space="preserve">
+    <value>عرض تسديداتي</value>
+  </data>
+  <data name="DocumentDelete" xml:space="preserve">
+    <value>حذف الوثيقة</value>
+  </data>
+  <data name="DocumentEdit" xml:space="preserve">
+    <value>تعديل الوثيقة</value>
+  </data>
+  <data name="DocumentSealsView" xml:space="preserve">
+    <value>عرض التسديدات</value>
+  </data>
+  <data name="EditDocument" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FormsCanable" xml:space="preserve">
+    <value>النماذج المتاحة</value>
+  </data>
+  <data name="MoreOptions" xml:space="preserve">
+    <value>خيارات إضافية</value>
+  </data>
+  <data name="NewFile" xml:space="preserve">
+    <value />
+  </data>
+  <data name="OrderASC" xml:space="preserve">
+    <value>تنازلي</value>
+  </data>
+  <data name="OrderBy" xml:space="preserve">
+    <value>نمط الترتيب</value>
+  </data>
+  <data name="OrderBYDocCreateDate" xml:space="preserve">
+    <value>تاريخ الانشاء</value>
+  </data>
+  <data name="OrderByDocDate" xml:space="preserve">
+    <value>تاريخ الوثيقة</value>
+  </data>
+  <data name="OrderByDocNumber" xml:space="preserve">
+    <value>رقم الوثيقة</value>
+  </data>
+  <data name="OrderByDocSubject" xml:space="preserve">
+    <value>موضوع الوثيقة</value>
+  </data>
+  <data name="OrderByType" xml:space="preserve">
+    <value>ترتيب بواسطة</value>
+  </data>
+  <data name="OrderDesc" xml:space="preserve">
+    <value>تصاعدي</value>
+  </data>
+  <data name="RelatedDepartments" xml:space="preserve">
+    <value>الاقسام المرتبطة</value>
+  </data>
+  <data name="RelatedDocuments" xml:space="preserve">
+    <value>الوثائق المرتبطة</value>
+  </data>
+  <data name="RelatedGroups" xml:space="preserve">
+    <value>المجموعات المرتبطة</value>
+  </data>
+  <data name="RelatedUsers" xml:space="preserve">
+    <value>العناصر المرتبطة</value>
+  </data>
+  <data name="RelateError" xml:space="preserve">
+    <value>لم يتم ربط أي وثيقة</value>
+  </data>
+  <data name="RelateFoundDocument" xml:space="preserve">
+    <value>ربط مع الوثائق المتاحة</value>
+  </data>
+  <data name="RelateOptions" xml:space="preserve">
+    <value>خيارات الارتباط</value>
+  </data>
+  <data name="RelateSelectedDocument" xml:space="preserve">
+    <value>ربط الوثائق المحددة</value>
+  </data>
+  <data name="RelateSuccess" xml:space="preserve">
+    <value>تمت عملية الربط بنجاح</value>
+  </data>
+  <data name="RelateWithDoc" xml:space="preserve">
+    <value>ربط مع وثائق</value>
+  </data>
+  <data name="RelatewithNewDoc" xml:space="preserve">
+    <value>ربط وثيقة جديدة</value>
+  </data>
+  <data name="RemoveChildRate" xml:space="preserve">
+    <value>تحرير الارتباط الادنى للوثيقة</value>
+  </data>
+  <data name="RemoveDocumentRateConfirm" xml:space="preserve">
+    <value>تأكيد تحرير الارتباط</value>
+  </data>
+  <data name="RemoveParentRate" xml:space="preserve">
+    <value>تحرير الارتباط الأعلى للوثيقة</value>
+  </data>
+  <data name="RemoveRelateSuccess" xml:space="preserve">
+    <value>تمت عملية فك الارتباط بنجاح</value>
+  </data>
+  <data name="ReplayedDocuments" xml:space="preserve">
+    <value>الردود</value>
+  </data>
+  <data name="RowsCount" xml:space="preserve">
+    <value>عدد الاسطر</value>
+  </data>
+  <data name="SearchBtn" xml:space="preserve">
+    <value>البحث عن النتائج</value>
+  </data>
+  <data name="Select Forms" xml:space="preserve">
+    <value>اختر النموذج</value>
+  </data>
+  <data name="ToParties" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ViewDocTypeAllDocuments" xml:space="preserve">
+    <value>كامل الوثائق المتاحة</value>
+  </data>
+  <data name="ViewDocTypeAllNotificationDocument" xml:space="preserve">
+    <value>كل الوثائق المنبهة</value>
+  </data>
+  <data name="ViewDocTypeDocumentToMe" xml:space="preserve">
+    <value>الوثائق المجمولة لي</value>
+  </data>
+  <data name="ViewDocTypeDocumentToMyDepartment" xml:space="preserve">
+    <value>الوثائق المحمولة للقسم</value>
+  </data>
+  <data name="ViewDocTypeDocumentToMyGroups" xml:space="preserve">
+    <value>الوثائق المحولة لمجموعاتي</value>
+  </data>
+  <data name="ViewDocTypeGeneralizedDocumentToMe" xml:space="preserve">
+    <value>الوثائق المعممة المحولة للمستخدم</value>
+  </data>
+  <data name="ViewDocTypeGeneralizedDocumentToMyDepartment" xml:space="preserve">
+    <value>الوثائق المعممة المحولة للقسم</value>
+  </data>
+  <data name="ViewDocTypeGeneralizedDocumentToMyGroups" xml:space="preserve">
+    <value>الوثائق المعممة المحولة للمجموعات</value>
+  </data>
+  <data name="ViewDocTypeGeneralizedNotificationDoc" xml:space="preserve">
+    <value>وثائق التعميم المنبهة</value>
+  </data>
+  <data name="ViewDocTypeMyCreatedDoc" xml:space="preserve">
+    <value>وثائقي المنشأة</value>
+  </data>
+  <data name="ViewDocTypeMyCreatedGeneralizedDoc" xml:space="preserve">
+    <value>وثائقي المعممة</value>
+  </data>
+  <data name="ViewDocTypeMyDepartmentDoc" xml:space="preserve">
+    <value>الوثائق الخاصة بالقسم</value>
+  </data>
+  <data name="ViewDocTypeMyDepartmentGeneralizedDoc" xml:space="preserve">
+    <value>وثائق القسم المعممة</value>
+  </data>
+  <data name="ViewDocTypeTodayNotificationDoc" xml:space="preserve">
+    <value>الوثائق المنبهة لليوم</value>
+  </data>
+  <data name="ViewDocumentType" xml:space="preserve">
+    <value>نمط عرض الوثائق</value>
+  </data>
+  <data name="AlUsersCount" xml:space="preserve">
+    <value>عدد المستخدمين الكلي</value>
+  </data>
+  <data name="MemberCounts" xml:space="preserve">
+    <value>عدد الاعضاء</value>
+  </data>
+  <data name="MemerInGroup" xml:space="preserve">
+    <value>عضوفي المجموعة</value>
+  </data>
+  <data name="ReplayDocument" xml:space="preserve">
+    <value>ردجديد</value>
+  </data>
+  <data name="CipherData" xml:space="preserve">
+    <value>تشفير البيانات</value>
+  </data>
+  <data name="CipherFiles" xml:space="preserve">
+    <value>تشفير الملفات</value>
+  </data>
+  <data name="FieldRequired" xml:space="preserve">
+    <value>الحقل ضروري</value>
+  </data>
+  <data name="SaveInDb" xml:space="preserve">
+    <value>التخزين في قاعدة البيانات</value>
+  </data>
+  <data name="CreateDocFieldEmail" xml:space="preserve">
+    <value>يجب ان يكون قيمةالحقل بريد إلكتروني، الرجاء إعادة الإدخال</value>
+  </data>
+  <data name="CreateDocFieldNull" xml:space="preserve">
+    <value>يجب إدخال قيمة الحقل، لا يمكن أن يكون فارغ</value>
+  </data>
+  <data name="CreateDocFieldNumber" xml:space="preserve">
+    <value>يجب ان يكون قيمةالحقل رقمي، الرجاء إعادة الإدخال</value>
+  </data>
+  <data name="CreateDocFieldPhone" xml:space="preserve">
+    <value>يجب ان يكون قيمةالحقل رقم هاتف، الرجاء إعادة الإدخال</value>
+  </data>
+  <data name="CreateDocMailDate" xml:space="preserve">
+    <value>دخل تاريخ ورود البريد</value>
+  </data>
+  <data name="CreateDocMailNumer" xml:space="preserve">
+    <value>ادخل رقم ورود البريد</value>
+  </data>
+  <data name="CreateDocparties" xml:space="preserve">
+    <value>حدد جهات استلام البريد</value>
+  </data>
+  <data name="FileFormatError" xml:space="preserve">
+    <value>صيغة الملف المحمل غير مدعومة أعد الإدخال مرة أخرى</value>
+  </data>
+  <data name="EditSearch" xml:space="preserve">
+    <value>تم تعديل حالة البحث بنجاح</value>
+  </data>
+  <data name="EditSearchButton" xml:space="preserve">
+    <value>تعديل حالة البحث</value>
+  </data>
+  <data name="EditSearchMessage" xml:space="preserve">
+    <value>هل أنت متأكد من تعديل حالة البحث</value>
+  </data>
+  <data name="EditSearchModal" xml:space="preserve">
+    <value>نعديل حالة البحث</value>
+  </data>
 </root>

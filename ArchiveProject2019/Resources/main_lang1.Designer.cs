@@ -142,11 +142,29 @@ namespace ArchiveProject2019.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to اضافة اقسام للوثيقة.
+        /// </summary>
+        public static string AddDepartmentToDocument {
+            get {
+                return ResourceManager.GetString("AddDepartmentToDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to اضافة مجموعات.
         /// </summary>
         public static string AddGroups {
             get {
                 return ResourceManager.GetString("AddGroups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اضافةمجموعات للوثيقة.
+        /// </summary>
+        public static string AddGroupsToDocument {
+            get {
+                return ResourceManager.GetString("AddGroupsToDocument", resourceCulture);
             }
         }
         
@@ -174,6 +192,15 @@ namespace ArchiveProject2019.Resources {
         public static string AddNewUser {
             get {
                 return ResourceManager.GetString("AddNewUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to إضافة الجهات للوثيقة.
+        /// </summary>
+        public static string AddPartiesToDocument {
+            get {
+                return ResourceManager.GetString("AddPartiesToDocument", resourceCulture);
             }
         }
         
@@ -219,6 +246,15 @@ namespace ArchiveProject2019.Resources {
         public static string AddUsers {
             get {
                 return ResourceManager.GetString("AddUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مجموعات الوثيقة.
+        /// </summary>
+        public static string AddUsersToDocument {
+            get {
+                return ResourceManager.GetString("AddUsersToDocument", resourceCulture);
             }
         }
         
@@ -273,6 +309,15 @@ namespace ArchiveProject2019.Resources {
         public static string AllGroupsCount {
             get {
                 return ResourceManager.GetString("AllGroupsCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to عدد المستخدمين الكلي.
+        /// </summary>
+        public static string AlUsersCount {
+            get {
+                return ResourceManager.GetString("AlUsersCount", resourceCulture);
             }
         }
         
@@ -385,11 +430,29 @@ namespace ArchiveProject2019.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to اختر النموذج.
+        /// </summary>
+        public static string ChhooseForm {
+            get {
+                return ResourceManager.GetString("ChhooseForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to اختر القسم.
         /// </summary>
         public static string ChooseDepartment {
             get {
                 return ResourceManager.GetString("ChooseDepartment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ChooseFile {
+            get {
+                return ResourceManager.GetString("ChooseFile", resourceCulture);
             }
         }
         
@@ -412,11 +475,38 @@ namespace ArchiveProject2019.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to اختر النوع.
+        /// </summary>
+        public static string ChooseKind {
+            get {
+                return ResourceManager.GetString("ChooseKind", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اختر الجهات.
+        /// </summary>
+        public static string ChoosePaties {
+            get {
+                return ResourceManager.GetString("ChoosePaties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to اختيار الصلاحيات للتعديل.
         /// </summary>
         public static string ChoosePermissionForEdit {
             get {
                 return ResourceManager.GetString("ChoosePermissionForEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اختر نوع البريد.
+        /// </summary>
+        public static string ChooseTypemail {
+            get {
+                return ResourceManager.GetString("ChooseTypemail", resourceCulture);
             }
         }
         
@@ -444,6 +534,33 @@ namespace ArchiveProject2019.Resources {
         public static string ChosenNoResult {
             get {
                 return ResourceManager.GetString("ChosenNoResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اختر من النتائج.
+        /// </summary>
+        public static string ChosenResult {
+            get {
+                return ResourceManager.GetString("ChosenResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تشفير البيانات.
+        /// </summary>
+        public static string CipherData {
+            get {
+                return ResourceManager.GetString("CipherData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تشفير الملفات.
+        /// </summary>
+        public static string CipherFiles {
+            get {
+                return ResourceManager.GetString("CipherFiles", resourceCulture);
             }
         }
         
@@ -574,6 +691,78 @@ namespace ArchiveProject2019.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to يجب ان يكون قيمةالحقل بريد إلكتروني، الرجاء إعادة الإدخال.
+        /// </summary>
+        public static string CreateDocFieldEmail {
+            get {
+                return ResourceManager.GetString("CreateDocFieldEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to يجب إدخال قيمة الحقل، لا يمكن أن يكون فارغ.
+        /// </summary>
+        public static string CreateDocFieldNull {
+            get {
+                return ResourceManager.GetString("CreateDocFieldNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to يجب ان يكون قيمةالحقل رقمي، الرجاء إعادة الإدخال.
+        /// </summary>
+        public static string CreateDocFieldNumber {
+            get {
+                return ResourceManager.GetString("CreateDocFieldNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to يجب ان يكون قيمةالحقل رقم هاتف، الرجاء إعادة الإدخال.
+        /// </summary>
+        public static string CreateDocFieldPhone {
+            get {
+                return ResourceManager.GetString("CreateDocFieldPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to دخل تاريخ ورود البريد.
+        /// </summary>
+        public static string CreateDocMailDate {
+            get {
+                return ResourceManager.GetString("CreateDocMailDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ادخل رقم ورود البريد.
+        /// </summary>
+        public static string CreateDocMailNumer {
+            get {
+                return ResourceManager.GetString("CreateDocMailNumer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to حدد جهات استلام البريد.
+        /// </summary>
+        public static string CreateDocparties {
+            get {
+                return ResourceManager.GetString("CreateDocparties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to إنشاء الوثيقة.
+        /// </summary>
+        public static string CreateDocument {
+            get {
+                return ResourceManager.GetString("CreateDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to لا يمكن أن يكون الاسم مكرر، يجب اعادة الأدخال.
         /// </summary>
         public static string CreateError {
@@ -664,6 +853,15 @@ namespace ArchiveProject2019.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to الاقسام الخاصة بالوثيقة.
+        /// </summary>
+        public static string DepartmentDocuments {
+            get {
+                return ResourceManager.GetString("DepartmentDocuments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to القسم.
         /// </summary>
         public static string DepartmentId {
@@ -732,6 +930,33 @@ namespace ArchiveProject2019.Resources {
         public static string DetailsElement {
             get {
                 return ResourceManager.GetString("DetailsElement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اضافةوثيقة معممة.
+        /// </summary>
+        public static string DocAddGeneralizedDoc {
+            get {
+                return ResourceManager.GetString("DocAddGeneralizedDoc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to خيارات اضافة الوثائق.
+        /// </summary>
+        public static string DocAddOptions {
+            get {
+                return ResourceManager.GetString("DocAddOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اضافة وثيقة تقليدية.
+        /// </summary>
+        public static string DocAddStandardDoc {
+            get {
+                return ResourceManager.GetString("DocAddStandardDoc", resourceCulture);
             }
         }
         
@@ -826,6 +1051,15 @@ namespace ArchiveProject2019.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to تاريخ نهاية الوثيقة.
+        /// </summary>
+        public static string DocEndDate {
+            get {
+                return ResourceManager.GetString("DocEndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to إسم الوثيقة.
         /// </summary>
         public static string DocName {
@@ -889,6 +1123,24 @@ namespace ArchiveProject2019.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to خيارات بحث الوثائق.
+        /// </summary>
+        public static string DocSerachOption {
+            get {
+                return ResourceManager.GetString("DocSerachOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تاريخ بداية الوثيقة.
+        /// </summary>
+        public static string DocStartDate {
+            get {
+                return ResourceManager.GetString("DocStartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to حالة الوثيقة.
         /// </summary>
         public static string DocStatus {
@@ -907,11 +1159,29 @@ namespace ArchiveProject2019.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to عرض تسديداتي.
+        /// </summary>
+        public static string DocumentCreateSeal {
+            get {
+                return ResourceManager.GetString("DocumentCreateSeal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تاريخ اصدار الوثيقة.
         /// </summary>
         public static string DocumentDate {
             get {
                 return ResourceManager.GetString("DocumentDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to حذف الوثيقة.
+        /// </summary>
+        public static string DocumentDelete {
+            get {
+                return ResourceManager.GetString("DocumentDelete", resourceCulture);
             }
         }
         
@@ -939,6 +1209,15 @@ namespace ArchiveProject2019.Resources {
         public static string DocumentDetails {
             get {
                 return ResourceManager.GetString("DocumentDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تعديل الوثيقة.
+        /// </summary>
+        public static string DocumentEdit {
+            get {
+                return ResourceManager.GetString("DocumentEdit", resourceCulture);
             }
         }
         
@@ -1033,6 +1312,15 @@ namespace ArchiveProject2019.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to عرض التسديدات.
+        /// </summary>
+        public static string DocumentSealsView {
+            get {
+                return ResourceManager.GetString("DocumentSealsView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to عدد أنواع الوثائق.
         /// </summary>
         public static string DocumentsKindCount {
@@ -1123,6 +1411,15 @@ namespace ArchiveProject2019.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string EditDocument {
+            get {
+                return ResourceManager.GetString("EditDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to عملية التعديل.
         /// </summary>
         public static string EditElement {
@@ -1164,6 +1461,42 @@ namespace ArchiveProject2019.Resources {
         public static string EditLock {
             get {
                 return ResourceManager.GetString("EditLock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تم تعديل حالة البحث بنجاح.
+        /// </summary>
+        public static string EditSearch {
+            get {
+                return ResourceManager.GetString("EditSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تعديل حالة البحث.
+        /// </summary>
+        public static string EditSearchButton {
+            get {
+                return ResourceManager.GetString("EditSearchButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to هل أنت متأكد من تعديل حالة البحث.
+        /// </summary>
+        public static string EditSearchMessage {
+            get {
+                return ResourceManager.GetString("EditSearchMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نعديل حالة البحث.
+        /// </summary>
+        public static string EditSearchModal {
+            get {
+                return ResourceManager.GetString("EditSearchModal", resourceCulture);
             }
         }
         
@@ -1258,6 +1591,15 @@ namespace ArchiveProject2019.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to حقل بحث؟.
+        /// </summary>
+        public static string EnableSearch {
+            get {
+                return ResourceManager.GetString("EnableSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to حدث خطأ أثناء انشاء نسخة إحتياطية من البيانات.
         /// </summary>
         public static string ErrorBackupData {
@@ -1348,6 +1690,15 @@ namespace ArchiveProject2019.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to الحقل ضروري.
+        /// </summary>
+        public static string FieldRequired {
+            get {
+                return ResourceManager.GetString("FieldRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to قيمة الحقل.
         /// </summary>
         public static string FieldValue {
@@ -1362,6 +1713,15 @@ namespace ArchiveProject2019.Resources {
         public static string File {
             get {
                 return ResourceManager.GetString("File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to صيغة الملف المحمل غير مدعومة أعد الإدخال مرة أخرى.
+        /// </summary>
+        public static string FileFormatError {
+            get {
+                return ResourceManager.GetString("FileFormatError", resourceCulture);
             }
         }
         
@@ -1470,6 +1830,15 @@ namespace ArchiveProject2019.Resources {
         public static string Forms {
             get {
                 return ResourceManager.GetString("Forms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to النماذج المتاحة.
+        /// </summary>
+        public static string FormsCanable {
+            get {
+                return ResourceManager.GetString("FormsCanable", resourceCulture);
             }
         }
         
@@ -1915,6 +2284,24 @@ namespace ArchiveProject2019.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to عدد الاعضاء.
+        /// </summary>
+        public static string MemberCounts {
+            get {
+                return ResourceManager.GetString("MemberCounts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to عضوفي المجموعة.
+        /// </summary>
+        public static string MemerInGroup {
+            get {
+                return ResourceManager.GetString("MemerInGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to النص.
         /// </summary>
         public static string Message {
@@ -1947,6 +2334,15 @@ namespace ArchiveProject2019.Resources {
         public static string MoreChoise {
             get {
                 return ResourceManager.GetString("MoreChoise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to خيارات إضافية.
+        /// </summary>
+        public static string MoreOptions {
+            get {
+                return ResourceManager.GetString("MoreOptions", resourceCulture);
             }
         }
         
@@ -2046,6 +2442,15 @@ namespace ArchiveProject2019.Resources {
         public static string NameLength {
             get {
                 return ResourceManager.GetString("NameLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string NewFile {
+            get {
+                return ResourceManager.GetString("NewFile", resourceCulture);
             }
         }
         
@@ -2248,6 +2653,78 @@ namespace ArchiveProject2019.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to تنازلي.
+        /// </summary>
+        public static string OrderASC {
+            get {
+                return ResourceManager.GetString("OrderASC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نمط الترتيب.
+        /// </summary>
+        public static string OrderBy {
+            get {
+                return ResourceManager.GetString("OrderBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تاريخ الانشاء.
+        /// </summary>
+        public static string OrderBYDocCreateDate {
+            get {
+                return ResourceManager.GetString("OrderBYDocCreateDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تاريخ الوثيقة.
+        /// </summary>
+        public static string OrderByDocDate {
+            get {
+                return ResourceManager.GetString("OrderByDocDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to رقم الوثيقة.
+        /// </summary>
+        public static string OrderByDocNumber {
+            get {
+                return ResourceManager.GetString("OrderByDocNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to موضوع الوثيقة.
+        /// </summary>
+        public static string OrderByDocSubject {
+            get {
+                return ResourceManager.GetString("OrderByDocSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ترتيب بواسطة.
+        /// </summary>
+        public static string OrderByType {
+            get {
+                return ResourceManager.GetString("OrderByType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تصاعدي.
+        /// </summary>
+        public static string OrderDesc {
+            get {
+                return ResourceManager.GetString("OrderDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to الجهة.
         /// </summary>
         public static string PartyId {
@@ -2392,6 +2869,105 @@ namespace ArchiveProject2019.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to الاقسام المرتبطة.
+        /// </summary>
+        public static string RelatedDepartments {
+            get {
+                return ResourceManager.GetString("RelatedDepartments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to الوثائق المرتبطة.
+        /// </summary>
+        public static string RelatedDocuments {
+            get {
+                return ResourceManager.GetString("RelatedDocuments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to المجموعات المرتبطة.
+        /// </summary>
+        public static string RelatedGroups {
+            get {
+                return ResourceManager.GetString("RelatedGroups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to العناصر المرتبطة.
+        /// </summary>
+        public static string RelatedUsers {
+            get {
+                return ResourceManager.GetString("RelatedUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to لم يتم ربط أي وثيقة.
+        /// </summary>
+        public static string RelateError {
+            get {
+                return ResourceManager.GetString("RelateError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ربط مع الوثائق المتاحة.
+        /// </summary>
+        public static string RelateFoundDocument {
+            get {
+                return ResourceManager.GetString("RelateFoundDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to خيارات الارتباط.
+        /// </summary>
+        public static string RelateOptions {
+            get {
+                return ResourceManager.GetString("RelateOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ربط الوثائق المحددة.
+        /// </summary>
+        public static string RelateSelectedDocument {
+            get {
+                return ResourceManager.GetString("RelateSelectedDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تمت عملية الربط بنجاح.
+        /// </summary>
+        public static string RelateSuccess {
+            get {
+                return ResourceManager.GetString("RelateSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ربط مع وثائق.
+        /// </summary>
+        public static string RelateWithDoc {
+            get {
+                return ResourceManager.GetString("RelateWithDoc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ربط وثيقة جديدة.
+        /// </summary>
+        public static string RelatewithNewDoc {
+            get {
+                return ResourceManager.GetString("RelatewithNewDoc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تذكرني؟.
         /// </summary>
         public static string RememberMe {
@@ -2406,6 +2982,24 @@ namespace ArchiveProject2019.Resources {
         public static string Remove {
             get {
                 return ResourceManager.GetString("Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تحرير الارتباط الادنى للوثيقة.
+        /// </summary>
+        public static string RemoveChildRate {
+            get {
+                return ResourceManager.GetString("RemoveChildRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تأكيد تحرير الارتباط.
+        /// </summary>
+        public static string RemoveDocumentRateConfirm {
+            get {
+                return ResourceManager.GetString("RemoveDocumentRateConfirm", resourceCulture);
             }
         }
         
@@ -2455,6 +3049,24 @@ namespace ArchiveProject2019.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to تحرير الارتباط الأعلى للوثيقة.
+        /// </summary>
+        public static string RemoveParentRate {
+            get {
+                return ResourceManager.GetString("RemoveParentRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تمت عملية فك الارتباط بنجاح.
+        /// </summary>
+        public static string RemoveRelateSuccess {
+            get {
+                return ResourceManager.GetString("RemoveRelateSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تمت عملية الازالة بنجاح.
         /// </summary>
         public static string RemoveSuccess {
@@ -2469,6 +3081,24 @@ namespace ArchiveProject2019.Resources {
         public static string RemoveUser {
             get {
                 return ResourceManager.GetString("RemoveUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ردجديد.
+        /// </summary>
+        public static string ReplayDocument {
+            get {
+                return ResourceManager.GetString("ReplayDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to الردود.
+        /// </summary>
+        public static string ReplayedDocuments {
+            get {
+                return ResourceManager.GetString("ReplayedDocuments", resourceCulture);
             }
         }
         
@@ -2572,6 +3202,24 @@ namespace ArchiveProject2019.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to عدد الاسطر.
+        /// </summary>
+        public static string RowsCount {
+            get {
+                return ResourceManager.GetString("RowsCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to التخزين في قاعدة البيانات.
+        /// </summary>
+        public static string SaveInDb {
+            get {
+                return ResourceManager.GetString("SaveInDb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to مسح ضوئي.
         /// </summary>
         public static string Scanner {
@@ -2590,11 +3238,29 @@ namespace ArchiveProject2019.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to البحث عن النتائج.
+        /// </summary>
+        public static string SearchBtn {
+            get {
+                return ResourceManager.GetString("SearchBtn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to القائمة الفرعية.
         /// </summary>
         public static string Secondarymain {
             get {
                 return ResourceManager.GetString("Secondarymain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اختر النموذج.
+        /// </summary>
+        public static string Select_Forms {
+            get {
+                return ResourceManager.GetString("Select Forms", resourceCulture);
             }
         }
         
@@ -2748,6 +3414,15 @@ namespace ArchiveProject2019.Resources {
         public static string ToHomePage {
             get {
                 return ResourceManager.GetString("ToHomePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ToParties {
+            get {
+                return ResourceManager.GetString("ToParties", resourceCulture);
             }
         }
         
@@ -3027,6 +3702,141 @@ namespace ArchiveProject2019.Resources {
         public static string UserUserName {
             get {
                 return ResourceManager.GetString("UserUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to كامل الوثائق المتاحة.
+        /// </summary>
+        public static string ViewDocTypeAllDocuments {
+            get {
+                return ResourceManager.GetString("ViewDocTypeAllDocuments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to كل الوثائق المنبهة.
+        /// </summary>
+        public static string ViewDocTypeAllNotificationDocument {
+            get {
+                return ResourceManager.GetString("ViewDocTypeAllNotificationDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to الوثائق المجمولة لي.
+        /// </summary>
+        public static string ViewDocTypeDocumentToMe {
+            get {
+                return ResourceManager.GetString("ViewDocTypeDocumentToMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to الوثائق المحمولة للقسم.
+        /// </summary>
+        public static string ViewDocTypeDocumentToMyDepartment {
+            get {
+                return ResourceManager.GetString("ViewDocTypeDocumentToMyDepartment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to الوثائق المحولة لمجموعاتي.
+        /// </summary>
+        public static string ViewDocTypeDocumentToMyGroups {
+            get {
+                return ResourceManager.GetString("ViewDocTypeDocumentToMyGroups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to الوثائق المعممة المحولة للمستخدم.
+        /// </summary>
+        public static string ViewDocTypeGeneralizedDocumentToMe {
+            get {
+                return ResourceManager.GetString("ViewDocTypeGeneralizedDocumentToMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to الوثائق المعممة المحولة للقسم.
+        /// </summary>
+        public static string ViewDocTypeGeneralizedDocumentToMyDepartment {
+            get {
+                return ResourceManager.GetString("ViewDocTypeGeneralizedDocumentToMyDepartment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to الوثائق المعممة المحولة للمجموعات.
+        /// </summary>
+        public static string ViewDocTypeGeneralizedDocumentToMyGroups {
+            get {
+                return ResourceManager.GetString("ViewDocTypeGeneralizedDocumentToMyGroups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to وثائق التعميم المنبهة.
+        /// </summary>
+        public static string ViewDocTypeGeneralizedNotificationDoc {
+            get {
+                return ResourceManager.GetString("ViewDocTypeGeneralizedNotificationDoc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to وثائقي المنشأة.
+        /// </summary>
+        public static string ViewDocTypeMyCreatedDoc {
+            get {
+                return ResourceManager.GetString("ViewDocTypeMyCreatedDoc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to وثائقي المعممة.
+        /// </summary>
+        public static string ViewDocTypeMyCreatedGeneralizedDoc {
+            get {
+                return ResourceManager.GetString("ViewDocTypeMyCreatedGeneralizedDoc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to الوثائق الخاصة بالقسم.
+        /// </summary>
+        public static string ViewDocTypeMyDepartmentDoc {
+            get {
+                return ResourceManager.GetString("ViewDocTypeMyDepartmentDoc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to وثائق القسم المعممة.
+        /// </summary>
+        public static string ViewDocTypeMyDepartmentGeneralizedDoc {
+            get {
+                return ResourceManager.GetString("ViewDocTypeMyDepartmentGeneralizedDoc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to الوثائق المنبهة لليوم.
+        /// </summary>
+        public static string ViewDocTypeTodayNotificationDoc {
+            get {
+                return ResourceManager.GetString("ViewDocTypeTodayNotificationDoc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نمط عرض الوثائق.
+        /// </summary>
+        public static string ViewDocumentType {
+            get {
+                return ResourceManager.GetString("ViewDocumentType", resourceCulture);
             }
         }
         

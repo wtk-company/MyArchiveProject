@@ -1,85 +1,87 @@
 ﻿@model ArchiveProject2019.Models.Document
 
+@using ArchiveProject2019.Resources
+
 @{
-    ViewBag.Title = "حذف وثيقة";
+    ViewBag.Title = main_lang.AllDocuments;
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
 
 
 
-    <div>
+<div>
 
-        <dl class="dl-horizontal">
+    <dl class="dl-horizontal">
 
-            <dt>
-                @Html.DisplayNameFor(model => model.DocumentNumber)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.DocumentNumber)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.DocumentNumber)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Subject)
-            </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DocumentNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Subject)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Subject)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Address)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Address)
-            </dd>
-
-
-
-            <dt>
-                @Html.DisplayNameFor(model => model.DepartmentId)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Department.Name)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
 
 
 
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartmentId)
+        </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.CreatedAt)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.CreatedAt)
-            </dd>
-
-
-            <dt>
-                @Html.DisplayNameFor(model => model.CreatedById)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.CreatedBy.UserName)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Department.Name)
+        </dd>
 
 
 
 
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedAt)
+        </dd>
 
 
-        </dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedById)
+        </dt>
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy.UserName)
+        </dd>
 
-            <div class="modal-footer justify-content-center" style="margin-top:50px">
-                <input title="حذف الوثيقة المحددة" type="submit" value="حذف الوثيقة" class="btn btn-danger" />
 
-                <button title="إغلاق النافذة" type="button" class="btn btn-warning" data-dismiss="modal">إغلاق</button>
-            </div>
-        }
-    </div>
+
+
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="modal-footer justify-content-center" style="margin-top:50px">
+            <input title="@main_lang.DeleteButton" type="submit" value="@main_lang.DeleteButton" class="btn btn-danger" />
+
+            <button title="@main_lang.CloseButton" type="button" class="btn btn-warning" data-dismiss="modal">@main_lang.CloseButton</button>
+        </div>
+    }
+</div>

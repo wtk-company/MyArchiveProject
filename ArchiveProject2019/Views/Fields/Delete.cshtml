@@ -25,7 +25,7 @@
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
-     
+
 
         <dt>
             @Html.DisplayNameFor(model => model.IsRequired)
@@ -33,6 +33,18 @@
 
         <dd>
             @Html.DisplayFor(model => model.IsRequired)
+        </dd>
+
+
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EnableSearch)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EnableSearch)
         </dd>
 
         <dt>
@@ -54,11 +66,33 @@
 
 
 
+
+
+
+
+
+
                     break;
 
 
                 case "date":
                     @:@main_lang.Date
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -87,6 +121,14 @@
 
 
 
+
+
+
+
+
+
+
+
                     break;
                 case "phone":
                     @:@main_lang.PhoneField
@@ -94,9 +136,15 @@
 
 
 
+
+
+
+
                     break;
                 case "email":
                     @:@main_lang.EmailField
+
+
 
 
                     break;

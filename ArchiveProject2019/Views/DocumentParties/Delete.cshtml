@@ -1,12 +1,13 @@
 ﻿@model ArchiveProject2019.Models.DocumentParty
 
+@using ArchiveProject2019.Resources
 @{
-    ViewBag.Title = "إزالة الجهة المستهدفة ";
+    ViewBag.Title = main_lang.DocumentParties;
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
 
-<h3>متأكد من اخراج الجهة من الجهات الغير مستهدفة؟</h3>
+<h3>@main_lang.RemoveElementMessage</h3>
 <div>
 
     <dl class="dl-horizontal">
@@ -27,7 +28,7 @@
             @Html.DisplayFor(model => model.Document.Subject)
         </dd>
 
-     
+
 
         <dt>
             @Html.DisplayNameFor(model => model.CreatedAt)
@@ -57,8 +58,8 @@
         @Html.AntiForgeryToken()
 
         <div class="modal-footer justify-content-center" style="margin-top:50px">
-            <input type="submit" value=" إزالة الجهة" class="btn btn-danger" />
-            <button title="إغلاق النافذة" type="button" class="btn btn-warning" data-dismiss="modal">إغلاق</button>
+            <input type="submit" value=" @main_lang.OkRemove" class="btn btn-danger" />
+            <button title=" @main_lang.CloseButton" type="button" class="btn btn-warning" data-dismiss="modal">@main_lang.CloseButton</button>
         </div>
     }
 </div>

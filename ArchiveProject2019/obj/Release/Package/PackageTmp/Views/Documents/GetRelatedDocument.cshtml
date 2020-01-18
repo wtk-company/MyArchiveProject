@@ -20,19 +20,20 @@
             <span class="glyphicon glyphicon-bell">
 
             </span>
-            @main_lang.RelateSuccess
+            @main_lang.RelateError
+
         </div>
     }
 
 
     if (ViewBag.Msg == "CreateSuccess")
     {
-<div class="alert alert-info enterRemove" style="text-align:center;font-size:larger">
-    <span class="glyphicon glyphicon-bell">
+        <div class="alert alert-info enterRemove" style="text-align:center;font-size:larger">
+            <span class="glyphicon glyphicon-bell">
 
-    </span>
-    @main_lang.RelateError
-</div>
+            </span>
+            @main_lang.RelateSuccess
+        </div>
     }
 
 
@@ -309,7 +310,7 @@
 
 
 
-                             
+
 
 
 
@@ -556,4 +557,11 @@
         color: blue;
         text-decoration-line: underline;
     }
+
+     .dropdown-menu{
+        min-width:180px;
+    }
 </style>
+
+
+   

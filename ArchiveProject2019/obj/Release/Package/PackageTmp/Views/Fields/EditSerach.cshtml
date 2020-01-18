@@ -1,0 +1,244 @@
+﻿@model ArchiveProject2019.Models.Field
+@using ArchiveProject2019.Resources
+@{
+    ViewBag.Title = main_lang.FormFields;
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+<h3>@main_lang.EditSearchMessage</h3>
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Form.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Form.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsRequired)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsRequired)
+        </dd>
+
+
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EnableSearch)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EnableSearch)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @switch (Model.Type)
+            {
+
+
+
+
+                case "float":
+                    @:   @main_lang.Float
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    break;
+
+
+                case "date":
+                    @:@main_lang.Date
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    break;
+
+                case "text":
+                    @:@main_lang.Text
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    break;
+                case "phone":
+                    @:@main_lang.PhoneField
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    break;
+                case "email":
+                    @:@main_lang.EmailField
+
+
+
+
+
+
+
+
+                    break;
+
+
+            }
+
+        </dd>
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="modal-footer justify-content-center" style="margin-top:50px">
+
+            <input type="submit" title="@main_lang.EditButton" value="@main_lang.EditButton" class="btn btn-success" />
+            <button type="button" title=" @main_lang.CloseButton" class="btn btn-warning" data-dismiss="modal">@main_lang.CloseButton</button>
+        </div>
+
+
+    }
+</div>
